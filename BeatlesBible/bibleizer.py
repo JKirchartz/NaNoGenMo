@@ -75,9 +75,13 @@ def gospel(band):
 write the book to terminal
 """
 def write():
+    f = open("BeatlesBible.html", 'w')
+    content = ""
     for band in bands:
-        print gospel(band)
+        content += gospel(band)
+
+    f.write(content)
+    f.close()
 
 if __name__ == '__main__':
     write()
-
