@@ -8,7 +8,7 @@
 #
 
 for file in ./sources/*.txt; do
-  title=$(grep Title: $file | cut -d' ' -f2- | tr ' ' '_' | head)
+  title=$(grep Title: $file | cut -d' ' -f2- | tr ' ' '_' | tr '' '' | head)
   stripgutenberg.pl < $file > ./corpora/$title.txt
 done
 
