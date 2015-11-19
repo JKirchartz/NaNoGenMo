@@ -7,81 +7,94 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 
 """
-Pseudocode:
-book = band.name
-chapter_count = 0
-for song in band.songs:
-  chapter = song.name
-  chapter_count+=1
-  verses = split("\n\n", song.lyrics)
-  verse_count = 0
-  for verse in verses:
-      verse_count+=1
-      print "%s:%s %s" % (chapter_count, verse_count, verse)
+Create a simple reference for preaching song lyrics
 """
-
 
 from pyquery import PyQuery as pq
-import urllib, json
+import simplejson as json
+import re, urllib, time, random
 
-bands = ['The Beatles', 'Devo', 'Oingo Boingo']
 
-"""
-get band's discography
-"""
-def get_discog(name):
+def get_discog(band):
+    """
+    get band's discography
+    """
     url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
-    url += name
+    url += band
     response = urllib.urlopen(url)
     return json.loads(response.read())
 
-"""
-get band's song
-"""
-def get_song(band, name):
+def get_song(band, song):
+    """
+    get band's song
+    """
     url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
     url += band
-    url += '&song=' + name
+    url += '&song=' + song
     response = urllib.urlopen(url)
-    new_url = json.loads(response.read())['url']
+    song = response.read().replace("'", '"')[7:]
+    new_url = json.loads(song)['url']
     page = pq(new_url)
-    return page('.lyricsbox').text()
+    lyrics = page('.lyricbox').remove('script').html()
+    lyrics = re.sub(r'(<br\/?><br\/?>|<[^>]+>)', '\n', lyrics)
+    lyrics = lyrics.split('NewPP limit report')[0]
+    return lyrics
 
-"""
-create gospels from songs
-"""
+def msg():
+    waiting = ["...man, I need a nap!",
+               "maybe I'll go for a walk",
+               "let's meditate on that...",
+               "coffee break!",
+               "...aaaargh, writer's block!",
+               "oh shoot, lost my train of thought",
+               "bedtime, already!?",
+               "hand cramp!!"]
+    return random.choice(waiting)
+
 def gospel(band):
+    """
+    create gospels from songs
+    """
     discog = get_discog(band)
-    output = "<h1>The Gospel of " + discog['artist'] +  "</h1>"
+    output = "#The Gospel of " + discog['artist']
     albums = discog['albums']
     for album in albums:
-        output += "<h2>Book of" + album['album'] + "</h2>"
-        chapter_count = 1
+        output += "\n##Book of" + album['album']
+        chapter_count = 0
+        print "Writing: " + album['album']
         for song in album['songs']:
-            verse_count=1
+            verse_count = 0
             chapter_count += 1
-            output += "<h3>" + song + "</h3>"
+            output += "\n###" + song
             # use song variable to get lyrics
             lyrics = get_song(band, song)
             # verses = split on <p> or \n or whatever
-            verses = lyrics.split('')
+            verses = lyrics.split('\n')
             for verse in verses:
-                verse_count += 1
-                output += "<i>%s:%s<i> %s" % (chapter_count, verse_count, verse)
+                if len(verse):
+                    verse_count += 1
+                    tmp = "%s:%s %s\n" % (chapter_count, verse_count, verse)
+                    output += tmp
+            # wait a minute between songs to avoid clumping
+            msg()
+            time.sleep(60)
+        msg()
+        time.sleep(60)
 
     return output
 
-"""
-write the book to terminal
-"""
-def write():
-    f = open("BeatlesBible.html", 'w')
-    content = ""
-    for band in bands:
-        content += gospel(band)
-
-    f.write(content)
-    f.close()
-
 if __name__ == '__main__':
-    write()
+    """
+    write the book
+    """
+    BANDS = ['Cake', 'The Beatles', 'Devo', 'Oingo Boingo']
+    for name in BANDS:
+        fname = re.sub(r'[^A-Za-z_]+', '_', name)
+        content = gospel(name)
+        f = open(fname + "_Bible.md", 'w')
+        f.write(content)
+        f.close()
+        msg()
+        time.sleep(60) #wait a minute between bands
+
+

@@ -12,11 +12,16 @@ mkdir sources
 mkdir tmp
 
 echo "downloading..."
-./download.sh
+wget -nc -i doyle.list -P ./sources
 
 echo "converting...."
-./convert.sh
+for file in ./sources/*.txt; do
+  title=$(grep Title: "$file" | cut -d' ' -f2- | sed -e 's|(?:(\s)\|\n\|\r)|_|' | head)
+  stripgutenberg.pl < "$file" > "./corpora/$title.txt"
+done
+
+cat ./corpora/*.txt > ./corpora/complete.corpus
 
 echo "shuffling...."
-./python shuffle.py ./corpora/*.txt
+python shuffle.py ./corpora/*.txt
 

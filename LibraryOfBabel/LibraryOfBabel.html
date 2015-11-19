@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<title>Library Of Babel</title>
+<style>
+  html, body {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    font-size:100%;
+    line-height:1.25;
+    background-color: lightgrey;
+  }
+  #book {
+    margin:0 auto;
+    width:40.5em;
+    min-height:57.27.56em;
+    background-color: white;
+  }
+  article {
+    border:1px solid lightgrey;
+    border-radius:5px;
+    margin:1em;
+    padding: 0.75em 1em 1em 0.75em;
+    word-wrap:break;
+  }
+  h1, h2, h3 { margin: 0 auto; }
+  h1 {font-size:1.5em; padding:1.45em 0;}
+  h2 {font-size:1.33em; padding:1.25em 0;}
+
+</style>
+<form id="seedform" action="#">
+  seed:
+  <input type="text" name="seed" id="seed" value="Borges" placeholder="seed"/>
+  <input type="submit" name="submit" id="submit" value="reseed/rewrite" />
+  (will not reseed unless the seed has been changed)
+</form>
+<div id='book'></div>
+<script src="seedrandom.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+var chars = "abcdefghijklmnopqrstuvwxyz ., ,.";
+var book = 410;
+var page = 3200;
+String.prototype.shuffle = function () {
+    var a = this.split(""),
+        n = a.length;
+
+    for(var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+    return a.join("");
+}
+
+function create() {
+    var output = "<h1>BOOK</h1>";
+    var chapters = 1;
+    for (var j = 0; j < book; j++) {
+        if (Math.round(Math.random() * book) % 33 === 0 || j == 0) {
+           if (j !== 0){
+               output += "</article>";
+           }
+           output += "<article><h2>CHAPTER " + chapters + "</h2>";
+           chapters++;
+        }
+        output += "<p>"
+        for (var i = 0; i < page; i++) {
+            output += chars.charAt(Math.round(Math.random()*chars.length));
+        }
+        output += "</p>"
+    }
+    return output;
+}
+
+function write(){
+    chars = chars.shuffle();
+    var content = create();
+    document.getElementById('book').innerHTML = content;
+    document.getElementsByTagName('h1')[0].innerHTML += ": " + chars + " &mdash; " +
+        content.split(' ').length + " words";
+}
+var seedform = document.getElementById('seedform');
+var seed = document.getElementById('seed').value;
+Math.seedrandom(seed);
+seedform.onsubmit = function(e) {
+  e.preventDefault();
+  if (this.seed.value !== seed) {
+    seed = this.seed.value;
+    Math.seedrandom(seed)
+  }
+  write();
+  return false;
+}
+write();
+</script>
