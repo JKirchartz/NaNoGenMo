@@ -160,9 +160,11 @@ def markovbooks(books):
         chapters_count += chapter_count
 
 
-    avg = word_count / chapters_count
+    avg = (word_count / len(books)) / chapters_count
     for chapter in chapters:
-        markov = markovgen.Markov(StringIO(chapter))
+        print chapter
+        print "##########"
+        markov = markovgen.Markov(StringIO(re.sub(r'\n', '', chapter)))
         output += "\n\n\n\n"
         output += markov.generate_markov_text(avg)
     output_txt('mark_book.txt', output.strip())

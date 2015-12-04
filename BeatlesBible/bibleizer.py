@@ -7,49 +7,74 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 
 """
-Create a simple reference for preaching song lyrics
+Music is a religious experience, let's treat it like one.
 """
 
 from pyquery import PyQuery as pq
 import simplejson as json
-import re, urllib, time, random
+import re, urllib, time, random, os, sys
+
+def output_file(dir, filename, output):
+    """write a file (increment to avoid clobbering)"""
+    output = re.sub(",\n", ", ", output)
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+    filename = dir + '/' + filename
+    if not os.path.exists(filename):
+        f = open(filename, 'w')
+    else:
+        i = 0
+        while os.path.exists(filename + "." + str(i)):
+            i += 1
+        f = open(filename + "." + str(i), 'w')
+    f.write(output)
+    f.close()
 
 
 def get_discog(band):
     """
     get band's discography
     """
-    url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
-    url += band
-    response = urllib.urlopen(url)
-    return json.loads(response.read())
+    filename = re.sub(r'[^A-Za-z_]+', '_', band) + ".json"
+    if os.path.exists(filename):
+        f = open(filename, 'r')
+        output = f.read()
+        f.close()
+    else:
+        url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
+        url += band
+        response = urllib.urlopen(url)
+        output = response.read()
+        output_file('tmp', filename, output)
+
+    return json.loads(output)
 
 def get_song(band, song):
     """
     get band's song
     """
-    url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
-    url += band
-    url += '&song=' + song
-    response = urllib.urlopen(url)
-    song = response.read().replace("'", '"')[7:]
-    new_url = json.loads(song)['url']
-    page = pq(new_url)
-    lyrics = page('.lyricbox').remove('script').html()
-    lyrics = re.sub(r'(<br\/?><br\/?>|<[^>]+>)', '\n', lyrics)
-    lyrics = lyrics.split('NewPP limit report')[0]
+    filename = re.sub(r'[^A-Za-z_-]+', '_', "-".join([band, song]))
+    if os.path.exists(filename):
+        f = open(filename, 'r')
+        lyrics = f.read()
+        f.close()
+    else:
+        url = 'http://lyrics.wikia.com/api.php?action=lyrics&fmt=json&artist='
+        url += band
+        url += '&song=' + song
+        response = urllib.urlopen(url)
+        song = response.read().replace("'", '"')[7:]
+        new_url = json.loads(song)['url']
+        page = pq(new_url)
+        lyrics = page('.lyricbox').remove('script').html()
+        lyrics = re.sub(r'(<br\/?><br\/?>|<[^>]+>|<!--[^-]+-->)',
+                        '\n',
+                        lyrics,
+                        re.MULTILINE)
+        output_file('tmp', filename, lyrics)
+
     return lyrics
 
-def msg():
-    waiting = ["...man, I need a nap!",
-               "maybe I'll go for a walk",
-               "let's meditate on that...",
-               "coffee break!",
-               "...aaaargh, writer's block!",
-               "oh shoot, lost my train of thought",
-               "bedtime, already!?",
-               "hand cramp!!"]
-    return random.choice(waiting)
 
 def gospel(band):
     """
@@ -68,7 +93,6 @@ def gospel(band):
             output += "\n###" + song
             # use song variable to get lyrics
             lyrics = get_song(band, song)
-            # verses = split on <p> or \n or whatever
             verses = lyrics.split('\n')
             for verse in verses:
                 if len(verse):
@@ -83,6 +107,17 @@ def gospel(band):
 
     return output
 
+def msg():
+    waiting = ["...man, I need a nap!",
+               "maybe I'll go for a walk",
+               "let's meditate on that...",
+               "coffee break!",
+               "...aaaargh, writer's block!",
+               "oh shoot, lost my train of thought",
+               "bedtime, already!?",
+               "hand cramp!!"]
+    return random.choice(waiting)
+
 if __name__ == '__main__':
     """
     write the book
@@ -91,9 +126,7 @@ if __name__ == '__main__':
     for name in BANDS:
         fname = re.sub(r'[^A-Za-z_]+', '_', name)
         content = gospel(name)
-        f = open(fname + "_Bible.md", 'w')
-        f.write(content)
-        f.close()
+        output_file('output', fname + "_Bible.md", content)
         msg()
         time.sleep(60) #wait a minute between bands
 

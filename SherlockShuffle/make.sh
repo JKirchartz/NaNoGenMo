@@ -16,7 +16,7 @@ wget -nc -i doyle.list -P ./sources
 
 echo "converting...."
 for file in ./sources/*.txt; do
-  title=$(grep Title: "$file" | cut -d' ' -f2- | sed -e 's|(?:(\s)\|\n\|\r)|_|' | head)
+  title=$(grep Title: "$file" | head | cut -d' ' -f2- | sed -e 's|[^A-Za-z]||g')
   stripgutenberg.pl < "$file" > "./corpora/$title.txt"
 done
 
