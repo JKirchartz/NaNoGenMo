@@ -16,3 +16,7 @@ IDK yet, but I love this show
 3. Sherlock Shuffle
 Take a selection of Sherlock Holmes books, and shuffle them like a deck of
 cards. (Might resort to Markov)
+
+
+Bonus: Library of Babel
+A seedable web presentation of Borges classic Library of Lore
