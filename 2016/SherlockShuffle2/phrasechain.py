@@ -3,7 +3,7 @@
 # graciously borrowed from https://github.com/enkiv2/misc/tree/master/phrasechain
 
 
-MIN_LINES=1000 # modify this if you want a higher or lower max output; without this default we often get zero-length output
+MIN_LINES=1500 # modify this if you want a higher or lower max output; without this default we often get zero-length output
 
 from random import Random
 random=Random()
