@@ -14,12 +14,12 @@ from pyquery import PyQuery as pq
 import simplejson as json
 import re, urllib, time, random, os, sys, codecs
 
-def output_file(dir, filename, output):
+def output_file(directory, filename, output):
     """write a file (increment to avoid clobbering)"""
     output = re.sub(",\n", ", ", output)
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-    filename = dir + '/' + filename
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    filename = directory + '/' + filename
     if not os.path.exists(filename):
         f = codecs.open(filename, 'w', 'utf-8')
     else:
@@ -65,14 +65,14 @@ def get_song(band, song):
         url += band
         url += '&song=' + song
         response = urllib.urlopen(url)
-        song = response.read().replace("'", '"')[7:]
+        song = response.read()[7:].replace('"', '%').replace("'", '"').replace('%', "'")
         reply = json.loads(song)
         new_url = reply['url']
         page = pq(new_url)
         lyrics = page('.lyricbox').remove('script').html()
         lyrics = re.sub(r'(<br\/?><br\/?>|<[^>]+>|<!--[^-]+-->)',
                         '\n',
-                        lyrics,
+                        lyrics.decode('utf-8'),
                         re.MULTILINE)
         output_file('tmp', filename, lyrics)
         # wait a minute between songs to avoid clumping
@@ -104,13 +104,13 @@ def gospel(band):
                 if len(verse):
                     verse_count += 1
                     tmp = "%s:%s %s\n" % (chapter_count, verse_count, verse)
-                    output += tmp
+                    output += tmp.decode('utf-8')
 
     return output
 
 def msg():
     sys.stdout.write(".")
-    time.sleep(60) # wait 60 seconds
+    time.sleep(30) # wait 30 seconds
 
 if __name__ == '__main__':
     """
