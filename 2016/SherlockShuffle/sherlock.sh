@@ -1,9 +1,9 @@
 #! /bin/sh
 #
-# make.sh
+# sherlock.sh
 # Usage:
 #
-# $>make.sh output.txt [first|last|min|max|avg|avg2]
+# $>sherlock.sh output.txt [first|last|min|max|avg|avg2]
 #
 # will produce file ./output/output.txt
 #
@@ -20,7 +20,7 @@
 
 if [ -z "$1" ]; then
 	echo "Usage:"
-	echo "make.sh output.txt [first|last|min|max|avg|avg2]"
+	echo "sherlock.sh output.txt [first|last|min|max|avg|avg2]"
 	echo "will produce file ./output/output.txt"
 	echo "optional arguments set which of phrasechain's various algorithms should be used"
 	echo "default setting is \"first\", and it is the fastest"
@@ -28,10 +28,10 @@ if [ -z "$1" ]; then
 else
 	mkdir -p corpora
 	mkdir -p output
-	if [ ! -f ./corpora/complete.corpus ]; then
+	if [ ! -f ./corpora/sherlock.corpus ]; then
 		echo "downloading sources & generating corpora (this will only run once)"
 		mkdir -p tmp
-		wget -q -nc -i doyle.list -P ./tmp
+		wget -q -nc -i sherlock.list -P ./tmp
 
 		echo "cleaning sources...."
 		for file in ./tmp/*.txt; do
@@ -40,19 +40,20 @@ else
 		done
 
 		echo "compiling corpora....."
-		cat ./corpora/*.txt > ./corpora/complete.corpus
+		cat ./corpora/*.txt > ./corpora/sherlock.corpus
 		echo "cleaning corpora....."
-		vim ./corpora/complete.corpus -S cleanGcorpora.vim
+		vim ./corpora/sherlock.corpus -S cleanGcorpora.vim
 		echo "cleaning temporary files...."
+		rm -rf ./corpora/*.txt
 		rm -rf ./tmp/
 	fi
 
 	echo "shuffling...."
 	# python shuffle.py ./corpora/complete.corpus
 	if [ -z "$2" ];then
-		phrasechain.sh < ./corpora/complete.corpus > tmp.txt
+		phrasechain.sh < ./corpora/sherlock.corpus > tmp.txt
 	else
-		phrasechain.sh "$2" < ./corpora/complete.corpus > tmp.txt
+		phrasechain.sh "$2" < ./corpora/sherlock.corpus > tmp.txt
 	fi
 
 	echo "cleaning up..."
