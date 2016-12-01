@@ -45,6 +45,7 @@ def get_discog(band):
         url += band
         response = urllib.urlopen(url)
         output = response.read()
+        output = urllib.unquote(output)
         output_file('tmp', filename, output)
         # wait a minute between songs to avoid clumping
         msg()
@@ -70,10 +71,8 @@ def get_song(band, song):
         new_url = reply['url']
         page = pq(new_url)
         lyrics = page('.lyricbox').remove('script').html()
-        lyrics = re.sub(r'(<br\/?><br\/?>|<[^>]+>|<!--[^-]+-->)',
-                        '\n',
-                        lyrics.decode('utf-8'),
-                        re.MULTILINE)
+        lyrex = re.compile('(<br\/?><br\/?>|<[^>]+>|<!--[^-]+-->)', re.MULTILINE)
+        lyrics = lyrex.sub('\n', str(lyrics))
         output_file('tmp', filename, lyrics)
         # wait a minute between songs to avoid clumping
         msg()
@@ -104,7 +103,7 @@ def gospel(band):
                 if len(verse):
                     verse_count += 1
                     tmp = "%s:%s %s\n" % (chapter_count, verse_count, verse)
-                    output += tmp.decode('utf-8')
+                    output += tmp
 
     return output
 
@@ -116,7 +115,8 @@ if __name__ == '__main__':
     """
     write the book
     """
-    BANDS = ['The Beatles', 'Devo', 'Oingo Boingo', 'Cake']
+    BANDS = ['The Beatles']
+    # , 'Devo', 'Oingo Boingo', 'Cake']
     for name in BANDS:
         fname = re.sub(r'[^A-Za-z_]+', '_', name)
         content = gospel(name)
