@@ -71,8 +71,9 @@ def get_song(band, song):
         new_url = reply['url']
         page = pq(new_url)
         lyrics = page('.lyricbox').remove('script').html()
+        lyrics = urllib.unquote(lyrics)
         lyrex = re.compile('(<br\/?><br\/?>|<[^>]+>|<!--[^-]+-->)', re.MULTILINE)
-        lyrics = lyrex.sub('\n', str(lyrics))
+        lyrics = lyrex.sub('\n', lyrics)
         output_file('tmp', filename, lyrics)
         # wait a minute between songs to avoid clumping
         msg()
