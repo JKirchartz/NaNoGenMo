@@ -3,6 +3,5 @@
 <p>Maybe something with tracery? I need to improve my tracery chops. What I'd really like to do is take a written work, run it through a parts of speech tagger of some sort, and turn those tags into tracery lists so that I can randomize the content of the book without changing the structure.</p>
 
 
-<img alt="@nossidge" class="avatar rounded-1" height="44" src="https://avatars2.githubusercontent.com/u/3586214?v=4&amp;s=88" width="44" />
-<p>As it happens, I have a <a href="https://mega.nz/#!ASBxRYrA!Ko01ovAqYRuPAKDuhj1V5-HpJ7eWe21OilyEelSCXpg">folder</a> full of Beatles song lyrics.<br>
+<p>As it happens, [@nossidge has] a <a href="https://mega.nz/#!ASBxRYrA!Ko01ovAqYRuPAKDuhj1V5-HpJ7eWe21OilyEelSCXpg">folder</a> full of Beatles song lyrics.<br>
 Hope it helps, in case you hadn't sourced the data yet.</p>
