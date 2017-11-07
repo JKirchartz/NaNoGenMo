@@ -7,7 +7,7 @@ Please Please Me (1963)
 6.  Ask Me Why
 7.  Please Please Me
 8.  Love Me Do
-9.  P.S. I Love You
+9.  PS I Love You
 10.  Baby It's You
 11.  Do You Want To Know A Secret
 12.  A Taste Of Honey
@@ -36,8 +36,8 @@ Beatles For Sale (1964)
 3.  Baby's In Black
 4.  Rock And Roll Music
 5.  I'll Follow The Sun
-6.  Mr. Moonlight
-7.  Medley: Kansas City / Hey, Hey, Hey, Hey
+6.  Mr Moonlight
+7.  Kansas City
 8.  Eight Days A Week
 9.  Words Of Love
 10.  Honey Don't
@@ -79,7 +79,7 @@ Help! (1965)
 
 Rubber Soul (1965)
 1.  Drive My Car
-2.  Norwegian Wood (This Bird Has Flown)
+2.  Norwegian Wood
 3.  You Won't See Me
 4.  Nowhere Man
 5.  Think For Yourself
@@ -110,38 +110,37 @@ Revolver (1966)
 14.  Tomorrow Never Knows
 
 Sgt. Pepper's Lonely Hearts Club Band (1967)
-1.  Sgt. Pepper's Lonely Hearts Club Band
+1.  Sgt Pepper's Lonely Hearts Club Band
 2.  With A Little Help From My Friends
 3.  Lucy In The Sky With Diamonds
 4.  Getting Better
 5.  Fixing A Hole
 6.  She's Leaving Home
-7.  Being For The Benefit Of Mr. Kite!
+7.  Being For The Benefit Of Mr Kite!
 8.  Within You Without You
-9.  When I'm Sixty Four
+9.  When I'm SixtyFour
 10.  Lovely Rita
 11.  Good Morning, Good Morning
-12.  Sgt. Pepper's Lonely Hearts Club Band (Reprise)
+12.  Sgt Pepper's Lonely Hearts Club Band (Reprise)
 13.  A Day In The Life
 
 Magical Mystery Tour (1967)
 1. Magical Mystery Tour
 2.  The Fool On The Hill
-3.  Flying
-4.  Blue Jay Way
-5.  Your Mother Should Know
-6.  I Am The Walrus
-7.  Hello, Goodbye
-8.  Strawberry Fields Forever
-9.  Penny Lane
-10.  Baby, You're A Rich Man
-11.  All You Need Is Love
+3.  Blue Jay Way
+4.  Your Mother Should Know
+5.  I Am The Walrus
+6.  Hello, Goodbye
+7.  Strawberry Fields Forever
+8.  Penny Lane
+9.  Baby, You're A Rich Man
+10.  All You Need Is Love
 
 The Beatles (The White Album) (1968)
 1.  Back In The U.S.S.R.
 2.  Dear Prudence
 3.  Glass Onion
-4.  Ob-La-Di, Ob-La-Da
+4.  ObLaDi, ObLaDa
 5.  Wild Honey Pie
 6.  The Continuing Story Of Bungalow Bill
 7.  While My Guitar Gently Weeps
@@ -154,20 +153,19 @@ The Beatles (The White Album) (1968)
 14.  Don't Pass Me By
 15.  Why Don't We Do It In The Road?
 16.  I Will
-17.  Julia
-18.  Birthday
-19.  Yer Blues
-20.  Mother Nature's Son
-21.  Everybody's Got Something To Hide Except Me And My Monkey
-22.  Sexy Sadie
-23.  Helter Skelter
-24.  Long, Long, Long
-25.  Revolution 1
-26.  Honey Pie
-27.  Savoy Truffle
-28.  Cry Baby Cry
-29.  Revolution 9
-30.  Good Night
+17.  Birthday
+18.  Yer Blues
+19.  Mother Nature's Son
+20.  Everybody's Got Something To Hide Except Me And My Monkey
+21.  Sexy Sadie
+22.  Helter Skelter
+23.  Long, Long, Long
+24.  Revolution 1
+25.  Honey Pie
+26.  Savoy Truffle
+27.  Cry Baby Cry
+28.  Revolution
+29.  Good Night
 
 Yellow Submarine (1969)
 1.  Yellow Submarine
@@ -176,12 +174,6 @@ Yellow Submarine (1969)
 4.  Hey Bulldog
 5.  It's All Too Much
 6.  All You Need Is Love
-7.  Pepperland
-8.  Medley: Sea Of Time & Sea Of Holes
-9.  Sea Of Monsters
-10.  March Of The Meanies
-11.  Pepperland Laid Waste
-12.  Yellow Submarine In Pepperland
 
 Abbey Road (1969)
 1.  Come Together
@@ -194,17 +186,16 @@ Abbey Road (1969)
 8.  Because
 9.  You Never Give Me Your Money
 10.  Sun King
-11.  Mean Mr. Mustard
+11.  Mean Mr Mustard
 12.  Polythene Pam
 13.  She Came In Through The Bathroom Window
 14.  Golden Slumbers
 15.  Carry That Weight
 16.  The End
-17.  Her Majesty
 
 Let It Be (1970)
 1.  Two Of Us
-2.  Dig A Pony
+2.  I Dig A Pony
 3.  Across The Universe
 4.  I Me Mine
 5.  Dig It
