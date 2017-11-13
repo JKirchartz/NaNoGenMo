@@ -1,0 +1,27 @@
+{
+  "name": "artbook",
+  "version": "1.0.0",
+  "description": "Generate a book of modern art",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jkirchartz/NaNoGenMo/2017/Artbook"
+  },
+  "keywords": [
+    "NaNoGenMo",
+    "Art",
+    "Book",
+    "Dada",
+    "Post-Modern"
+  ],
+  "author": "JKirchartz",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "gleech": "git+https://github.com/jkirchartz/Glitchy3bitDither.git",
+    "request": "^2.83.0"
+  }
+}

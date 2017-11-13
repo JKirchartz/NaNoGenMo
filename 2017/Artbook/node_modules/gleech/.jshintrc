@@ -1,0 +1,9 @@
+{
+	"node": true,
+	"browser": true,
+	"globalstrict": true,
+	"strict": false,
+	"globals": {
+		"Jimp": true
+	}
+}

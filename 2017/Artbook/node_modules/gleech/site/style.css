@@ -1,0 +1,150 @@
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+img, canvas { display:inline;}
+html, body {
+    font-family:Futura, “Century Gothic”, AppleGothic, sans-serif;
+    font-size:100%;
+}
+header {
+   width:100%;
+   color:#eee;
+   background:#444;
+   padding:0.5em 1em;
+   box-shadow:0.1em 0.1em 0.1em 0.1em rgba(0,0,0,0.8);
+   overflow:hidden;
+}
+header h1, nav {display:inline-block;padding-top:0;}
+h1 {
+   margin-right:1em;
+   text-shadow:0.1em 0.1em 0.1em rgba(0,0,0,0.5);
+}
+header a, button {
+   display:inline-block;
+   border:1px solid #666;
+   background:#444;
+   color:#aaa;
+   padding:0.5em;
+   text-decoration:none;
+   border-radius:0.2em;
+}
+header a:active, button:active, header a:hover, button:hover {
+   color:#eee;
+   border:1px solid #999;
+   box-shadow:0.1em 0.1em 0.1em 0.1em rgba(0,0,0,0.8);
+   text-shadow:0.1em 0.1em 0.1em rgba(0,0,0,0.7);
+}
+button[disabled]:active, button[disabled]:hover {
+   color:#aaa;
+   border:1px solid #666;
+   box-shadow:none;
+   text-shadow:none;
+}
+header a:active, button:active {
+    box-shadow:none;
+}
+header a[href="#"] {
+    border-color:#0ac;
+    color:#0ac;
+    font-size:1em;
+    font-family:serif;
+    font-weight:bold;
+    display:block;
+    border-width:2px;
+    border-radius:1em;
+    width:2em;
+    height:2em;
+    text-align:center;
+    line-height:1;
+    font-style:italic;
+    text-decoration:none;
+    float:right;
+    margin-top:0.4em;
+    padding:0.36em;
+}
+header a[href="#"]:active, header a[href="#"]:hover {
+    color:#7de;
+}
+#index a[href="index.html"], #index a[href=""]{
+    border-color:#944;
+    color:#f66;
+}
+#glitch a[href="glitch.html"]{
+    border-color:#944;
+    color:#f66;
+}
+#GlitchCruiser a[href="GlitchCruiser.html"]{
+    border-color:#944;
+    color:#f66;
+}
+#GlitchChooser a[href="GlitchChooser.html"]{
+    border-color:#944;
+    color:#f66;
+}
+#info {
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:rgba(0,0,0,0.7);
+    z-index:3;
+    display:none;
+}
+#info.on {
+    display:block;
+}
+#info span {
+   position:absolute;
+   z-index:5;
+   background:#eee;
+   border-radius:0.2em;
+   max-width:32em;
+   height:auto;
+   top:50%; left:50%;
+   transform: translate(-50%, -50%);
+   padding:1em 0.5em;
+}
+#info p {
+   padding:0.5em 0;
+}
+#info p:last-of-type {
+   margin-bottom:1em;
+}
+#info h1 {
+    text-shadow:none;
+}
+#info a[href="#"] {
+    position:absolute;
+    bottom:-0.2em;
+    right:-0.2em;
+    background:#f66;
+    color:#fdd;
+    border-color:#0ac;
+    font-size:14px;
+    font-weight:bold;
+    display:block;
+    border-width:2px;
+    border-radius:1em;
+    width:1.5em;
+    height:1.5em;
+    text-align:center;
+    line-height:1;
+    padding-top:0.2em;
+    text-decoration:none;
+    float:right;
+}
+#info a[href="#"]:active, #info a[href="#"]:hover {
+    background:#f44;
+    color:#fff;
+}
+main h1, h2, main p, #form {max-width:60%;margin:1em auto;}
+#form select, #form input, #form button { display:block;margin:0.5em;}
+#form button { display:inline-block; }
+#output { width:100%; }
+#output img {display:inline-block;max-width:calc(100% - 1em - 2px);box-sizing:border-box;margin:0.5em;border:2px solid #AAA;}
+#GlitchCruiser #output img {display:inline;width:calc(33% - 1em - 2px);margin:0.5em;border:1px solid #AAA;}

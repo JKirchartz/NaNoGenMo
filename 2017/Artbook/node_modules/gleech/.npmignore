@@ -1,0 +1,7 @@
+_site/
+node_modules/
+.jekyll-metadata
+npm-debug.log
+*.jpg
+*.png
+!test.jpg
