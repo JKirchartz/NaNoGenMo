@@ -2,10 +2,6 @@
 
 'use strict';
 
-const request = require('request')
-.defaults({ headers: {'User-agent':
-	'Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML,' +
-			' like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19'}});
 const cheerio = require('cheerio');
 // const gleech = require('gleech');
 const fs = require('fs');
@@ -13,64 +9,48 @@ const MarkovGen = require('markov-generator');
 
 console.log('Generate Corpus');
 var corpus = [];
+var dir = './www.391.org/manifestos/';
 
 // get/parse texts
 
-function getLinks(url, callback) {
-	var links = [];
-	request(url, (error, response, body) => {
-		if (!error && response.statusCode === 200) {
-			var $ = cheerio.load(body);
-			console.log('finding manifestos...');
-			$('.itemmanifesto a').each((i, el) => {
-				var link = $(el).attr('href');
-				links.push(link);
-			});
-			if (!links.length) {
-				console.log('Links not found at url:\n', url);
-			} else {
-				if(typeof callback === 'function') {
-					callback(links);
-				} else {
-					return links;
+function freakOut (err) {
+	console.error('Something went wrong: ', err);
+	process.exit(1);
+}
+
+fs.readdir(dir, function (err, files) {
+	if ( err ) {
+		freakOut(err);
+	}
+	console.log('read files');
+	files.forEach( function (file, index) {
+		if (file.indexOf('.jpg') === -1 &&
+				file.indexOf('.png') === -1 &&
+				file.indexOf('.gif') === -1 &&
+				file.indexOf('.swf') === -1 &&
+				file.indexOf('.txt') === -1 &&
+				file.indexOf('.js') === -1 &&
+				file.indexOf('.pdf') === -1
+			 ) {
+			console.log('reading: ', file);
+			fs.readFile(dir + file, function (err, data) {
+				if (err) {
+					console.error('this happened: ', err);
+					return;
 				}
-			}
-		} else if (error) {
-			console.log('ERROR: cannot get url:\n', error);
-		} else {
-			console.log('ERROR: http response:\n', response.statusCode);
+				var text = cheerio.load(data);
+				text = text.text();
+				console.log(text);
+				corpus.push(text);
+			});
 		}
 	});
-}
-
-function parseCorpus (error, response, body) {
-	if (!error && response.statusCode === 200) {
-		var $ = cheerio.load(body);
-		corpus.push($('p').text());
+	if (corpus) {
+		let markov = new MarkovGen({
+			input: corpus,
+			minLength: 10
+		});
+		let sentence = markov.makeChain();
+		console.log(sentence);
 	}
-}
-
-function getCorpus(links, callback) {
-	if (corpus.length) {
-		return corpus;
-	}
-	if (!!links || links.length === 0) {
-		links = getLinks('http://www.391.org/dada-manifestos.html');
-	}
-	var i = links.length;
-	while (i > 0) {
-		var link = links.pop();
-		if (link.indexOf('jpg') === -1 &&
-				link.indexOf('png') === -1 &&
-				link.indexOf('gif') === -1 &&
-				link.indexOf('swf') === -1 &&
-				link.indexOf('pdf') === -1
-			 ) {
-			request(link, parseCorpus);
-		}
-		i -= 1;
-	}
-	return corpus;
-}
-
-getCorpus();
+});
