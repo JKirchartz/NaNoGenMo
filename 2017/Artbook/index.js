@@ -3,13 +3,14 @@
 'use strict';
 
 const cheerio = require('cheerio');
-// const gleech = require('gleech');
 const fs = require('fs');
 const MarkovGen = require('markov-generator');
+const Flickr = require('flickr-sdk');
+const gleech = require('gleech');
 
 console.log('Generate Corpus');
 var corpus = [];
-var dir = './www.391.org/manifestos/';
+var dir = 'www.391.org/manifestos/';
 
 // get/parse texts
 
@@ -30,27 +31,44 @@ fs.readdir(dir, function (err, files) {
 				file.indexOf('.swf') === -1 &&
 				file.indexOf('.txt') === -1 &&
 				file.indexOf('.js') === -1 &&
-				file.indexOf('.pdf') === -1
+				file.indexOf('.pdf') === -1 &&
+				file.indexOf('.') > -1
 			 ) {
-			console.log('reading: ', file);
-			fs.readFile(dir + file, function (err, data) {
-				if (err) {
-					console.error('this happened: ', err);
-					return;
-				}
-				var text = cheerio.load(data);
-				text = text.text();
-				console.log(text);
-				corpus.push(text);
-			});
+			var data = fs.readFileSync(dir + file);
+			var $ = cheerio.load(data);
+			var text = $('p').text();
+			corpus.push(text);
 		}
 	});
-	if (corpus) {
+	if (corpus.length) {
+		console.log('Generating Page...');
 		let markov = new MarkovGen({
-			input: corpus,
-			minLength: 10
+			input: corpus
 		});
 		let sentence = markov.makeChain();
-		console.log(sentence);
+		console.log('Page Text:');
+		console.log(sentence.trim());
+
+		let randomWord = sentence.split(' ');
+		randomWord = randomWord[Math.floor(Math.random() * randomWord.length)];
+
+		let flickr = new Flickr('7056f4a1b07b1729131ef16cab7f24c1');
+		console.log('Fetching Image...');
+		flickr.photos.search({
+			text: randomWord.trim(),
+			license: '7,9,10'
+		}).then(function (res) {
+			var photo = res.body.photos.photo[Math.floor(Math.random() * res.body.photos.photo.length)];
+			var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_m.jpg';
+			console.log(url);
+			gleech.read(url).then( function (image) {
+				console.log('Glitching Image...');
+
+			}).catch(function (err) {
+
+			});
+		}).catch(function (err) {
+			console.error('flickr error:', err);
+		});
 	}
 });
