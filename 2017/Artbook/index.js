@@ -9,9 +9,10 @@ const Flickr = require('flickr-sdk');
 const gleech = require('gleech');
 
 console.log('Generate Corpus');
-var pages = 20;
 var corpus = [];
 var dir = 'www.391.org/manifestos/';
+
+var pages = 20;
 
 // get/parse texts
 
@@ -71,33 +72,11 @@ function generatePage(markov) {
 		});
 	}
 }
-
-fs.readdir(dir, function (err, files) {
-	if ( err ) {
-		freakOut(err);
-	}
-	console.log('read files');
-	files.forEach( function (file, index) {
-		if (file.indexOf('.jpg') === -1 &&
-				file.indexOf('.png') === -1 &&
-				file.indexOf('.gif') === -1 &&
-				file.indexOf('.swf') === -1 &&
-				file.indexOf('.txt') === -1 &&
-				file.indexOf('.js') === -1 &&
-				file.indexOf('.pdf') === -1 &&
-				file.indexOf('.') > -1
-			 ) {
-			var data = fs.readFileSync(dir + file);
-			var $ = cheerio.load(data);
-			var text = $('p').text();
-			corpus.push(text);
-		}
+var corpus = fs.readFileSync('corpus.txt');
+if (corpus.length) {
+	console.log('building markov tree');
+	let markov = new MarkovGen({
+		input: corpus
 	});
-	if (corpus.length) {
-		console.log('building markov tree');
-		let markov = new MarkovGen({
-			input: corpus
-		});
-		generatePage(markov);
-	}
-});
+	generatePage(markov);
+}
