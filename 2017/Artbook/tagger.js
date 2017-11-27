@@ -2,18 +2,13 @@
 'use strict';
 
 const pos = require('pos');
-
 const cheerio = require('cheerio');
 const fs = require('fs');
-// const MarkovGen = require('markov-generator');
-// const Flickr = require('flickr-sdk');
-// const gleech = require('gleech');
 
 console.log('Generate Corpus');
-// var pages = 20;
 var corpus = '';
-var dir = 'www.391.org/manifestos/';
-var tracery = { 'origin' : []};
+var dir = 'manifestos/';
+var tracery = { 'sentences' : []};
 
 // get/parse texts
 
@@ -22,6 +17,16 @@ function freakOut (err) {
 	process.exit(1);
 }
 
+RegExp.quote = function(str) {
+	    return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
+};
+
+String.fixPunct = function(str) {
+  if (/[.?!]/.test(str.trim().slice(-1)) === false) {
+		str += '.';
+	}
+	return str;
+};
 
 fs.readdir(dir, function (err, files) {
 	if ( err ) {
@@ -39,16 +44,20 @@ fs.readdir(dir, function (err, files) {
 			file.indexOf('.') > -1
 		) {
 			var data = fs.readFileSync(dir + file);
-			var $ = cheerio.load(data);
-			var text = $('p').text().replace(/\s+/g, ' ');
-			corpus += text.trim();
+			if (file.indexOf('.txt') === file.length - 4) {
+				corpus += data + '\n\n';
+			} else {
+				var $ = cheerio.load(data);
+				var text = $('p').text().replace(/\s+/g, ' ');
+				corpus += String.fixPunct(text) + ' ';
+			}
 		}
 	});
 	if (corpus.length) {
 		corpus = corpus.split(/[!?.]+/);
 		for (var i in corpus) {
 			if (corpus.hasOwnProperty(i)) {
-				tracery.origin[i] = corpus[i];
+				tracery.sentences[i] = corpus[i] + '#randpunct#';
 				var words = new pos.Lexer().lex(corpus[i]);
 				var tagger = new pos.Tagger();
 				var taggedWords = tagger.tag(words);
@@ -57,24 +66,31 @@ fs.readdir(dir, function (err, files) {
 						var taggedWord = taggedWords[j];
 						var word = taggedWord[0];
 						var tag = taggedWord[1];
-						if (tag && tag.indexOf('#') === -1) {
+						if (tag && /\w+/.test(word)) {
 							if (! tracery[tag] ) {
 								tracery[tag] = [];
 							}
-							tracery[tag].push(word);
-							tracery.origin[i] = tracery.origin[i].replace(word, '#' + tag + '#');
+							if (tracery[tag].indexOf(word) === -1 ) {
+								tracery[tag].push(word);
+								var rex = new RegExp('(?!#)' + RegExp.quote(word) + '(?!#)');
+								tracery.sentences[i] = tracery.sentences[i].replace(rex, '#' + tag + '#');
+							}
 						}
 					}
 				}
 			}
+			tracery.origin = ['#sentences#', '#sentences# #origin#', '#sentences# #sentences# #origin#'];
+			tracery.randpunct = ['.', '?', '!'];
 		}
 		fs.writeFile('corpus.txt', corpus, function (err) {
 			if (err) {return console.log('everything sucks because: ', err);}
 			console.log('wrote corpus to corpus.txt');
 		});
-		fs.writeFile('grammar.json', JSON.stringify(tracery), function (err) {
-			if (err) {return console.log('everything sucks because: ', err);}
-			console.log('wrote grammar to grammar.json');
+		fs.writeFile('grammar.json',
+				JSON.stringify(tracery).replace(new RegExp('","', 'g'), '",\n    "').replace(new RegExp('],"', 'g'),'],\n"'),
+				function (err) {
+					if (err) {return console.log('everything sucks because: ', err);}
+					console.log('wrote grammar to grammar.json');
 		});
 	}
 });

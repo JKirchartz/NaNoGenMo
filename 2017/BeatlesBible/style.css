@@ -1,0 +1,37 @@
+/*
+ * style.css
+ * Copyright (C) 2017 jkirchartz
+ *
+ * Distributed under terms of the NPL (Necessary Public License) license.
+ */
+
+body {
+	background: white;
+	color: black;
+	font-size: 100%/1.25;
+}
+
+h1 {
+	font-size: 3em;
+	text-align: center;
+}
+h2 {
+	font-size: 1.2em;
+	font-style: italic;
+	font-weight: bold;
+	break-before: page;
+	break-after: avoid;
+}
+.chapters {
+	columns: 2;
+}
+.chapter {
+}
+.num {
+	display: inline-block;
+	font-size: 3em;
+	float: left;
+	line-height:0.75em;
+	padding:0.15em;
+}
+

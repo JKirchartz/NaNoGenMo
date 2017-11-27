@@ -2,36 +2,45 @@
 
 'use strict';
 
-const cheerio = require('cheerio');
 const fs = require('fs');
-const MarkovGen = require('markov-generator');
+const MarkovGen = require('markov-chain-generator');
 const Flickr = require('flickr-sdk');
 const gleech = require('gleech');
+const tracery = require('tracery-grammar');
 
-console.log('Generate Corpus');
+var pages = 10;
 var corpus = [];
-var dir = 'www.391.org/manifestos/';
+let flickr = new Flickr('7056f4a1b07b1729131ef16cab7f24c1');
+var corpus = fs.readFileSync('corpus.txt').toString();
+let markov = new MarkovGen(corpus);
+var grammar = fs.readFileSync('grammar.json');
+grammar = tracery.createGrammar(JSON.parse(grammar));
+var html = '<!doctype html><link rel="stylesheet" href="style.css" />';
 
-var pages = 20;
 
-// get/parse texts
-
-function freakOut (err) {
-	console.error('Something went wrong: ', err);
-	process.exit(1);
-}
-
-function generatePage(markov) {
+function generatePage() {
 	console.log('Generating Page...');
-	let flickr = new Flickr('7056f4a1b07b1729131ef16cab7f24c1');
-	let sentence = markov.makeChain();
-	sentence = sentence.split('.');
-	sentence = sentence[Math.floor(sentence.length * Math.random())].trim();
+	function freakOut (err) {
+		console.error('Fate decided that page sucked because:', err);
+		generatePage();
+	}
+
+	var sentence = '';
+
+	if (Math.random() > 0.5) {
+		console.log('generating markov sentence...');
+		sentence = markov.generate(null, 300);
+		sentence = sentence.split('.');
+		sentence = sentence[Math.floor(sentence.length * Math.random())].trim() + '.';
+	} else {
+		console.log('generating tracery sentence...');
+		sentence = grammar.flatten('#origin#');
+	}
 
 	let word = sentence.trim().split(' ');
 	word = word[Math.floor(Math.random() * word.length)];
 
-	console.log('generate text: \n\n%s\n', sentence);
+	console.log('generated text: \n\n%s\n', sentence);
 	if (sentence.length && word.length) {
 		console.log('Fetching Image from search term "%s"...', word);
 		flickr.photos.search({
@@ -40,43 +49,47 @@ function generatePage(markov) {
 		}).then(function (res) {
 			var photo = res.body.photos.photo[Math.floor(Math.random() * res.body.photos.photo.length)];
 			var url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_b.jpg';
+			var source = 'https://www.flickr.com/' + photo.owner + '/' + photo.id;
+			console.log('Glitching Image from %s ...', url);
+			console.log(photo);
 			gleech.read(url).then( function (image) {
-				console.log('Glitching Image from %s ...', url);
-				image.preset(Math.floor(Math.random() * 5));
+				if (Math.random() < 0.25) {
+					image.glitch();
+				} else if (Math.random() > 0.5) {
+					image.randomGlitch();
+				} else {
+					image.preset(Math.floor(Math.random() * 5));
+				}
 				// make a black outline
 				gleech.loadFont(gleech.FONT_SANS_32_BLACK).then(function (font) {
-					image.print(font, 9, 9, sentence.trim(), image.bitmap.width - 20);
-					image.print(font, 9, 11, sentence.trim(), image.bitmap.width - 20);
-					image.print(font, 11, 9, sentence.trim(), image.bitmap.width - 20);
-					image.print(font, 11, 11, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 8, 8, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 8, 10, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 8, 12, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 10, 8, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 12, 8, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 12, 10, sentence.trim(), image.bitmap.width - 20);
+					image.print(font, 12, 12, sentence.trim(), image.bitmap.width - 20);
 					// around white text
 					gleech.loadFont(gleech.FONT_SANS_32_WHITE).then(function (font) {
 						image.print(font, 10, 10, sentence.trim(), image.bitmap.width - 20);
 						console.log('writing page...');
-						image.write('page_' + word.trim() + '.jpg');
+						var filename = 'page_' + pages + '.jpg';
+						html += '<figure><img src="' + filename + '" ><div class="contents"><p>' + sentence + '</p><cite><a href="' + source + '">origin image: ' + source + '</a></figure></div>';
+						image.write(filename);
 						if (pages >= 0) {
-							generatePage(markov);
 							pages -= 1;
+							generatePage();
 						}
-					}).catch(function (err) {
-						console.error('gleech.print error:', err);
-					});
-				}).catch(function (err) {
-					console.error('gleech.print error:', err);
-				});
-			}).catch(function (err) {
-				console.error('gleech.read error:', err);
-			});
-		}).catch(function (err) {
-			console.error('flickr error:', err);
-		});
+					}).catch(freakOut);
+				}).catch(freakOut);
+			}).catch(freakOut);
+		}).catch(freakOut);
+	}
+	if ( pages <= 0 ) {
+		fs.writeFile('index.html', html, 'utf8');
+		return;
 	}
 }
-var corpus = fs.readFileSync('corpus.txt');
-if (corpus.length) {
-	console.log('building markov tree');
-	let markov = new MarkovGen({
-		input: corpus
-	});
-	generatePage(markov);
-}
+
+
+generatePage();

@@ -22,7 +22,8 @@ Jimp.prototype.slice = function slice(cutstart, cutend, cb) {
 	cutend = !nullOrUndefined(cutend) ? cutend : randFloor(width * height * 4);
 	cutstart = !nullOrUndefined(cutstart) ? cutstart : Math.floor(cutend / 1.7);
 	var cut = data.subarray(cutstart, cutend);
-	data.set(cut, randFloor((width * height * 4) - cut.length));
+	console.log('slice::\ncut: %s, start: %s, end: %s', cut.length, cutstart, cutend);
+	data.set(cut, randFloor((width * height * 4) - cut.length) || 0);
 	this.bitmap.data = new Buffer(data);
 	if (isNodePattern(cb)) return cb.call(this, null, this);
 	else return this;

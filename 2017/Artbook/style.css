@@ -1,0 +1,48 @@
+/*
+ * style.css
+ * Copyright (C) 2017 jkirchartz
+ *
+ * Distributed under terms of the NPL (Necessary Public License) license.
+ */
+html, body { height: 100%; width: 100% }
+body {
+	background: white;
+	color: black;
+}
+
+figure {
+	max-width: 65em;
+	margin: 1em auto;
+	clear: both;
+	/* display: flex; */
+	/* justify-content: space-between; */
+	/* align-items: center; */
+	/* flex-flow: row wrap; */
+}
+
+.content {
+	float: left;
+	display: flex;
+	justify-content: center;
+	align-items:middle;
+}
+
+p {
+	margin: 1em;
+	min-width: 25%;
+}
+
+img {
+	max-width: 100%;
+	min-width: 25%;
+	padding-right: 1em;
+	padding-bottom: 2em;
+	float: left;
+}
+
+cite {
+	font-size: 0.75rem;
+	min-width: 100%
+	text-align: center;
+}
+

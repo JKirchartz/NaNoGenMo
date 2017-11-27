@@ -23,7 +23,7 @@
     "cheerio": "^1.0.0-rc.2",
     "flickr-sdk": "^3.5.0",
     "gleech": "git+https://github.com/jkirchartz/Glitchy3bitDither.git",
-    "markov-generator": "^1.2.2",
+    "markov-chain-generator": "^0.3.0",
     "pos": "^0.4.2",
     "request": "^2.83.0",
     "tracery-grammar": "^2.7.3"
