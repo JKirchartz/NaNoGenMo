@@ -17,6 +17,19 @@ var grammar = fs.readFileSync('grammar.json');
 grammar = tracery.createGrammar(JSON.parse(grammar));
 var html = '<!doctype html><link rel="stylesheet" href="style.css" />';
 
+function generateText() {
+	var sentence = '';
+	if (Math.random() > 0.5) {
+		console.log('generating markov sentence...');
+		sentence = markov.generate(null, 100);
+		sentence = sentence.split('.');
+		sentence = sentence[Math.floor(sentence.length * Math.random())].trim() + '.';
+	} else {
+		console.log('generating tracery sentence...');
+		sentence = grammar.flatten('#origin#');
+	}
+	return sentence;
+}
 
 function generatePage() {
 	console.log('Generating Page...');
@@ -25,18 +38,10 @@ function generatePage() {
 		generatePage();
 	}
 
-	var sentence = '';
+  // put a page of text between each page with a picture
+	html += '<figure><div class="content">' + generateText() + ' ' + generateText() + '</div></figure>';
 
-	if (Math.random() > 0.5) {
-		console.log('generating markov sentence...');
-		sentence = markov.generate(null, 300);
-		sentence = sentence.split('.');
-		sentence = sentence[Math.floor(sentence.length * Math.random())].trim() + '.';
-	} else {
-		console.log('generating tracery sentence...');
-		sentence = grammar.flatten('#origin#');
-	}
-
+	let sentence = generateText();
 	let word = sentence.trim().split(' ');
 	word = word[Math.floor(Math.random() * word.length)];
 
@@ -53,12 +58,16 @@ function generatePage() {
 			console.log('Glitching Image from %s ...', url);
 			console.log(photo);
 			gleech.read(url).then( function (image) {
-				if (Math.random() < 0.25) {
-					image.glitch();
-				} else if (Math.random() > 0.5) {
-					image.randomGlitch();
-				} else {
-					image.preset(Math.floor(Math.random() * 5));
+				switch (Math.floor(Math.random() * 3)) {
+					case 0:
+						image.randomGlitch();
+						break;
+					case 1:
+						image.glitch();
+						break;
+					default:
+						image.preset(Math.floor(Math.random() * 5));
+						break;
 				}
 				// make a black outline
 				gleech.loadFont(gleech.FONT_SANS_32_BLACK).then(function (font) {

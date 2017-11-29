@@ -3,16 +3,13 @@
 # jkirchartz, 2017-11-12 21:45
 #
 
-all: sources clean corpora book
-
-get: sources clean
+all: get clean corpora book
 
 js: corpora book
 
-sources:
-	wget -c -r --no-clober -A '*manifesto*' http://www.textfiles.com/ || true && \
-	wget -c --no-parent --no-clober -r -l 1 http://www.391.org/manifestos/ || true
-	touch $@
+get:
+	wget -c --no-parent -r -l 1 -A '*manifesto*' http://www.391.org/manifestos/ || true && \
+	wget -c -r -A '*manifesto*' http://www.textfiles.com/ || true && \
 
 clean:
 	mkdir -p ./manifestos && \
