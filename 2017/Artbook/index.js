@@ -94,10 +94,7 @@ function generatePage() {
 			}).catch(freakOut);
 		}).catch(freakOut);
 	}
-	if ( pages <= 0 ) {
-		fs.writeFile('index.html', html, 'utf8');
-		return;
-	}
+	fs.writeFile('index.html', html, 'utf8');
 }
 
 
