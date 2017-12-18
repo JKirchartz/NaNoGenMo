@@ -5,7 +5,6 @@
 Music has always been a religious experience for me, perhaps easily referencable
 lyrics will have an effect on future theologians.
 
-2. Nova
-IDK yet, but I love this show
+post-mortem: another failure
 
-3. IDK, we'll see
+2. Sherlock Shuffle

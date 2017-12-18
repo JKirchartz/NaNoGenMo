@@ -10,4 +10,17 @@ I will not be including any copyrighted materials in this repository, but will b
 any applicable copyright remains with it's author/creator.
 
 
-2015 was my first attempt at this challenge, and in 2016 I will try to improve upon my previous entries and possibly come up with something new.
+2015
+----
+
+was my first attempt at this challenge
+
+2016
+----
+
+I will try to improve upon my previous entries and possibly come up with something new.
+
+2017
+----
+
+
