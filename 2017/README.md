@@ -29,8 +29,8 @@ creating a corpus for Markov to work with, and using a POS tagger to generate a
 tracery file to generate sentences with similar sentence structure to source
 materials.
 
-[Output 1][7]
-[Output 2][8]
+* [Output 1][7]
+* [Output 2][8]
 
 
 [1]: http://JKirchartz.com/NaNoGenMo/2016
@@ -38,6 +38,6 @@ materials.
 [3]: https://mega.nz/#!ASBxRYrA!Ko01ovAqYRuPAKDuhj1V5-HpJ7eWe21OilyEelSCXpg
 [4]: http://391.org/dada-manifestos.html
 [5]: http://textfiles.com/directory.html
-[6]: http://JKirchartz.com/NaNoGenMo/2017/BeatlesBible/index.html
-[7]: http://JKirchartz.com/NaNoGenMo/2017/Artbook/one/index.html
-[8]: http://JKirchartz.com/NaNoGenMo/2017/Artbook/two/index.html
+[6]: BeatlesBible/index.html
+[7]: Artbook/output/one/index.html
+[8]: Artbook/output/two/index.html
