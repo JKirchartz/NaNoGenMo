@@ -14,7 +14,7 @@ so again, I reiterate:
 > Music has always been a religious experience for me, perhaps easily
 > referencable lyrics will have an effect on future theologians.
 
-[The Complete Beatles Bible][6]
+Presenting: [The Complete Beatles Bible][6]
 
 
 
