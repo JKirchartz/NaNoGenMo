@@ -1,0 +1,17 @@
+{
+  "name": "generatedgrammar",
+  "version": "1.0.0",
+  "description": "Generate Sherlock Holmes book with Tracery grammars built with a POS tagger",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen": "node generate.js"
+  },
+  "author": "JKirchartz",
+  "license": "ISC",
+  "dependencies": {
+    "ora": "^3.0.0",
+    "pos": "^0.4.2",
+    "tracery-grammar": "^2.7.3"
+  }
+}
