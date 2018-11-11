@@ -5,3 +5,6 @@
 2016/SherlockShuffle/sources/*
 2015/BeatlesBible/tmp/*
 2016/BeatlesBible/tmp/*
+2018/SherlockShuffle/corpora/*
+2018/SherlockShuffle/sources/*
+node_modules/

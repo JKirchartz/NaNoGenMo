@@ -2,14 +2,14 @@
 #
 # make.sh
 #
-# Copyleft (ↄ) 2015 kirch <kirch@arp>
+# Copyleft (ↄ) 2018 kirch <kirch@arp>
 #
 # Distributed under terms of the NPL (Necessary Public License) license.
 #
 
 mkdir corpora
 mkdir sources
-mkdir tmp
+mkdir output
 
 echo "downloading..."
 wget -nc -i doyle.list -P ./sources
@@ -22,8 +22,9 @@ done
 
 cat ./corpora/*.txt > ./corpora/complete.corpus
 
-echo "Generating Tracery Grammar...."
-pos2tracery ./corpora/complete.corpus ./output/corpus.json
+sed -i '/HTML/d' ./corpora/complete.corpus
+
+npm install
 
 echo "Generating Text from Tracery Grammar..."
 node generate.js

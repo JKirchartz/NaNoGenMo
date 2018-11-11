@@ -1,4 +1,12 @@
-#!/usr/bin/env node
+/*
+ * generate.js
+ *
+ * Copyleft 2018 kirch <kirch@arp>
+ *
+ * Distributed under the terms of the NPL (Necessary Public License) license.
+ *
+ */
+
 'use strict';
 
 var corpusLocation = 'corpora/complete.corpus';

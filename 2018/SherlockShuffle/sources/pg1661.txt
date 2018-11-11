@@ -27,7 +27,7 @@ var fb_lang         = "en_US"; /* FB accepts only xx_XX */
 var msg_load_more   = "Load More Results…";
 var page_mode       = "screen";
 var dialog_title    = "Welcome";
-var dialog_message  = "Welcome to Project Gutenberg. You'll find here 58,182 ebooks completely free of charge.";
+var dialog_message  = "Welcome to Project Gutenberg. You'll find here 58,195 ebooks completely free of charge.";
 //]]></script>
 <script type="text/javascript" src="/js/pg-desktop-one.js?1532910333"></script>
 <link rel="shortcut icon" href="/pics/favicon" />
@@ -70,7 +70,7 @@ var dialog_message  = "Welcome to Project Gutenberg. You'll find here 58,182 ebo
 </li>
 <li class="breadcrumb next" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
 <span class="breadcrumb-separator"></span>
-<a href="/ebooks/" title="Start a new search." itemprop="url"><span itemprop="title">58,182 free ebooks</span></a>
+<a href="/ebooks/" title="Start a new search." itemprop="url"><span itemprop="title">58,195 free ebooks</span></a>
 </li>
 <li class="breadcrumb next" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
 <span class="breadcrumb-separator"></span>
@@ -204,7 +204,7 @@ Detective and mystery stories, English
 </tr>
 <tr>
 <th>Downloads</th>
-<td itemprop="interactionCount">10847 downloads in the last 30 days.</td>
+<td itemprop="interactionCount">10669 downloads in the last 30 days.</td>
 </tr>
 <tr itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
 <th>Price</th>
@@ -301,10 +301,10 @@ Detective and mystery stories, English
 <td class="noprint">
 <a href="/ebooks/send/megaupload/1661.html" title="Send to MegaUpload." rel="nofollow"></a>
 </td>
-</tr><tr class="even" about="//www.gutenberg.org/ebooks/1661.epub.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1" typeof="pgterms:file">
+</tr><tr class="even" about="//www.gutenberg.org/ebooks/1661.epub.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" typeof="pgterms:file">
 <td><span class="icon icon_book"></span></td>
-<td property="dcterms:format" content="application/epub+zip" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.epub.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1" type="application/epub+zip" class="link" title="Download">EPUB (with images)</a></td>
-<td class="noscreen">//www.gutenberg.org/ebooks/1661.epub.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1</td>
+<td property="dcterms:format" content="application/epub+zip" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.epub.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" type="application/epub+zip" class="link" title="Download">EPUB (with images)</a></td>
+<td class="noscreen">//www.gutenberg.org/ebooks/1661.epub.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec</td>
 <td class="right" property="dcterms:extent" content="248141">242 kB</td>
 <td class="noprint">
 <a href="/ebooks/send/dropbox/1661.epub.images" title="Send to Dropbox." rel="nofollow"><span class="icon icon_dropbox"></span></a>
@@ -315,10 +315,10 @@ Detective and mystery stories, English
 <td class="noprint">
 <a href="/ebooks/send/msdrive/1661.epub.images" title="Send to OneDrive." rel="nofollow"><span class="icon icon_msdrive"></span></a>
 </td>
-</tr><tr class="odd" about="//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1" typeof="pgterms:file">
+</tr><tr class="odd" about="//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" typeof="pgterms:file">
 <td><span class="icon icon_book"></span></td>
-<td property="dcterms:format" content="application/epub+zip" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1" type="application/epub+zip" class="link" title="Download">EPUB (no images)</a></td>
-<td class="noscreen">//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1</td>
+<td property="dcterms:format" content="application/epub+zip" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" type="application/epub+zip" class="link" title="Download">EPUB (no images)</a></td>
+<td class="noscreen">//www.gutenberg.org/ebooks/1661.epub.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec</td>
 <td class="right" property="dcterms:extent" content="248140">242 kB</td>
 <td class="noprint">
 <a href="/ebooks/send/dropbox/1661.epub.noimages" title="Send to Dropbox." rel="nofollow"><span class="icon icon_dropbox"></span></a>
@@ -329,10 +329,10 @@ Detective and mystery stories, English
 <td class="noprint">
 <a href="/ebooks/send/msdrive/1661.epub.noimages" title="Send to OneDrive." rel="nofollow"><span class="icon icon_msdrive"></span></a>
 </td>
-</tr><tr class="even" about="//www.gutenberg.org/ebooks/1661.kindle.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1" typeof="pgterms:file">
+</tr><tr class="even" about="//www.gutenberg.org/ebooks/1661.kindle.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" typeof="pgterms:file">
 <td><span class="icon icon_book"></span></td>
-<td property="dcterms:format" content="application/x-mobipocket-ebook" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.kindle.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1" type="application/x-mobipocket-ebook" class="link" title="Download">Kindle (with images)</a></td>
-<td class="noscreen">//www.gutenberg.org/ebooks/1661.kindle.images?session_id=703c82459dfca107f5825eca173c8140e120f0f1</td>
+<td property="dcterms:format" content="application/x-mobipocket-ebook" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.kindle.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" type="application/x-mobipocket-ebook" class="link" title="Download">Kindle (with images)</a></td>
+<td class="noscreen">//www.gutenberg.org/ebooks/1661.kindle.images?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec</td>
 <td class="right" property="dcterms:extent" content="1021253">997 kB</td>
 <td class="noprint">
 <a href="/ebooks/send/dropbox/1661.kindle.images" title="Send to Dropbox." rel="nofollow"><span class="icon icon_dropbox"></span></a>
@@ -343,10 +343,10 @@ Detective and mystery stories, English
 <td class="noprint">
 <a href="/ebooks/send/msdrive/1661.kindle.images" title="Send to OneDrive." rel="nofollow"><span class="icon icon_msdrive"></span></a>
 </td>
-</tr><tr class="odd" about="//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1" typeof="pgterms:file">
+</tr><tr class="odd" about="//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" typeof="pgterms:file">
 <td><span class="icon icon_book"></span></td>
-<td property="dcterms:format" content="application/x-mobipocket-ebook" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1" type="application/x-mobipocket-ebook" class="link" title="Download">Kindle (no images)</a></td>
-<td class="noscreen">//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=703c82459dfca107f5825eca173c8140e120f0f1</td>
+<td property="dcterms:format" content="application/x-mobipocket-ebook" datatype="dcterms:IMT" class="unpadded icon_save"><a href="//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec" type="application/x-mobipocket-ebook" class="link" title="Download">Kindle (no images)</a></td>
+<td class="noscreen">//www.gutenberg.org/ebooks/1661.kindle.noimages?session_id=c5bc6fadbc17c683620cd2b48f946ad6a025b2ec</td>
 <td class="right" property="dcterms:extent" content="1021244">997 kB</td>
 <td class="noprint">
 <a href="/ebooks/send/dropbox/1661.kindle.noimages" title="Send to Dropbox." rel="nofollow"><span class="icon icon_dropbox"></span></a>
@@ -391,20 +391,20 @@ Detective and mystery stories, English
 </div>
 <div id="fb-root"></div>
 <div id="print-head" class="noscreen">
-<div class="center">http://www.gutenberg.org/ebooks/1661?msg=welcome_stranger<br /><br />Project Gutenberg offers 58,182 free ebooks to download.</div>
+<div class="center">http://www.gutenberg.org/ebooks/1661?msg=welcome_stranger<br /><br />Project Gutenberg offers 58,195 free ebooks to download.</div>
 </div>
 <div id="screen-head" class="noprint">
 <table>
 <tr>
 <td rowspan="2" id="logo">
 <a href="/wiki/Main_Page" title="Go to the Main Page.">
-<span id="id7142" class="icon icon_logo"></span>
+<span id="id1760" class="icon icon_logo"></span>
 </a>
 </td>
 <td id="tagline-badges" colspan="2">
 <table>
 <tr>
-<td id="tagline">Project Gutenberg offers 58,182 free ebooks to download.</td>
+<td id="tagline">Project Gutenberg offers 58,195 free ebooks to download.</td>
 <td id="paypal-badge" class="badge">
 <form class="paypal-button" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <div>
