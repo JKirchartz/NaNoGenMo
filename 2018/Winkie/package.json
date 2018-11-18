@@ -1,0 +1,17 @@
+{
+  "name": "winkie",
+  "version": "1.0.0",
+  "description": "Use Wink NLP to analyze and generate text",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "J. Kirchartz",
+  "license": "ISC",
+  "dependencies": {
+    "expand-contractions": "^1.0.1",
+    "tracery-grammar": "^2.7.3",
+    "wink-nlp-utils": "^2.0.3",
+    "wink-pos-tagger": "^2.0.0"
+  }
+}

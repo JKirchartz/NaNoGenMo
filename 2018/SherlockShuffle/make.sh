@@ -23,6 +23,7 @@ done
 cat ./corpora/*.txt > ./corpora/complete.corpus
 
 sed -i '/HTML/d' ./corpora/complete.corpus
+sed -i 's/--/ -- /g' ./corpora/complete.corpus
 
 npm install
 

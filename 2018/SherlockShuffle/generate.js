@@ -33,8 +33,8 @@ function generateBook() {
 
   fs.readFile(corpusOutputLocation, function( err, data) {
     if (err) {
-      openTimer.succeed("Corpus can't be opened!");
-      console.log(err);
+      openTimer.fail("Corpus can't be opened!");
+      generateGrammar();
       return;
     }
 
@@ -45,11 +45,17 @@ function generateBook() {
     var grammar = tracery.createGrammar(JSON.parse(data));
     var bookText = "";
     var bookLength = 0;
+    var chapters = 0;
+    var chapterNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" , "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
 
     grammar.addModifiers(tracery.baseEngModifiers);
 
 
     while(bookLength < 50000) {
+      if ( ! bookLength % 2500 ) {
+        bookText += "CHAPTER " + chapterNumbers[chapters] + "\n\n\n";
+        chapters++;
+      }
       // stich paragraphs back into a 50,000 word book
       bookText += grammar.flatten('#origin#') + "\n\n";
       bookLength = bookText.split(" ").length;
@@ -87,13 +93,13 @@ function generateBook() {
   });
 }
 
-function generateGrammar() {
+function generateGrammar(callback) {
   openTimer.text = ('Reading corpus...');
   fs.readFile(corpusLocation, function(err, corpusfile) {
     if (err) {
       openTimer.fail("Can't read file");
     }
-    var tracery = { 'paragraphs' : []};
+    var tracery = { 'paragraphs' : [] };
     openTimer.succeed("Corpus opened");
 
     corpusfile = corpusfile.toString();
@@ -105,11 +111,15 @@ function generateGrammar() {
       var tagTimer = ora("Tagging...").start();
       for (var i in corpus) {
         if (corpus.hasOwnProperty(i)) {
+          if ( /^\s+chapter/gi.test(corpus[i]) ) {
+            // skip chapter headings
+            continue;
+          }
           tracery.paragraphs[i] = corpus[i];
           var words = new pos.Lexer().lex(corpus[i]);
           var tagger = new pos.Tagger();
           var taggedWords = tagger.tag(words);
-          if (i%10 == 0) { // update spinner every 10th iteration
+          if (i%10 == 0) { // prevent spinner from freezing by reminding it to update
             tagTimer.render();
           }
           // replace words in paragraph with tagged words
@@ -119,21 +129,35 @@ function generateGrammar() {
               var word = taggedWord[0];
               var tag = taggedWord[1];
               // put tagged words into arrays of what part of speech they're tagged with
-              if (tag && /\w+/.test(word)) {
+              // Ignore proper nouns & verbs
+              if (!/(NNP.?|VB.?)/.test(tag) && /\w+/.test(word)) {
+                // if the tag doesn't have it's own array - make it
                 if (! tracery[tag] ) {
                   tracery[tag] = [];
                 }
                 if (tracery[tag].indexOf(word) === -1 ) {
+                  // if the word isn't in the tag array, put it there.
                   tracery[tag].push(word);
-                  var rex = new RegExp('(?!#)' + RegExp.quote(word) + '(?!#)');
+                }
+                if (tracery[tag].indexOf(word) > -1 ) {
+                  tagTimer.text = "Tagging: " + word + " as " + tag;
+                  // if the word is found in the tag replace every instance in the sentence.
+                  var rex = new RegExp('\\b(?!#)' + RegExp.quote(word) + '(?!#)\\b', 'g');
                   tracery.paragraphs[i] = tracery.paragraphs[i].replace(rex, '#' + tag + '#');
                 }
+                // split sentences by punctuation
+                  var sentences = tracery.paragraphs[i].split(/([\?\.\!]/g);
+                  for (var k in sentences) {
+                    var chars = sentences[k].split('');
+                    // capitalize first word (by replacing the 2nd # with .capitalize#)
+                    chars[chars.indexOf('#', chars.indexOf('#'))] = ".capitalize#";
+                    sentences[k] = chars.join('');
+                  }
               }
             }
           }
         }
       }
-      tagTimer.succeed("Tagged");
 
 
       // remove blanks & duplicates
@@ -147,15 +171,16 @@ function generateGrammar() {
       // prettify output
       var grammar = JSON.stringify(tracery).replace(new RegExp('","', 'g'), '",\n    "').replace(new RegExp('],"', 'g'),'],\n"');
 
-      var writeTimer = ora("Writing grammar to" + corpusOutputLocation).start();
+      tagTimer.succeed("Grammar generated");
+      var writeTimer = ora("Writing grammar to " + corpusOutputLocation).start();
 
       fs.writeFile(corpusOutputLocation,
         grammar,
         function (err) {
           if (err) {return console.log('everything sucks because: ', err);}
 
-          writeTimer.succeed("Grammar Written");
-          generateBook();
+          writeTimer.succeed("Grammar Written to file.");
+          callback();
         });
     }
   });
@@ -165,11 +190,9 @@ function generateGrammar() {
 
 
 
-// TODO: for some reason this fails, IDK why!?
 if( fs.existsSync(corpusOutputLocation) ) {
   generateBook();
 } else {
-  generateGrammar();
-
+  generateGrammar(generateBook);
 }
 
