@@ -13,20 +13,26 @@ let request = require('request');
 // it's possible to use the syllable-count corpus for all texts, to increase its vocabulary
 // create a title-case converter to use on the first line of each poem -- give credit to the original author?
 
+let titles = [];
+let title_index = 0;
+
 let capitalize = function (word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
-let index = 0;
-let output = "";
-let titles = [];
-let parsePoems = function(files, index) {
-  if ( index == files.length ) {
-    return;
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
   }
-  console.log(files, index);
-  let poem = fs.readFileSync('./corpora/' + files[index]).toString();
-  poem = poem.split('\n');
+  return a;
+}
+
+let parsePoem = function(poem) {
+  let output = "";
   let lines = []
   let words = {};
   poem.forEach(function (line) {
@@ -56,17 +62,34 @@ let parsePoems = function(files, index) {
   titles.push(lines[0]);
   lines[0] = "## " + lines[0].split(' ').map(capitalize)  + "\n\n"
   output += lines.join('  \n') + "\n\n--------\n\n"
-  index += 1;
-  parsePoems(files, index);
+  return output;
 }
 
+let downloadPoem = function(titles) {
+  if ( titles.length ) {
+    title = titles.pop();
+  } else {
+    return;
+  }
+  request('http://poetrydb.org/title/' + encodeURIComponent(title), function(err, response, body) {
+    body = JSON.parse(body)[0];
+    console.log(parsePoem(body.lines));
+    downloadPoem(titles);
+  });
 
-fs.readdir('./corpora', function( err, files ) {
+};
+
+console.log("getting titles...");
+request('http://poetrydb.org/title', function(err, response, body){
   if ( err ) {
     console.log(err);
     process.exit(1);
   }
-  parsePoems(files, index);
-  console.log("# " + titles[Math.floor(Math.random() * titles.length)]);
-  console.log(output);
+  titles = shuffle(JSON.parse(body)['titles']);
+  titles = titles.slice(0, 10);
+
+  console.log("---\ntitle: " + titles[Math.floor(Math.random() * titles.length)] + "\n");
+  console.log("poems:\n-", titles.join('\n-'), '\n---\n');
+  downloadPoem(titles);
+
 });
