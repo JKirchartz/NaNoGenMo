@@ -9,6 +9,7 @@
   "author": "J.Kirchartz",
   "license": "ISC",
   "dependencies": {
+    "request": "^2.88.0",
     "syllable": "^3.2.0"
   }
 }
