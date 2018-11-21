@@ -30,7 +30,7 @@ According to [wikipedia][5]:
 
 This script grabs 10 random poems from [poetrydb.org][6]'s API, and replaces each word in every line with another word with the same [syllable][7] count
 
-[output(s)][2]
+[output(s)][8]
 
 
 
@@ -41,3 +41,4 @@ This script grabs 10 random poems from [poetrydb.org][6]'s API, and replaces eac
 [5]: https://en.wikipedia.org/wiki/Vocabularyclept_poem
 [6]: http://poetrydb.org
 [7]: https://github.com/words/syllable
+[8]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2018/vocabularyclept/output
