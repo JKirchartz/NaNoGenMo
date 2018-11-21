@@ -17,6 +17,7 @@ author/creator.
 * [2015](2015)
 * [2016](2016)
 * [2017](2017)
+* [2018](2018)
 
 [1]: https://nanogenmo.github.io
 [2]: https://nanowrimo.org
