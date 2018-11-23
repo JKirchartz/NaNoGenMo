@@ -41,6 +41,7 @@ let shuffle = function (a) {
 }
 
 let parsePoem = function(poem) {
+  // generate grammar from syllable count, and reconstruct poem with similar meter
   let lines = []
   let words = {};
   // turn poem into grammar
@@ -56,7 +57,7 @@ let parsePoem = function(poem) {
         line[index] = count;
       }
     });
-    if (line.length && line[0] !== '') {
+    if (line.length) {
       lines.push(line);
     }
   });
@@ -72,7 +73,38 @@ let parsePoem = function(poem) {
     return line.join(' ');
   });
   return lines;
-}
+};
+let alphabetizePoem = function(poem) {
+  // alphabetically sort all words in the poem, keep word-count the same per line
+  let lines = []
+  let words = [];
+  // turn poem into grammar
+  poem.forEach(function (line) {
+    line = line.split(' ');
+    lines.push(line.length);
+    words = words.concat(line);
+  });
+
+  words.sort((a, b) => {
+    a = a.replace(/[^a-z0-9]/gi, '');
+    b = b.replace(/[^a-z0-9]/gi, '');
+    if (a === '' || b === '') {
+      return 0;
+    }
+    return a.localeCompare(b);
+  });
+
+  // turn grammar into poem
+  lines = lines.map(function(line) {
+    var text = "";
+    while ( line ) {
+      text += words.shift() + ' ';
+      line -= 1;
+    }
+    return text;
+  });
+  return lines;
+};
 
 let getPoem = function(titles) {
   let title = "";
@@ -87,18 +119,16 @@ let getPoem = function(titles) {
   request('http://poetrydb.org/title/' + encodeURIComponent(title) + '/author,lines' , function(err, response, body) {
     if (err) {
       timer.fail('Failed');
-      timer.render();
       console.log(err);
     }
     try {
       body = JSON.parse(body);
     } catch (err) {
       timer.fail('Failed');
-      timer.render();
       console.log(err);
     }
     if ( body[0] && body[0].lines ) {
-      let poem = parsePoem(body[0].lines);
+      let poem = Math.floor(Math.random() * 100) > 25 ?  parsePoem(body[0].lines) : alphabetizePoem(body[0].lines);
       poems.push({
         "author": body[0].author,
         "title": capitalizeAll(poem[0]),
@@ -114,19 +144,19 @@ let getPoem = function(titles) {
 let printBook = function() {
   timer.text = "Composing Book..."
   timer.render();
-  let output = ('---\nchapters:');
+  let output = ('---\n');
   let titles = [];
   for (var i in poems) {
-    output += ("- " + poems[i].title + '\n');
     titles.push(poems[i].title);
   }
   let title = titles[Math.floor(Math.random() * titles.length)];
 
-  output += ('title:' + title + '\n---\n\n');
+  output += ('title: \'' + title + '\'\npoems:\n');
+  output += ("  - \'" + titles.join('\'\n  - \'') + '\'\n---\n\n');
   for (var i in poems) {
     let lines = poems[i].poem;
-    output += "## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n"
-    output += (lines.join('  \n') + "\n\n");
+    output += "## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n";
+    output += ("    " + lines.join('\n    ') + "\n\n");
     output += ("\n\n(generated from \"" + poems[i].originally + "\" by " + poems[i].author + ")\n\n");
     output += ("\\pagebreak\n\n");
   }
@@ -148,12 +178,10 @@ let printBook = function() {
     function (err) {
       if (err) {
         timer.fail('Failed');
-        timer.render();
         console.err(err);
         process.exit(1);
       }
       timer.succeed('Book written to: ' + bookOutputLocation);
-      timer.render();
       process.exit(0);
     });
 };
@@ -161,7 +189,6 @@ let printBook = function() {
 request('http://poetrydb.org/title', function(err, response, body){
   if ( err ) {
     timer.fail('Failed');
-    timer.render();
     console.log(err);
     process.exit(1);
   }
