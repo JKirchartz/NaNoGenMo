@@ -8,20 +8,28 @@
 const fs = require('fs');
 const request = require('request');
 const syllables = require('syllable');
+const timer = require('ora')('Finding poems').start();
 
 // IDEAS:
 // use the syllable-count corpus for all texts, to increase its vocabulary
 // give credit to the original author?
 // find anagram or spoonerism or something for authors names?
 
-let titles = [];
-let title_index = 0;
+const poems = [];
 
 let capitalize = function (word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
-function shuffle(a) {
+let capitalizeAll = function (words) {
+  return words.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+};
+
+let filename = function(title) {
+  return title.replace(/[^a-z0-9]+/gi, '');
+};
+
+let shuffle = function (a) {
   var j, x, i;
   for (i = a.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1));
@@ -63,45 +71,103 @@ let parsePoem = function(poem) {
     });
     return line.join(' ');
   });
-  titles.push(lines[0]);
-  // stylize the title
-  lines[0] = "## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n"
-  return lines.join('  \n') + "\n\n---\n---\n\n"
+  return lines;
 }
 
-let downloadPoem = function(titles) {
+let getPoem = function(titles) {
+  let title = "";
   if ( titles.length ) {
     title = titles.pop();
   } else {
+    printBook();
     return;
   }
-  request('http://poetrydb.org/title/' + encodeURIComponent(title), function(err, response, body) {
+  timer.text = "Fetching " + title;
+  timer.render();
+  request('http://poetrydb.org/title/' + encodeURIComponent(title) + '/author,lines' , function(err, response, body) {
     if (err) {
-      console.error(err);
+      timer.fail('Failed');
+      timer.render();
+      console.log(err);
     }
     try {
       body = JSON.parse(body);
     } catch (err) {
-      console.error(err);
+      timer.fail('Failed');
+      timer.render();
+      console.log(err);
     }
     if ( body[0] && body[0].lines ) {
-      console.log(parsePoem(body[0].lines));
+      let poem = parsePoem(body[0].lines);
+      poems.push({
+        "author": body[0].author,
+        "title": capitalizeAll(poem[0]),
+        "originally": title,
+        "poem": poem
+      });
     }
-    downloadPoem(titles);
+    getPoem(titles);
   });
 
 };
 
+let printBook = function() {
+  timer.text = "Composing Book..."
+  timer.render();
+  let output = ('---\nchapters:');
+  let titles = [];
+  for (var i in poems) {
+    output += ("- " + poems[i].title + '\n');
+    titles.push(poems[i].title);
+  }
+  let title = titles[Math.floor(Math.random() * titles.length)];
+
+  output += ('title:' + title + '\n---\n\n');
+  for (var i in poems) {
+    let lines = poems[i].poem;
+    output += "## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n"
+    output += (lines.join('  \n') + "\n\n");
+    output += ("\n\n(generated from \"" + poems[i].originally + "\" by " + poems[i].author + ")\n\n");
+    output += ("\\pagebreak\n\n");
+  }
+
+  let bookOutputLocation = "output/" + filename(title)  + ".md";
+  while (fs.existsSync(bookOutputLocation)) {
+    if ( /\d+/.test(bookOutputLocation) ) {
+      var bookNum = bookOutputLocation.match(/\d+/)[0];
+      bookOutputLocation = bookOutputLocation.split(bookNum);
+      bookNum = parseInt(bookNum, 10) + 1;
+      bookOutputLocation = bookOutputLocation[0] + (bookNum) + ".md";
+    } else {
+      bookOutputLocation = bookOutputLocation.split('.');
+      bookOutputLocation = bookOutputLocation[0] + "_1.md";
+    }
+  }
+  fs.writeFile(bookOutputLocation,
+    output,
+    function (err) {
+      if (err) {
+        timer.fail('Failed');
+        timer.render();
+        console.err(err);
+        process.exit(1);
+      }
+      timer.succeed('Book written to: ' + bookOutputLocation);
+      timer.render();
+      process.exit(0);
+    });
+};
+
 request('http://poetrydb.org/title', function(err, response, body){
   if ( err ) {
+    timer.fail('Failed');
+    timer.render();
     console.log(err);
     process.exit(1);
   }
-  titles = shuffle(JSON.parse(body)['titles']);
-  titles = titles.slice(0, 10);
-
-  console.log("---\ntitle: " + titles[Math.floor(Math.random() * titles.length)] + "\n");
-  console.log("poems:\n-", titles.join('\n-'), '\n---\n');
-  downloadPoem(titles);
+  let titles = shuffle(JSON.parse(body)['titles']);
+  timer.text = "Fetching 10 poems...";
+  timer.render();
+  getPoem(titles.slice(0,10));
 
 });

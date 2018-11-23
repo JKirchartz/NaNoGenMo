@@ -9,6 +9,7 @@
   "author": "J.Kirchartz",
   "license": "ISC",
   "dependencies": {
+    "ora": "^3.0.0",
     "request": "^2.88.0",
     "syllable": "^3.2.0"
   }
