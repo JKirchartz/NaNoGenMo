@@ -67,13 +67,14 @@ let parsePoem = function(poem) {
     line = line.map(function(word, index) {
       if ( words[word] ) {
         // replace each word with line with another word of the same length
-        return words[word][Math.floor(Math.random() * words[word].length)];
+        return shuffle(words[word])[Math.floor(Math.random() * words[word].length)];
       }
     });
     return line.join(' ');
   });
   return lines;
 };
+
 let alphabetizePoem = function(poem) {
   // alphabetically sort all words in the poem, keep word-count the same per line
   let lines = []
@@ -144,21 +145,23 @@ let getPoem = function(titles) {
 let printBook = function() {
   timer.text = "Composing Book..."
   timer.render();
-  let output = ('---\n');
   let titles = [];
   for (var i in poems) {
     titles.push(poems[i].title);
   }
   let title = titles[Math.floor(Math.random() * titles.length)];
 
-  output += ('title: \'' + title + '\'\npoems:\n');
-  output += ("  - \'" + titles.join('\'\n  - \'') + '\'\n---\n\n');
+  let output = ('---\n');
+  output += ('title: "' + title + '"\n');
+  output += ("author:\n - 'JKirchartz\'s Vocabularycept'\n");
+  // output += ("\npoem:\n  - \'" + titles.join('\'\n  - \'') + '\'\n');
+  output += ('---\n\n\n');
   for (var i in poems) {
     let lines = poems[i].poem;
-    output += "## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n";
-    output += ("    " + lines.join('\n    ') + "\n\n");
+    output += "\n## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n";
+    output += ("> " + lines.join('  \n> ') + "  \n\n");
     output += ("\n\n(generated from \"" + poems[i].originally + "\" by " + poems[i].author + ")\n\n");
-    output += ("\\pagebreak\n\n");
+    output += ("\\pagebreak\n");
   }
 
   let bookOutputLocation = "output/" + filename(title)  + ".md";
@@ -178,10 +181,11 @@ let printBook = function() {
     function (err) {
       if (err) {
         timer.fail('Failed');
-        console.err(err);
+        console.error(err);
         process.exit(1);
       }
-      timer.succeed('Book written to: ' + bookOutputLocation);
+      timer.succeed('Book content written to: ' + bookOutputLocation);
+      process.stdout.write(bookOutputLocation);
       process.exit(0);
     });
 };
@@ -189,7 +193,7 @@ let printBook = function() {
 request('http://poetrydb.org/title', function(err, response, body){
   if ( err ) {
     timer.fail('Failed');
-    console.log(err);
+    console.error(err);
     process.exit(1);
   }
   let titles = shuffle(JSON.parse(body)['titles']);
