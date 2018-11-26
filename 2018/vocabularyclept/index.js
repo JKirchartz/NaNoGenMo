@@ -153,7 +153,8 @@ let printBook = function() {
 
   let output = ('---\n');
   output += ('title: "' + title + '"\n');
-  output += ("author:\n - 'JKirchartz\'s Vocabularycept'\n");
+  output += ('documentclass: "memoir"\n');
+  output += ('author: "JKirchartz\'s Vocabularycept"\n');
   // output += ("\npoem:\n  - \'" + titles.join('\'\n  - \'') + '\'\n');
   output += ('---\n\n\n');
   for (var i in poems) {

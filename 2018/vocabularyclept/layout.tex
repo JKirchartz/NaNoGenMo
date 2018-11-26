@@ -208,7 +208,9 @@ $endif$
 
 \begin{document}
 $if(title)$
+\thispagestyle{empty}
 \maketitle
+\newpage
 $endif$
 $if(abstract)$
 \begin{abstract}
@@ -222,11 +224,13 @@ $include-before$
 $endfor$
 $if(toc)$
 {
+\thispagestyle{empty}
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
+\newpage
 }
 $endif$
 $if(lot)$
