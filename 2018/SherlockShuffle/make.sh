@@ -29,3 +29,4 @@ npm install
 
 echo "Generating Text from Tracery Grammar..."
 node generate.js
+pandoc "output/book.md" -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o "output/book.pdf"
