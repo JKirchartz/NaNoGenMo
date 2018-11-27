@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 #
-# make.sh
+# remake.sh
 #
 # Copyleft (ↄ) 2018 jkirchartz <me@jkirchartz.com>
 #
@@ -13,6 +13,4 @@ if [[ "$#" == "0" ]]; then
   exit 0;
 fi
 
-book=$1
-
-pandoc "$book" -s --toc --smart --latex-engine=xelatex --template=layout.tex -o "${book/%.md/.pdf}"
+pandoc "$1" -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o "${1/%.md/.pdf}"

@@ -11,7 +11,7 @@
 
 var corpusLocation = 'corpora/complete.corpus';
 var corpusOutputLocation = 'output/corpus.json';
-var bookOutputLocation = 'output/book.txt';
+var bookOutputLocation = 'output/book.md';
 
 // DO NOT EDIT BELOW THIS LINE
 
@@ -43,7 +43,11 @@ function generateBook() {
 
     var tracery = require('tracery-grammar');
     var grammar = tracery.createGrammar(JSON.parse(data));
-    var bookText = "";
+    var bookText = "---\n" +
+      "title: Sherlock Shuffle\n" +
+      "title: Sherlock Shuffle\n" +
+      "author: \"Sherlock Shuffle 3.0 by JKirchartz\n" +
+      "---\n\n";
     var bookLength = 0;
     var chapters = 0;
     var chapterNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" , "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
@@ -53,7 +57,7 @@ function generateBook() {
 
     while(bookLength < 50000) {
       if ( ! bookLength % 2500 ) {
-        bookText += "CHAPTER " + chapterNumbers[chapters] + "\n\n\n";
+        bookText += "## CHAPTER " + chapterNumbers[chapters] + "\n\n\n";
         chapters++;
       }
       // stich paragraphs back into a 50,000 word book
@@ -69,10 +73,10 @@ function generateBook() {
         var bookNum = bookOutputLocation.match(/\d+/)[0];
         bookOutputLocation = bookOutputLocation.split(bookNum);
         bookNum = parseInt(bookNum, 10) + 1;
-        bookOutputLocation = bookOutputLocation[0] + (bookNum) + ".txt";
+        bookOutputLocation = bookOutputLocation[0] + (bookNum) + ".md";
       } else {
         bookOutputLocation = bookOutputLocation.split('.');
-        bookOutputLocation = bookOutputLocation[0] + "_1.txt";
+        bookOutputLocation = bookOutputLocation[0] + "_1.md";
       }
     }
 

@@ -4,6 +4,7 @@ $if(fontfamily)$
 $else$
 \usepackage{lmodern}
 $endif$
+\linespread{1.6}
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
@@ -54,10 +55,10 @@ $endif$
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$endif$
+
+\usepackage[margin=1in]{geometry}
 \usepackage[unicode=true]{hyperref}
+
 $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
@@ -192,7 +193,7 @@ $header-includes$
 $endfor$
 
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+\title{\Huge{$title$}$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 $if(subtitle)$
 \providecommand{\subtitle}[1]{}
@@ -208,29 +209,27 @@ $endif$
 
 \begin{document}
 $if(title)$
-\thispagestyle{empty}
+\begin{titlepage}
 \maketitle
-\newpage
-$endif$
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
-
+$endif$
 $for(include-before)$
 $include-before$
-
 $endfor$
+\clearpage
+\thispagestyle{empty}
+
 $if(toc)$
 {
-\thispagestyle{empty}
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
-\newpage
 }
 $endif$
 $if(lot)$
@@ -239,6 +238,8 @@ $endif$
 $if(lof)$
 \listoffigures
 $endif$
+\end{titlepage}
+
 $body$
 
 $if(natbib)$

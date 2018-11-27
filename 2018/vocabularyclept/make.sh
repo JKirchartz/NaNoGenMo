@@ -9,4 +9,4 @@
 
 book=`node index.js`
 
-pandoc "$book" -s --toc --smart --latex-engine=xelatex --template=layout.tex -V geometry:margin=1cm -o "${book/%.md/.pdf}"
+pandoc "$book" -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o "${book/%.md/.pdf}"
