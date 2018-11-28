@@ -7,4 +7,10 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 #
 
-pandoc "output/book.md" -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o "output/book.pdf"
+if [[ "$#" == "0" ]]; then
+  echo "usage:"
+  echo "remake.sh /path/to/file.md"
+  exit 0;
+fi
+
+pandoc "$1" -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o "${1/%.md/.pdf}"

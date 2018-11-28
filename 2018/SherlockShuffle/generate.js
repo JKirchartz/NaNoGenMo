@@ -38,33 +38,35 @@ function generateBook() {
       return;
     }
 
-    openTimer.succeed("Corpus read");
-    var genTimer = ora("Generating text").start();
+    openTimer.text = ("Corpus read & Generating Text");
 
     var tracery = require('tracery-grammar');
     var grammar = tracery.createGrammar(JSON.parse(data));
     var bookText = "---\n" +
       "title: Sherlock Shuffle\n" +
       "title: Sherlock Shuffle\n" +
-      "author: \"Sherlock Shuffle 3.0 by JKirchartz\n" +
+      "author: \"Sherlock Shuffle 3.0 by JKirchartz\"\n" +
       "---\n\n";
     var bookLength = 0;
-    var chapters = 0;
-    var chapterNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" , "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
+    var chapters = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" , "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
 
     grammar.addModifiers(tracery.baseEngModifiers);
 
+    chapters.splice(chapters.length - Math.floor(Math.random() * 10));
+    var ch = Math.abs(50000 / chapters.length);
+    var chCounter = 0;
 
-    while(bookLength < 50000) {
-      if ( ! bookLength % 2500 ) {
-        bookText += "## CHAPTER " + chapterNumbers[chapters] + "\n\n\n";
-        chapters++;
+
+    for (var bookLength = 0; bookLength < 50000; ) {
+      if ( chapters.length && bookLength >= chCounter) {
+        bookText += "## CHAPTER " + chapters.shift() + "\n\n\n";
+        chCounter += ch;
       }
       // stich paragraphs back into a 50,000 word book
       bookText += grammar.flatten('#origin#') + "\n\n";
       bookLength = bookText.split(" ").length;
       if (bookLength%100 == 0) { // update spinner every 100th word
-        genTimer.render();
+        openTimer.render();
       }
     }
 
@@ -80,17 +82,18 @@ function generateBook() {
       }
     }
 
-    genTimer.text = "Writing text to file";
+    openTimer.text = "Writing text to file";
     fs.writeFile(bookOutputLocation,
       bookText,
       function (err) {
         if (err) {
-          genTimer.fail('everything sucks!')
-          console.err(err);
+          openTimer.fail('everything sucks!')
+          console.error(err);
           return;
         }
 
-        genTimer.succeed("Book Written to " + bookOutputLocation);
+        openTimer.succeed("Book Written to " + bookOutputLocation);
+        process.stdout.write(bookOutputLocation);
         process.exit(0);
       });
 
@@ -104,7 +107,7 @@ function generateGrammar(callback) {
       openTimer.fail("Can't read file");
     }
     var tracery = { 'paragraphs' : [] };
-    openTimer.succeed("Corpus opened");
+    openTimer.text = ("Corpus opened");
 
     corpusfile = corpusfile.toString();
 
@@ -112,7 +115,7 @@ function generateGrammar(callback) {
       // split into "paragraphs"
       var corpus = corpusfile.split(/[\n\r]{3,}/);
       // loop through corpus
-      var tagTimer = ora("Tagging...").start();
+      openTimer.text = "Tagging...";
       for (var i in corpus) {
         if (corpus.hasOwnProperty(i)) {
           if ( /^\s+chapter/gi.test(corpus[i]) ) {
@@ -124,7 +127,7 @@ function generateGrammar(callback) {
           var tagger = new pos.Tagger();
           var taggedWords = tagger.tag(words);
           if (i%10 == 0) { // prevent spinner from freezing by reminding it to update
-            tagTimer.render();
+            openTimer.render();
           }
           // replace words in paragraph with tagged words
           for (var j in taggedWords) {
@@ -144,13 +147,13 @@ function generateGrammar(callback) {
                   tracery[tag].push(word);
                 }
                 if (tracery[tag].indexOf(word) > -1 ) {
-                  tagTimer.text = "Tagging: " + word + " as " + tag;
+                  openTimer.text = "Tagging: " + word + " as " + tag;
                   // if the word is found in the tag replace every instance in the sentence.
                   var rex = new RegExp('\\b(?!#)' + RegExp.quote(word) + '(?!#)\\b', 'g');
                   tracery.paragraphs[i] = tracery.paragraphs[i].replace(rex, '#' + tag + '#');
                 }
                 // split sentences by punctuation
-                  var sentences = tracery.paragraphs[i].split(/([\?\.\!]/g);
+                  var sentences = tracery.paragraphs[i].split(new RegExp('[?\.!]', 'g'));
                   for (var k in sentences) {
                     var chars = sentences[k].split('');
                     // capitalize first word (by replacing the 2nd # with .capitalize#)
@@ -175,15 +178,15 @@ function generateGrammar(callback) {
       // prettify output
       var grammar = JSON.stringify(tracery).replace(new RegExp('","', 'g'), '",\n    "').replace(new RegExp('],"', 'g'),'],\n"');
 
-      tagTimer.succeed("Grammar generated");
-      var writeTimer = ora("Writing grammar to " + corpusOutputLocation).start();
+      openTimer.text = ("Grammar generated");
+      openTimer.text = "Writing grammar to " + corpusOutputLocation;
 
       fs.writeFile(corpusOutputLocation,
         grammar,
         function (err) {
-          if (err) {return console.log('everything sucks because: ', err);}
+          if (err) {return console.error('everything sucks because: ', err);}
 
-          writeTimer.succeed("Grammar Written to file.");
+          openTimer.text = ("Grammar Written to file.");
           callback();
         });
     }
