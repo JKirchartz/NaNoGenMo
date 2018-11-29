@@ -18,6 +18,7 @@ var bookOutputLocation = 'output/book.md';
 var pos = require('pos');
 var fs = require('fs');
 var ora = require('ora');
+var contractions = require('expand-contractions');
 
 var openTimer = ora('Checking corpus').start();
 
@@ -110,6 +111,7 @@ function generateGrammar(callback) {
     openTimer.text = ("Corpus opened");
 
     corpusfile = corpusfile.toString();
+    corpusfile = contractions.expand(corpusfile);
 
     if (corpusfile.length) {
       // split into "paragraphs"
@@ -144,7 +146,11 @@ function generateGrammar(callback) {
                 }
                 if (tracery[tag].indexOf(word) === -1 ) {
                   // if the word isn't in the tag array, put it there.
-                  tracery[tag].push(word);
+                  if (word === "I") {
+                    tracery[tag].push(word);
+                  } else {
+                    tracery[tag].push(word.toLowerCase());
+                  }
                 }
                 if (tracery[tag].indexOf(word) > -1 ) {
                   openTimer.text = "Tagging: " + word + " as " + tag;
@@ -157,7 +163,7 @@ function generateGrammar(callback) {
                   for (var k in sentences) {
                     var chars = sentences[k].split('');
                     // capitalize first word (by replacing the 2nd # with .capitalize#)
-                    chars[chars.indexOf('#', chars.indexOf('#'))] = ".capitalize#";
+                    chars[chars.indexOf('#', chars.indexOf('#') + 1)] = ".capitalize#";
                     sentences[k] = chars.join('');
                   }
               }

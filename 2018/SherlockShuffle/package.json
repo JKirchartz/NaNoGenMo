@@ -10,6 +10,7 @@
   "author": "JKirchartz",
   "license": "ISC",
   "dependencies": {
+    "expand-contractions": "^1.0.1",
     "ora": "^3.0.0",
     "pos": "git+https://git@github.com/dariusk/pos-js.git",
     "tracery-grammar": "^2.7.3"
