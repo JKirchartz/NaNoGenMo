@@ -150,7 +150,7 @@ const parseCorpus = (file) => {
     traceryOutput['sentences'] = sentences;
     delete sentences;
 
-    fs.writeFile('corpora/corpus.json', JSON.stringify(traceryOutput, null, 2), (err) => {
+    fs.writeFile('corpora/' + file.replace('.txt', '.json'), JSON.stringify(traceryOutput, null, 2), (err) => {
       if (err) {return console.err('error: ', err);}
       console.error('JSON written');
     });
@@ -159,7 +159,12 @@ const parseCorpus = (file) => {
 };
 
 const writeBook = (traceryOutput) => {
-  traceryOutput = !!traceryOutput ? traceryOutput : fs.readFileSync('corpora/corpus.json');
+  let file = null;
+  if (typeof traceyOutput === "string") {
+    file = traceryOutput;
+    traceryOutput = null;
+  }
+  traceryOutput = !!traceryOutput ? traceryOutput : fs.readFileSync('corpora/' + file.replace('.txt', '.json'));
 
   let grammar = tracery.createGrammar(traceryOutput);
   grammar.addModifiers(tracery.baseEngModifiers);
@@ -213,11 +218,11 @@ const writeBook = (traceryOutput) => {
   });
 };
 
-let file = fs.readdirSync('corpora');
+let file = fs.readdirSync('corpora').filter((f) => return f.indexOf('.txt') > -1);
 file = file[Math.floor(Math.random() * file.length)];
 // read corpus & write grammar
-if (fs.existsSync(file)) {
-  writeBook();
+if (fs.existsSync(file.replace('.txt', '.json')) {
+  writeBook(file);
 } else {
   parseCorpus(file);
 }

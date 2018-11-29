@@ -1,0 +1,170 @@
+mage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% eBook 
+% LaTeX Template
+% Version 1.0 (29/12/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Luis Cobo (luiscobogutierrez@gmail.com) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% Adapted for use and inclusion in https://tildegit.org/biglysmalls/TildePublishingUnlimited by:
+% biglysmalls (@ a tilde near you!)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONFIGURATIONS AND INFORMATION
+%----------------------------------------------------------------------------------------
+
+\documentclass[oneside,11pt]{memoir} % Font size
+
+\input{structure} % Include the file that specifies the document structure and layout
+\usepackage{lipsum} % for use of the \lipsum macro command to generate dummy text in the chapters.
+
+\title{Compelling Title} % Book title
+\author{Ghost Writer, Esq.} % Author
+\newcommand{\edition}{Second Edition} % Book edition
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\thispagestyle{empty} % Suppress page numbering
+%\ThisCenterWallPaper{1.05}{cover/doodoobutt.jpg} % Add the background image, the first argument is the scaling - adjust this as necessary so the image fits the entire page
+\ThisCenterWallPaper{1.12}{cover/littlered.jpg} % Add the background image, the first argument is the scaling - adjust this as necessary so the image fits the entire page
+% You can supply your own .jpg by putting it in the 'cover' directory and change the filename above to reflect your cover image.
+% Or you can remove it by deleting or commenting out the command above (insert % at the begining of the line)
+
+% This tikzpicture code creates the overlay box on the cover page and populates it with author/title/edition info from the document information section above.
+\begin{tikzpicture}[remember picture,overlay]
+\node [rectangle, rounded corners, fill=white, opacity=0.75, anchor=south west, minimum width=3cm, minimum height=6cm] (box) at (-0.5,-10) (box){}; % White rectangle - "minimum width/height" adjust the width and height of the box; "(-0.5,-10)" adjusts the position on the page
+\node[anchor=west, color01, xshift=-1.5cm, yshift=-0.4cm, text width=2.9cm, font=\sffamily\scriptsize] at (box.north){\edition}; % "Text width" adjusts the wrapping width, "xshift/yshift" adjust the position relative to the white rectangle
+\node[anchor=west, color01, xshift=-1.5cm, yshift=-2cm, text width=2.9cm, font=\sffamily\bfseries\scshape\Large] at (box.north){\thetitle}; % "Text width" adjusts the wrapping width, "xshift/yshift" adjust the position relative to the white rectangle
+\node[anchor=west, color01, xshift=-1.5cm, yshift=-5cm, text width=2.9cm, font=\sffamily\bfseries] at (box.north){\theauthor}; % "Text width" adjusts the wrapping width, "xshift/yshift" adjust the position relative to the white rectangle
+\end{tikzpicture} 
+\newpage % Make sure the following content is on a new page
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2019 John Smith\\ % Copyright notice
+
+\noindent \textsc{Published by Tilde Publishing Unlimited}\\ % Publisher
+
+\noindent \textsc{http://tilde.town}\\ % URL
+
+\begin{tiny}
+\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information, replace this with your own license (if any)
+\end{tiny}
+
+\noindent \textit{First printing, March 2019} % Printing/edition date
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Prints the table of contents
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION SECTION
+%----------------------------------------------------------------------------------------
+
+\chapter*{Introduction/Prologue} % Introduction chapter suppressed from the table of contents
+% begin prologue
+\begin{quote}
+This is one of my finer quotations.\\
+--John Smith
+\end{quote}
+
+This is a great place to write an introduction or prologue\footnote{You can even use a footnote to seem smarter}.
+% end prologue
+%You can move the intro/prologue to a separate file like with the subsequent chapters. To try it, comment out
+% everything between the lines % begin prologue .. % end prologue and uncomment the following line:
+%\include{inputs/prologue.md}
+% The prologue.md file just contains those same six lines from above.
+
+% test of being able to insert a chapter and book part before the main body of the work:
+% we can do so by defining a new part, defining a new chapter, and including a body of text
+% the compilation process will take care of the rest. Uncomment the following 3 lines to test it out.
+%\part{The Interruption}
+%\chapter{An Interruption in Parts and Chapters}
+%\include{inputs/firstchap.md}
+
+%----------------------------------------------------------------------------------------
+%	BOOK PART
+%----------------------------------------------------------------------------------------
+
+\part{The Word Salads}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER ONE
+%----------------------------------------------------------------------------------------
+
+\chapter{Little Red Riding Hood}
+\include{inputs/lrrh.md}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER TWO
+%----------------------------------------------------------------------------------------
+
+\chapter{Hansel and Gretel}
+\include{inputs/hng.md}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER THREE
+%----------------------------------------------------------------------------------------
+
+\chapter{More Lipsum}
+\include{inputs/thirdchap.md}
+
+%----------------------------------------------------------------------------------------
+%	BOOK PART
+%----------------------------------------------------------------------------------------
+
+\part{The Verses}
+
+%----------------------------------------------------------------------------------------
+%	SONG ONE
+%----------------------------------------------------------------------------------------
+
+% Test to demonstrate how to include poetry or lyrics into this kind of ebook
+% Here it is just inserted before the first chapter
+% Song and lyrics generated by www.song-lyrics-generator.org.uk
+% using random inputs, in the style of Taylor Swift
+% linebreaks in inputs/song.md produced with manual doublespacing.
+% Some more options for working with poems and verses here: https://stackoverflow.com/questions/1236580/latex-memoir-the-verse-environment-and-poemtitle#1236727
+\chapter{A song}
+\begin{quote} % Using a quote block to insert a by-line for the verse. Remove/comment out if unnecessary (like in the next set of verses)
+    This Love is Super But It's Poor\\ % the \\ at the end of the line forces a linebreak before the by line:
+    by: skynet
+\end{quote}
+\settowidth{\versewidth}{This Love is Super But It's Poor} % The width of the verse lines is set by the text within the braces. Note the different width in the next song.
+\begin{verse}[\versewidth]
+\ldots \\*
+\include{inputs/song.md}
+\end{verse}
+
+\chapter{This Love is Super But It's Poor} %Within the braces as this chapter name is the title of the poem/song/piece.
+\settowidth{\versewidth}{A song, a song!}
+\begin{verse}[\versewidth]
+\ldots \\*
+\include{inputs/song.md}
+\end{verse}
+
+\end{document}
