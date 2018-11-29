@@ -17,6 +17,11 @@ RegExp.quote = function(str) {
   return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
 };
 
+const filename = (str) => {
+  return str.replace(/[^a-z0-9]/gi, '');
+
+};
+
 // generate tracery from POS
 let traceryOutput = { };
 const parseSentence = (str, index) => {
@@ -107,8 +112,23 @@ const tagifySentence = (obj, i, arr) => {
   return obj;
 };
 
-const parseCorpus = () => {
-  fs.readFile('corpora/complete.corpus', (err, data) => {
+let keepNextLine = false;
+const extractChapters = (sentence) => {
+  if ( sentence === "") {
+    return false;
+  }
+  if (keepNextLine) {
+    keepNextLine = false;
+    return true;
+  }
+  if (sentence.indexOf("Chapter") === 0 && sentence.split(' ').length < 5) {
+    keepNextLine = true;
+  }
+  return false;
+};
+
+const parseCorpus = (file) => {
+  fs.readFile('corpora/' + file, (err, data) => {
     if (err) {
       console.err("Can't read file", err);
       process.exit(2);
@@ -121,13 +141,18 @@ const parseCorpus = () => {
       }
     });
     // get sentences
-    let sentences = util.string.sentences(corpus.join("\n\n"));
+    let sentences = util.string.sentences(corpus.join("\n"));
+    let chapters = sentences.filter(extractChapters);
+    console.error(chapters);
+    traceryOutput['chapters'] = chapters;
+    delete chapters;
     sentences = sentences.map(parseSentence);
     traceryOutput['sentences'] = sentences;
+    delete sentences;
 
     fs.writeFile('corpora/corpus.json', JSON.stringify(traceryOutput, null, 2), (err) => {
       if (err) {return console.err('error: ', err);}
-      console.log('JSON written');
+      console.error('JSON written');
     });
     writeBook(traceryOutput);
   });
@@ -162,29 +187,38 @@ const writeBook = (traceryOutput) => {
     bookLength = bookText.split(" ").length;
   }
   // determine filename for book
-  let bookOutputLocation = 'output/book.txt';
+  let title = traceryOutput.chapters[Math.floor(Math.random() * traceryOutput.chapters.length)];
+  let bookOutputLocation = 'output/' + filename(title) + '.md';
   while (fs.existsSync(bookOutputLocation)) {
     if ( /\d+/.test(bookOutputLocation) ) {
       let bookNum = bookOutputLocation.match(/\d+/)[0];
       bookOutputLocation = bookOutputLocation.split(bookNum);
       bookNum = parseInt(bookNum, 10) + 1;
-      bookOutputLocation = bookOutputLocation[0] + (bookNum) + ".txt";
+      bookOutputLocation = bookOutputLocation[0] + (bookNum) + ".md";
     } else {
       bookOutputLocation = bookOutputLocation.split('.');
-      bookOutputLocation = bookOutputLocation[0] + "_1.txt";
+      bookOutputLocation = bookOutputLocation[0] + "_1.md";
     }
   }
+  bookText = "---\n" +
+    "title: '" + title + "'";
+    'documentclass: "book"\n' +
+    'author: "JKirchartz\'s Winkie"\n' +
+    "---\n\n" +
+    bookText;
   // write book
   fs.writeFile(bookOutputLocation, bookText, (err) => {
     if (err) {return console.err('error: ', err);}
-    console.log('Book written');
+    console.log(bookOutputLocation);
   });
 };
 
+let file = fs.readdirSync('corpora');
+file = file[Math.floor(Math.random() * file.length)];
 // read corpus & write grammar
-if (fs.existsSync('corpora/corpus.json')) {
+if (fs.existsSync(file)) {
   writeBook();
 } else {
-  parseCorpus();
+  parseCorpus(file);
 }
 
