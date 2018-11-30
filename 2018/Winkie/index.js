@@ -12,14 +12,17 @@ const contractions = require('expand-contractions');
 const tracery = require('tracery-grammar');
 const tagger = pos();
 
+let file = fs.readdirSync('corpora').filter((f) => f.indexOf('.txt') > -1);
+file = file[Math.floor(Math.random() * file.length)];
+
 // regex helper to escape strings
 RegExp.quote = function(str) {
   return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
 };
 
 const filename = (str) => {
+  if (!str){ return file.replace('.txt', ''); }
   return str.replace(/[^a-z0-9]/gi, '');
-
 };
 
 // generate tracery from POS
@@ -35,7 +38,7 @@ const parseSentence = (str, index) => {
   let scragglers = [];
   taggedSentence.filter((obj, index) => {
     if (obj.pos.slice(0,3) === "NPP" &&
-       (obj.value.indexOf(" ") > -1 || obj.value.indexOf("\"") > -1)) {
+      (obj.value.indexOf(" ") > -1 || obj.value.indexOf("\"") > -1)) {
       scragglers.push(tagger.tagSentence(obj.value));
       return false;
     }
@@ -100,9 +103,9 @@ const tagifySentence = (obj, i, arr) => {
   }
   // don't save one-letter non-words
   if (obj.value.length === 1 &&
-      (word !== "a" || word !=="o" || word !== "i")) {
-      return false;
-    }
+    (word !== "a" || word !=="o" || word !== "i")) {
+    return false;
+  }
   if (word === "a" || word === "an") {
     was_a_or_an = true;
     return false;
@@ -114,15 +117,22 @@ const tagifySentence = (obj, i, arr) => {
 
 let keepNextLine = false;
 const extractChapters = (sentence) => {
-  if ( sentence === "") {
-    return false;
-  }
+  sentence = sentence.replace(/\n/g, '').trim();
   if (keepNextLine) {
+    console.error("keeping: " + sentence);
     keepNextLine = false;
     return true;
-  }
-  if (sentence.indexOf("Chapter") === 0 && sentence.split(' ').length < 5) {
-    keepNextLine = true;
+  } else {
+    console.error( sentence.indexOf(/\d+/gi), sentence.indexOf(/Chapter/gi) > -1 ) { // && sentence.split(' ').length < 5) {
+    if ( sentence.indexOf(/\d+/gi) > -1 ) {
+      console.error("keeping: " + sentence);
+      return true;
+    }
+    if (sentence.indexOf(/Chapter/gi) > -1 ) { // && sentence.split(' ').length < 5) {
+      console.error("chapter: " + sentence);
+      keepNextLine = true;
+      return false;
+    }
   }
   return false;
 };
@@ -130,30 +140,34 @@ const extractChapters = (sentence) => {
 const parseCorpus = (file) => {
   fs.readFile('corpora/' + file, (err, data) => {
     if (err) {
-      console.err("Can't read file", err);
+      console.error("Can't read file", err);
       process.exit(2);
     }
     let corpus = data.toString();
-    corpus = corpus.split("\n\n");
+    corpus = corpus.replace(/\r\n/g, '\n');
+    corpus = corpus.split(/\n\n+/);
     corpus.forEach((para, index) => {
-      if(para.match(/"/g).length % 2 == 1 && (para.slice(1) === "\"" && para.slice(-1) !== "\"")){
-        para = para + "\"";
-      }
+      // try to fix quotes missing the endquote
+      let match = para.match(/"/g);
+        if(match && match.length % 2 == 1 && (para.slice(1) === "\"" && para.slice(-1) !== "\"")){
+          para = para + "\"";
+        }
     });
-    // get sentences
-    let sentences = util.string.sentences(corpus.join("\n"));
-    let chapters = sentences.filter(extractChapters);
-    console.error(chapters);
-    traceryOutput['chapters'] = chapters;
-    delete chapters;
-    sentences = sentences.map(parseSentence);
-    traceryOutput['sentences'] = sentences;
-    delete sentences;
+      // get chapters
+      let chapters = corpus.filter(extractChapters);
+      console.error(chapters);
+      traceryOutput['chapters'] = chapters;
+      // get sentences
+      let sentences = util.string.sentences(corpus.join("\n\n"));
+      delete chapters;
+      sentences = sentences.map(parseSentence);
+      traceryOutput['sentences'] = sentences;
+      delete sentences;
 
-    fs.writeFile('corpora/' + file.replace('.txt', '.json'), JSON.stringify(traceryOutput, null, 2), (err) => {
-      if (err) {return console.err('error: ', err);}
-      console.error('JSON written');
-    });
+      fs.writeFile('corpora/' + file.replace('.txt', '.json'), JSON.stringify(traceryOutput, null, 2), (err) => {
+        if (err) {return console.err('error: ', err);}
+        console.error('JSON written');
+      });
     writeBook(traceryOutput);
   });
 };
@@ -183,16 +197,23 @@ const writeBook = (traceryOutput) => {
   });
   let bookText = "";
   let bookLength = 0;
+  let chapters = traceryOutput.chapters;
+  let chapterIndex = Math.abs(50000 / chapters.length);
+  let chI = 0;
   while(bookLength < 50000) {
+    if ( chapters.length && bookLength >= chI) {
+      bookText += "\n\n## " + chapters.pop() + "\n\n"
+      chI += chapterIndex;
+    }
     bookText += grammar.flatten('#sentences#') + "\n";
-    // add in random paragraph breaks
+    // add in random paragraph breaks ~10% of the time
     if (Math.round(Math.random() * 100) < 10 ) {
       bookText += "\n\n";
     }
     bookLength = bookText.split(" ").length;
   }
   // determine filename for book
-  let title = traceryOutput.chapters[Math.floor(Math.random() * traceryOutput.chapters.length)];
+  let title = chapters[Math.floor(Math.random() * chapters.length)] || null;
   let bookOutputLocation = 'output/' + filename(title) + '.md';
   while (fs.existsSync(bookOutputLocation)) {
     if ( /\d+/.test(bookOutputLocation) ) {
@@ -206,7 +227,7 @@ const writeBook = (traceryOutput) => {
     }
   }
   bookText = "---\n" +
-    "title: '" + title + "'";
+    "title: '" + title + "'\n" +
     'documentclass: "book"\n' +
     'author: "JKirchartz\'s Winkie"\n' +
     "---\n\n" +
@@ -218,10 +239,9 @@ const writeBook = (traceryOutput) => {
   });
 };
 
-let file = fs.readdirSync('corpora').filter((f) => return f.indexOf('.txt') > -1);
-file = file[Math.floor(Math.random() * file.length)];
+console.error('reading: ' + file);
 // read corpus & write grammar
-if (fs.existsSync(file.replace('.txt', '.json')) {
+if (fs.existsSync(file.replace('.txt', '.json'))) {
   writeBook(file);
 } else {
   parseCorpus(file);
