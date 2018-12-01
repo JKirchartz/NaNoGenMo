@@ -20,6 +20,17 @@ RegExp.quote = function(str) {
   return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
 };
 
+const shuffle = function (a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+  return a;
+}
+
 const filename = (str) => {
   if (!str){ return file.replace('.txt', ''); }
   return str.replace(/[^a-z0-9]/gi, '');
@@ -36,7 +47,7 @@ const parseSentence = (str, index) => {
   let taggedSentence = tagger.tagSentence(str);
   // fix peculiarity of wink-pos-tagger tagging sentences as NNP
   let scragglers = [];
-  taggedSentence.filter((obj, index) => {
+  taggedSentence = taggedSentence.filter((obj, index) => {
     if (obj.pos.slice(0,3) === "NPP" &&
       (obj.value.indexOf(" ") > -1 || obj.value.indexOf("\"") > -1)) {
       scragglers.push(tagger.tagSentence(obj.value));
@@ -117,57 +128,61 @@ const tagifySentence = (obj, i, arr) => {
 
 let keepNextLine = false;
 const extractChapters = (sentence) => {
-  sentence = sentence.replace(/\n/g, '').trim();
-  if (keepNextLine) {
-    console.error("keeping: " + sentence);
+  sentence = sentence.replace(/\n/, '');
+  if ( sentence == '') {
+    return false;
+  } else if (keepNextLine) {
     keepNextLine = false;
     return true;
   } else {
-    console.error( sentence.indexOf(/\d+/gi), sentence.indexOf(/Chapter/gi) > -1 ) { // && sentence.split(' ').length < 5) {
-    if ( sentence.indexOf(/\d+/gi) > -1 ) {
-      console.error("keeping: " + sentence);
+    if ( RegExp('^[0-9]', 'gi').test(sentence)  && sentence.split(' ').length < 10) {
       return true;
     }
-    if (sentence.indexOf(/Chapter/gi) > -1 ) { // && sentence.split(' ').length < 5) {
-      console.error("chapter: " + sentence);
+    if (RegExp('^chapter', 'gi').test(sentence) ) {
       keepNextLine = true;
       return false;
     }
   }
+  keepNextLine = false;
   return false;
 };
 
 const parseCorpus = (file) => {
+  // get contents of book
   fs.readFile('corpora/' + file, (err, data) => {
     if (err) {
       console.error("Can't read file", err);
       process.exit(2);
     }
     let corpus = data.toString();
+    // tidy newlines
     corpus = corpus.replace(/\r\n/g, '\n');
+
+    // get chapters
+    let chapters = corpus.split('\n').filter(extractChapters);
+    chapters = chapters.map((str) => str.replace(/\d+\./g, '').trim());
+    traceryOutput['chapters'] = chapters;
+
+    // try to fix quotes missing the endquote
     corpus = corpus.split(/\n\n+/);
     corpus.forEach((para, index) => {
-      // try to fix quotes missing the endquote
       let match = para.match(/"/g);
         if(match && match.length % 2 == 1 && (para.slice(1) === "\"" && para.slice(-1) !== "\"")){
           para = para + "\"";
         }
     });
-      // get chapters
-      let chapters = corpus.filter(extractChapters);
-      console.error(chapters);
-      traceryOutput['chapters'] = chapters;
-      // get sentences
-      let sentences = util.string.sentences(corpus.join("\n\n"));
-      delete chapters;
-      sentences = sentences.map(parseSentence);
-      traceryOutput['sentences'] = sentences;
-      delete sentences;
 
-      fs.writeFile('corpora/' + file.replace('.txt', '.json'), JSON.stringify(traceryOutput, null, 2), (err) => {
-        if (err) {return console.err('error: ', err);}
-        console.error('JSON written');
-      });
+    // get sentences
+    let sentences = util.string.sentences(corpus.join("\n\n"));
+    delete chapters;
+    sentences = sentences.map(parseSentence);
+    traceryOutput['sentences'] = sentences;
+    delete sentences;
+
+    fs.writeFile('corpora/' + file.replace('.txt', '.json'), JSON.stringify(traceryOutput, null, 2), (err) => {
+      if (err) {return console.err('error: ', err);}
+      console.error('JSON written');
+    });
     writeBook(traceryOutput);
   });
 };
@@ -197,23 +212,23 @@ const writeBook = (traceryOutput) => {
   });
   let bookText = "";
   let bookLength = 0;
-  let chapters = traceryOutput.chapters;
+  let chapters = shuffle(traceryOutput.chapters);
+  let title = chapters[Math.floor(Math.random() * chapters.length)] || null;
   let chapterIndex = Math.abs(50000 / chapters.length);
   let chI = 0;
   while(bookLength < 50000) {
     if ( chapters.length && bookLength >= chI) {
-      bookText += "\n\n## " + chapters.pop() + "\n\n"
+      bookText += "\n\\hfill\n\\pagebreak\n\n## " + chapters.pop() + "\n\n"
       chI += chapterIndex;
     }
     bookText += grammar.flatten('#sentences#') + "\n";
-    // add in random paragraph breaks ~10% of the time
-    if (Math.round(Math.random() * 100) < 10 ) {
+    // add in random paragraph breaks ~30% of the time
+    if (Math.round(Math.random() * 100) < 30 ) {
       bookText += "\n\n";
     }
     bookLength = bookText.split(" ").length;
   }
   // determine filename for book
-  let title = chapters[Math.floor(Math.random() * chapters.length)] || null;
   let bookOutputLocation = 'output/' + filename(title) + '.md';
   while (fs.existsSync(bookOutputLocation)) {
     if ( /\d+/.test(bookOutputLocation) ) {

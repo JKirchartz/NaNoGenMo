@@ -162,7 +162,7 @@ let printBook = function() {
     output += "\n## " + lines[0].split(' ').map(capitalize).join(' ')  + "\n\n";
     output += ("> " + lines.join('  \n> ') + "  \n\n");
     output += ("\n\n(generated from \"" + poems[i].originally + "\" by " + poems[i].author + ")\n\n");
-    output += ("\\pagebreak\n");
+    output += ("\n\\hfill\n\\pagebreak\n");
   }
 
   let bookOutputLocation = "output/" + filename(title)  + ".md";
@@ -198,8 +198,8 @@ request('http://poetrydb.org/title', function(err, response, body){
     process.exit(1);
   }
   let titles = shuffle(JSON.parse(body)['titles']);
-  timer.text = "Fetching 10 poems...";
+  timer.text = "Fetching 15 poems...";
   timer.render();
-  getPoem(titles.slice(0,10));
+  getPoem(titles.slice(0,15));
 
 });

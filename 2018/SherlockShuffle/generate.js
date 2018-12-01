@@ -60,6 +60,7 @@ function generateBook() {
 
     for (var bookLength = 0; bookLength < 50000; ) {
       if ( chapters.length && bookLength >= chCounter) {
+        bookText += "\n\\hfill\n\\pagebreak\n\n";
         bookText += "## CHAPTER " + chapters.shift() + "\n\n\n";
         chCounter += ch;
       }
