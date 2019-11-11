@@ -18,5 +18,8 @@
     "imagickal": "^4.1.0",
     "jimp": "^0.8.4",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "jq": "^1.7.2"
   }
 }
