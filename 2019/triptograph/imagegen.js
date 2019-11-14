@@ -8,23 +8,22 @@ var fs = require('fs');
 
 var allimages = [];
 
-const compositeImages = function (images) {
-  console.log("composite images");
+const compositeImages = function (images, type) {
   var jimps = [];
 
+  images = images.sort(() => Math.round(Math.random()));
+
   for (var i = 0; i < images.length; i++) {
-    jimps.push(jimp.read(images[i].url));
+    jimps.push(jimp.read(images[i]));
   }
 
-  Promise.all(jimps)
+ Promise.all(jimps)
     .then(function(data) {
-      console.log("p.a(jimps):");
       return Promise.all(jimps);
     })
     .then(function(data) {
-      console.log("composite");
-      var x = width ? width : data[0].bitmap.width;
-      var y = height ? height : data[0].bitmap.height;
+      var x = data[0].bitmap.width;
+      var y = data[0].bitmap.height;
       var offset = Math.floor(Math.random() * x);
       var randOffset = Math.floor(Math.random() * offset);
       for (var i = 1; i <=4; i++) {
@@ -40,7 +39,7 @@ const compositeImages = function (images) {
       data[0].composite(data[4], randOffset - data[4].width, 0, {mode:jimp.BLEND_LIGHTEN});
       console.log("write image");
       // write image
-      data[0].write(Date().toString().replace(/\s+/g, '_') + ".png");
+      data[0].write('./tmp/' + Date().toString().replace(/\s+/g, '_') + ".png");
     }).catch(function (err) {
       console.error(err);
     });
@@ -48,11 +47,8 @@ const compositeImages = function (images) {
 
 const imagegen = function(type, width, height) {
   fs.readdir('./tmp/images/', {withFileType: true}, function(err, files) {
-    compositeImages(files)
-    .catch(function (err) {
-      console.error(err);
-    });
-  }
+    compositeImages(files.map((i) => './tmp/images/' + i), type);
+  });
 };
 
 module.exports = imagegen;
