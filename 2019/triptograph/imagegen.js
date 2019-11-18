@@ -37,9 +37,10 @@ const compositeImages = function (images, type) {
       // layer two
       data[0].composite(data[3], randOffset, 0, {mode:jimp.BLEND_LIGHTEN});
       data[0].composite(data[4], randOffset - data[4].width, 0, {mode:jimp.BLEND_LIGHTEN});
-      console.log("write image");
+      var filename = "./tmp/" + Date().toString().replace(/\s+/g, '_') + ".png";
       // write image
-      data[0].write('./tmp/' + Date().toString().replace(/\s+/g, '_') + ".png");
+      console.log(filename);
+      data[0].write(filename);
     }).catch(function (err) {
       console.error(err);
     });
