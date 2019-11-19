@@ -25,6 +25,6 @@ fi
 echo "generating bigrams";
 # ala "Unix for Poets"
 # tr -sc ’[A-Z][a-z]’ ’[\012*]’ < "${CORPUS}" > "${BASENAME}.words"
-awk '{for (i=1; i<NF; i++) print $i, $(i+1)}' "${CORPUS}" | sort -u > "${BASENAME}.bigrams"
+awk '{for (i=1; i<NF; i++) print $i, $(i+1)}' "${CORPUS}" | tr '' '\n' | sort -f | uniq -uic | sort -n  | sed -e 's/^[ \t]*//' -e 's/[ \t]/ /' > "${BASENAME}.bigrams"
 # tail +2 "${BASENAME}.words" > "${BASENAME}.nextwords"
 # paste "${BASENAME}.words" > "${BASENAME}.nextwords" | sort | uniq -c > "${BASENAME}.bigrams"

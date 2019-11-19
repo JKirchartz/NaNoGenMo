@@ -2,8 +2,8 @@
 
 shopt -s nocasematch
 
-OUTPUTFILE=$1
-BIGRAMFILE=$2
+BIGRAMFILE=$1
+OUTPUTFILE=$2
 
 [[ "$OUTPUTFILE" == "" ]] && OUTPUTFILE=$(mktemp ./tmp/output.XXX.md);
 
@@ -23,16 +23,22 @@ while read -p "BBK > " i; do
       SUGGESTIONS="${SUGGESTIONS}\n    !load : load named corpus"
       SUGGESTIONS="${SUGGESTIONS}\n    !exit : close program"
       ;;
-    \#*)
-      i=$(echo "$i" | cut -d' ' -f2)
-      SUGGECTIONS="$i"
+    \#[0-9]*)
+      i=$(echo $1 | sed 's/#//')
+      LASTWORD=$(grep "^[[:digit:]]* $LASTWORD\b" "$BIGRAMFILE" | head -n 10 | cut -d' ' -f3 | sed -n "${i}p")
+      echo -n "$LASTWORD " >> $OUTPUTFILE
+      SUGGESTIONS=$(grep "^[[:digit:]]* $LASTWORD\b" "$BIGRAMFILE" | head -n 10 | cut -d' ' -f3)
+      NEWSUGGESTIONS=""
+      for S in $SUGGESTIONS; do
+        NEWSUGGESTIONS="${NEWSUGGESTIONS}    ${COUNT}: ${S}"
+        COUNT=$(($COUNT + 1))
+      done
       ;;
     !fetch*)
       i=$(echo "$i" | cut -d' ' -f2)
       ./BBK_corpus.sh "$i"
       ;;
     !ls*|!list*)
-      TMP=""
       for i in ./tmp/*.bigrams; do
         NAME=$(basename -s .bigrams $i)
         SUGGESTIONS="${SUGGESTIONS}${NAME}  "
@@ -42,18 +48,30 @@ while read -p "BBK > " i; do
     !load*)
       i=$(echo "$i" | cut -d' ' -f2)
       BIGRAMFILE="./tmp/${i}.bigrams";
-      SUGGESTIONS=$(head -n 10 $BIGRAMFILE);
+      SUGGESTIONS=$(head -n 10 $BIGRAMFILE | cut -d' ' -f3);
+      NEWSUGGESTIONS=""
+      for S in $SUGGESTIONS; do
+        NEWSUGGESTIONS="${NEWSUGGESTIONS}    ${COUNT}: ${S}"
+        COUNT=$(($COUNT + 1))
+      done
       ;;
     *)
       LASTWORD=$(echo "$i" | awk '{print $NF}')
-      SUGGESTIONS=$(grep "^$LASTWORD" "$BIGRAMFILE" | head -n 10)
-      echo "$i" >> $OUTPUTFILE
+      SUGGESTIONS=$(grep "^[[:digit:]]* $LASTWORD\b" "$BIGRAMFILE" | head -n 10 | cut -d' ' -f3)
+      COUNT=0
+      NEWSUGGESTIONS=""
+      for S in $SUGGESTIONS; do
+        NEWSUGGESTIONS="${NEWSUGGESTIONS}    ${COUNT}: ${S}"
+        COUNT=$(($COUNT + 1))
+      done
+      SUGGESTIONS="$NEWSUGGESTIONS"
+      echo -n "$i " >> $OUTPUTFILE
       ;;
   esac
   # print TUI
   clear;
-  < $OUTPUTFILE
+  echo $(cat $OUTPUTFILE)
   echo -e "\n===\n"
   [[ "$BIGRAMFILE" == "" ]] && echo "please load a corpus";
-  echo -e $SUGGESTIONS
+  echo -e "$SUGGESTIONS"
 done

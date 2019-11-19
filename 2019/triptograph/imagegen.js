@@ -26,6 +26,8 @@ const compositeImages = function (images, type) {
       var y = data[0].bitmap.height;
       var offset = Math.floor(Math.random() * x);
       var randOffset = Math.floor(Math.random() * offset);
+      var filename = "./tmp/" + Date().toString().replace(/\s+/g, '_') + ".png";
+      console.log(filename);
       for (var i = 1; i <=4; i++) {
         data[i].cover(x, y);
       }
@@ -37,9 +39,7 @@ const compositeImages = function (images, type) {
       // layer two
       data[0].composite(data[3], randOffset, 0, {mode:jimp.BLEND_LIGHTEN});
       data[0].composite(data[4], randOffset - data[4].width, 0, {mode:jimp.BLEND_LIGHTEN});
-      var filename = "./tmp/" + Date().toString().replace(/\s+/g, '_') + ".png";
       // write image
-      console.log(filename);
       data[0].write(filename);
     }).catch(function (err) {
       console.error(err);

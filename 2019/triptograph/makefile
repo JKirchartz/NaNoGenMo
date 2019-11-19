@@ -5,7 +5,7 @@
 
 dirs := $(shell mkdir -p tmp dist)
 filename := $(shell mktemp ./tmp/book.XXX.md)
-outputfile := $(shell mktemp ./dist/book.XXX.epub)
+outputfile := $(shell mktemp ./dist/book.XXX.pdf)
 corpus = ./tmp/corpus.txt
 defs = ./tmp/defs.txt
 tracery = ./tmp/corpus.json
@@ -38,8 +38,11 @@ endef
 dldata:
 	@echo "downloading corpus"
 	-wget http://www.gutenberg.org/cache/epub/926/pg926.txt -P tmp/ --no-clobber
+	-wget https://www.gutenberg.org/files/60045/60045-0.txt  -P tmp/ --no-clobber
 	@tail -n 25469 tmp/pg926.txt | head -n 24777 > $(corpus)
 	@tail -n 23297 $(corpus) > $(defs)
+	@tail -n 13962 tmp/66045.txt | head -n 320 >> $(corpus)
+	@tail -n 13029 tmp/66045.txt | head -n 7647 >> $(defs)
 	$(dlimages)
 
 gentracery:
@@ -54,36 +57,51 @@ generate:
 	@echo "generating segments"
 	@echo "\#Triptograph: $(shuf -n1 /usr/share/dict/words)" >> $(filename)
 	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagegen))" >> $(filename)
-	$(dlimages)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@pos2tracery generate $(corpus) -m >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagegen))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo -n "![]($(shell ./imagegen.js))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	$(dlimages)
 	@./TTYzara.sh >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagename))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@$(dlimages)
 	@pos2tracery generate $(mergedtracery) -m >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagegen))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo -n "!\n[]($(shell ./imagegen.js))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@$(dlimages)
 	@./TTYzara.sh >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagegen))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@$(dlimages)
 	@pos2tracery generate $(soundextracery) >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo -n "![]($(value imagegen))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 	@$(dlimages)
-	@./TTYzara.sh >> $(filename)
+	@./TTYzara.sh | sed -e 's/^/>/' >> $(filename)
+	@echo "\\hfill\n\\pagebreak" >> $(filename)
 
 publish:
 	@echo "publishing book"
 	@mkdir -p dist
-	# @pandoc $(filename) -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o $(outputfile)
+	@pandoc $(filename) -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o $(outputfile)
 	# @pandoc $(filename) --toc --wrap=preserve -o $(outputfile)
-	@pandoc $(filename) --toc -o $(outputfile)
+	# @pandoc $(filename) --toc -o $(outputfile)
 
 clean:
 	@echo "cleaning up tmp files"
