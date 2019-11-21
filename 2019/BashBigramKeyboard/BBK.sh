@@ -2,37 +2,41 @@
 
 shopt -s nocasematch
 
-BIGRAMFILE=$1
-OUTPUTFILE=$2
+OUTPUTFILE=$1
+BIGRAMFILE="./tmp/BIGRAMS"
+SUGGESTIONS=""
 
 [[ "$OUTPUTFILE" == "" ]] && OUTPUTFILE=$(mktemp ./tmp/output.XXX.md);
 
 clear;
-echo "Welcome to the Bash Bigram Keyboard, please !load a set of bigrams to get started, or enter !help";
+echo "Welcome to the Bash Bigram Keyboard, please hit [enter] to continue, or ask for !help";
 # fake a shell
 while read -p "BBK > " i; do
-  SUGGESTIONS=""
   case "$i" in
     !exit*) exit 0 ;;
     !help*)
       SUGGESTIONS="commands:"
-      SUGGESTIONS="${SUGGESTIONS}\n    #[1-10]: choose suggestion by number"
+      SUGGESTIONS="${SUGGESTIONS}\n    0-9: choose suggestion by number"
       SUGGESTIONS="${SUGGESTIONS}\n    !help: show this message"
-      SUGGESTIONS="${SUGGESTIONS}\n    !fetch: process a link to a text file"
-      SUGGESTIONS="${SUGGESTIONS}\n    !list : list all available corpora"
-      SUGGESTIONS="${SUGGESTIONS}\n    !load : load named corpus"
+      SUGGESTIONS="${SUGGESTIONS}\n    !open: open an existing file for writing"
+      SUGGESTIONS="${SUGGESTIONS}\n    !fetch: process a link (or file in the ./tmp directory) and add it to the corpus"
       SUGGESTIONS="${SUGGESTIONS}\n    !exit : close program"
       ;;
-    \#[0-9]*)
-      i=$(echo $1 | sed 's/#//')
-      LASTWORD=$(grep "^[[:digit:]]* $LASTWORD\b" "$BIGRAMFILE" | head -n 10 | cut -d' ' -f3 | sed -n "${i}p")
+    [0-9])
+      i=$(echo $i | sed 's/[^0-9]//')
+      LASTWORD=$(echo "$SUGGESTIONS" | sed -e "s/[^$i]*  $i: \([^ \t]*\).*/\1/")
       echo -n "$LASTWORD " >> $OUTPUTFILE
       SUGGESTIONS=$(grep "^[[:digit:]]* $LASTWORD\b" "$BIGRAMFILE" | head -n 10 | cut -d' ' -f3)
+      COUNT=0
       NEWSUGGESTIONS=""
       for S in $SUGGESTIONS; do
         NEWSUGGESTIONS="${NEWSUGGESTIONS}    ${COUNT}: ${S}"
         COUNT=$(($COUNT + 1))
       done
+      SUGGESTIONS="$NEWSUGGESTIONS"
+      ;;
+    !open*)
+      OUTPUTFILE="$i"
       ;;
     !fetch*)
       i=$(echo "$i" | cut -d' ' -f2)
@@ -49,11 +53,13 @@ while read -p "BBK > " i; do
       i=$(echo "$i" | cut -d' ' -f2)
       BIGRAMFILE="./tmp/${i}.bigrams";
       SUGGESTIONS=$(head -n 10 $BIGRAMFILE | cut -d' ' -f3);
+      COUNT=0
       NEWSUGGESTIONS=""
       for S in $SUGGESTIONS; do
         NEWSUGGESTIONS="${NEWSUGGESTIONS}    ${COUNT}: ${S}"
         COUNT=$(($COUNT + 1))
       done
+      SUGGESTIONS="$NEWSUGGESTIONS"
       ;;
     *)
       LASTWORD=$(echo "$i" | awk '{print $NF}')
@@ -69,9 +75,9 @@ while read -p "BBK > " i; do
       ;;
   esac
   # print TUI
-  clear;
+  # clear;
+  echo -e "\n=== OUTPUT ===\n"
   echo $(cat $OUTPUTFILE)
-  echo -e "\n===\n"
-  [[ "$BIGRAMFILE" == "" ]] && echo "please load a corpus";
+  echo -e "\n=== OPTIONS ===\n"
   echo -e "$SUGGESTIONS"
 done

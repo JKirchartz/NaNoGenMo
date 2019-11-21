@@ -1,6 +1,7 @@
 #! /bin/bash
 #
 # BBK_corpus.sh
+# add a link (or file from the tmp directory) to the corpus.
 #
 # Copyleft (ↄ) 2019 jkirchartz <me@jkirchartz.com>
 #
@@ -8,23 +9,28 @@
 #
 
 URL="$1"
-FILE="${URL##*/}"
+if [ ! -f "$URL" ]; then
+  FILE="${URL##*/}"
+else
+  FILE="$URL"
+fi
 EXT="${URL##*.}"
 FILE=$(basename -s "$EXT" $FILE | cut -d'.' -f 1)
 FILENAME="./tmp/${FILE}.${EXT}"
-BASENAME="./tmp/${FILE}"
-CORPUS="./tmp/${FILE}.corpora"
 
-wget "$URL" -P ./tmp/ --no-clobber
-
-if [[ "$URL" == *"gutenberg"* ]]; then
-  echo "Project Gutenberg detected... stripping headers";
-  ./stripgutenberg.pl < "${FILENAME}" > "$CORPUS"
+if [ ! -f "$URL" ]; then
+  wget -c "$URL" -P ./tmp/
 fi
 
+# assume gutenberg, but I don't think it'll hurt anything
+./stripgutenberg.pl < "${FILENAME}" > "${FILENAME}.tmp"
+
+
 echo "generating bigrams";
-# ala "Unix for Poets"
-# tr -sc ’[A-Z][a-z]’ ’[\012*]’ < "${CORPUS}" > "${BASENAME}.words"
-awk '{for (i=1; i<NF; i++) print $i, $(i+1)}' "${CORPUS}" | tr '' '\n' | sort -f | uniq -uic | sort -n  | sed -e 's/^[ \t]*//' -e 's/[ \t]/ /' > "${BASENAME}.bigrams"
-# tail +2 "${BASENAME}.words" > "${BASENAME}.nextwords"
-# paste "${BASENAME}.words" > "${BASENAME}.nextwords" | sort | uniq -c > "${BASENAME}.bigrams"
+awk '{for (i=1; i<NF; i++) print $i, $(i+1)}' "$FILENAME.tmp" | tr -sc '[A-Z][a-z]' '[\012*]' | sed -e 's/^[ \t]*//' -e 's/[ \t]/ /' >> "./tmp/BIGRAMS.tmp"
+
+echo "cleaning bigrams"
+if [ -f "$BIGRAMS" ]; then
+  cut -d' ' -f2- "./tmp/BIGRAMS" >> ./tmp/BIGRAMS.tmp
+fi
+sort -f  "./tmp/BIGRAMS.tmp" | uniq -uic | sort -n > "./tmp/BIGRAMS"
