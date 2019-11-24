@@ -8,12 +8,20 @@ var fs = require('fs');
 
 var allimages = [];
 
+var fileprefix = process.argv[2] || './tmp/';
+
 const compositeImages = function (images, type) {
   var jimps = [];
 
-  images = images.sort(() => Math.round(Math.random()));
+  // shuffle images
+  for (var j,x,i = images.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = images[i];
+    images[i] = images[j];
+    images[j] = x;
+  }
 
-  for (var i = 0; i < images.length; i++) {
+  for (var i = 0; i < 5; i++) {
     jimps.push(jimp.read(images[i]));
   }
 
@@ -26,7 +34,7 @@ const compositeImages = function (images, type) {
       var y = data[0].bitmap.height;
       var offset = Math.floor(Math.random() * x);
       var randOffset = Math.floor(Math.random() * offset);
-      var filename = "./tmp/" + Date().toString().replace(/\s+/g, '_') + ".png";
+      var filename = fileprefix + Date().toString().replace(/\s+/g, '_') + ".png";
       console.log(filename);
       for (var i = 1; i <=4; i++) {
         data[i].cover(x, y);

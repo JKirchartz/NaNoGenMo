@@ -3,109 +3,92 @@
 # jkirchartz, 2019-11-03 21:44
 #
 
-dirs := $(shell mkdir -p tmp dist)
-filename := $(shell mktemp ./tmp/book.XXX.md)
-outputfile := $(shell mktemp ./dist/book.XXX.pdf)
+# customizable output dir & FILENAME
+DEST_DIR ?= dist
+FILENAME ?= $(shell mktemp ./tmp/book.XXX.md)
+IGNOREPOS ?= IN,VBP,DT,JJ
+
+# find all issues and determine required output files
+# ISSUES != find . -path "./issues/*" -type d
+# DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/issue-%.pdf)
+# DEST_EPUB_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/issue-%.epub)
+
+SHELL := /bin/bash
+dirs := $(shell mkdir -p tmp $(DEST_DIR))
+outputfile := $(shell mktemp ./$(DEST_DIR)/book.XXX.pdf)
 corpus = ./tmp/corpus.txt
 defs = ./tmp/defs.txt
+
 tracery = ./tmp/corpus.json
+quote = ./tmp/dreams.json
 soundextracery = ./tmp/soundex.corpus.json
 defstracery = ./tmp/defs.corpus.json
 mergedtracery = ./tmp/merged.corpus.json
 
+define newfile =
+	files=$(wildcard tmp/*.md)
+endef
+
 all: msg dldata gentracery generate publish
+write: msg generate publish
+
+help:
+	$(info make all     - download data, generate tracery files, and publish)
+	$(info make write   - write a new book with existing data)
 
 msg:
-	@echo "Generating Triptograph"
+	$(info Generating Triptograph)
 
-define dlimages =
-	if [ $(shell wc -l ./tmp/image.cache | cut -d' ' -f 1) -lt 5 ]; then\
-	  echo "downloading images";\
-	  ./list-images.js >> tmp/img.cache;\
-	  sort -u tmp/img.cache > tmp/image.cache;\
+dlimages:
+	if [ $(shell wc -l ./tmp/image.cache | cut -d' ' -f 1) -lt 5 ]; then
+	  $(info downloading images)
+	  ./list-images.js >> tmp/img.cache;
+	  sort -u tmp/img.cache > tmp/image.cache;
 	fi
-	@echo "fetch 5 images from cache"
+	$(info fetch 5 images from cache)
 	sort -R ./tmp/image.cache | head -n 5 > ./tmp/image.set
 	-wget -nv -i ./tmp/image.set -P ./tmp/images/
-	@echo "remove 5 DL'd images from cache"
+	$(info remove 5 DL\'d images from cache)
 	diff ./tmp/image.set ./tmp/image.cache | grep "^>" | cut -c3- > ./tmp/image.cache
-endef
-
-define imagegen =
-	$(shell ./imagegen.js)
-endef
 
 dldata:
-	@echo "downloading corpus"
+	$(info downloading corpus)
 	-wget http://www.gutenberg.org/cache/epub/926/pg926.txt -P tmp/ --no-clobber
 	-wget https://www.gutenberg.org/files/60045/60045-0.txt  -P tmp/ --no-clobber
 	@tail -n 25469 tmp/pg926.txt | head -n 24777 > $(corpus)
 	@tail -n 23297 $(corpus) > $(defs)
-	@tail -n 13962 tmp/66045.txt | head -n 320 >> $(corpus)
-	@tail -n 13029 tmp/66045.txt | head -n 7647 >> $(defs)
-	$(dlimages)
+	@tail -n 13962 tmp/60045-0.txt | head -n 320 >> $(corpus)
+	@tail -n 13029 tmp/60045-0.txt | head -n 7647 >> $(defs)
+	$(call dlimages)
 
 gentracery:
-	@echo "generating tracery"
-	pos2tracery pos $(corpus) $(tracery) -m
-	pos2tracery pos $(defs) $(defstracery) -m -s p
-	pos2tracery merge $(defstracery) $(tracery) $(mergedtracery)
+	$(info generating tracery)
+	pos2tracery pos ./dreams.corpus ./tmp/dreams.json -m -s l -i "$(IGNOREPOS)"
+	pos2tracery pos $(corpus) $(tracery) -m -i "$(IGNOREPOS)"
+	pos2tracery pos $(defs) $(defstracery) -m -s p -i "$(IGNOREPOS)"
 	pos2tracery soundex $(corpus) $(soundextracery)
-
+	pos2tracery merge $(defstracery) $(tracery) $(mergedtracery)
 
 generate:
-	@echo "generating segments"
-	@echo "\#Triptograph: $(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@pos2tracery generate $(corpus) -m >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo "\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo -n "![]($(shell ./imagegen.js))" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	$(dlimages)
-	@./TTYzara.sh >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@$(dlimages)
-	@pos2tracery generate $(mergedtracery) -m >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo -n "!\n[]($(shell ./imagegen.js))" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@$(dlimages)
-	@./TTYzara.sh >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@$(dlimages)
-	@pos2tracery generate $(soundextracery) >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo "\n\#\#$(shuf -n1 /usr/share/dict/words)" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@echo -n "\n![]($(shell ./imagegen.js))" >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
-	@$(dlimages)
-	@./TTYzara.sh | sed -e 's/^/>/' >> $(filename)
-	@echo "\\hfill\n\\pagebreak" >> $(filename)
+	$(info generating book)
+	./writeBook.sh $(FILENAME)
 
 publish:
-	@echo "publishing book"
+	$(info publishing book)
 	@mkdir -p dist
-	@pandoc $(filename) -s --toc --smart --wrap=preserve --latex-engine=xelatex --template=layout.tex -o $(outputfile)
-	# @pandoc $(filename) --toc --wrap=preserve -o $(outputfile)
-	# @pandoc $(filename) --toc -o $(outputfile)
+	@pandoc $(FILENAME) \
+	  -s \
+	  --table-of-contents \
+	  --smart \
+	  --wrap=preserve \
+	  --latex-engine=xelatex \
+	  --template=layout.tex \
+	  -o $(outputfile)
 
 clean:
-	@echo "cleaning up tmp files"
+	$(info cleaning up tmp files)
 	@rm -rf tmp/
 
+.PHONY: all
+
 # vim:ft=make
-#
