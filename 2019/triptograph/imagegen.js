@@ -34,7 +34,7 @@ const compositeImages = function (images, type) {
       var y = data[0].bitmap.height;
       var offset = Math.floor(Math.random() * x);
       var randOffset = Math.floor(Math.random() * offset);
-      var filename = fileprefix + Date().toString().replace(/\s+/g, '_') + ".png";
+      var filename = fileprefix + Date.now() + ".png";
       console.log(filename);
       for (var i = 1; i <=4; i++) {
         data[i].cover(x, y);

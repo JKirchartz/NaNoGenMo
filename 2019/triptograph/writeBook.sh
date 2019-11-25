@@ -41,6 +41,8 @@ title () {
   echo "${word} ${second}" | sed 's!/.!\U&!g'
 }
 
+imgdir="$(dirname $FILE)/images/"
+mkdir -p "$imgdir"
 echo "\# Triptograph: Dreams of $(title)" >> $FILE
 WORDCOUNT=0;
 echo "writing to file: $FILE"
@@ -50,7 +52,7 @@ while [ $WORDCOUNT -le 50000 ]; do
 \hfill
 \\pagebreak
 \\begin{center}
-![]($(./imagegen.js "./$(dirname $FILE)/"))
+![]($(./imagegen.js "$imgdir" | sed -e 's/\/issues\///'))
 \\hfill
 \\pagebreak
 \#\# $(title)
@@ -61,6 +63,10 @@ $(tracery)
 $(tracery)
 $(tracery)
 $(tracery)
+\\hfill
+\\pagebreak
+\#\# $(title)
+$(./TTYzara.sh | sed -e 's/^/>/')
 \\hfill
 \\pagebreak
 \#\# $(title)
