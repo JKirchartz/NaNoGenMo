@@ -42,8 +42,9 @@ title () {
 }
 
 imgdir="$(dirname $FILE)/images/"
+booktitle=$(title)
 mkdir -p "$imgdir"
-echo "\# Triptograph: Dreams of $(title)" >> $FILE
+echo -e "---\ntitle: Triptograph: Dreams of ${booktitle}\ndocumentclass: \"book\"\nauthor: \"JKirchartz\'s Triptograph\"\n---\n\n" > $FILE
 WORDCOUNT=0;
 echo "writing to file: $FILE"
 while [ $WORDCOUNT -le 50000 ]; do
@@ -52,25 +53,50 @@ while [ $WORDCOUNT -le 50000 ]; do
 \hfill
 \\pagebreak
 \\begin{center}
-![]($(./imagegen.js "$imgdir" | sed -e 's/\/issues\///'))
-\\hfill
-\\pagebreak
-\#\# $(title)
-$(pos2tracery generate $dreams -m)
+
+![](./images/$(./imagegen.js "$imgdir" | sed -e 's/\/issues\///'))
+
 \\end{center}
-$(tracery)
-$(tracery)
-$(tracery)
-$(tracery)
-$(tracery)
 \\hfill
 \\pagebreak
-\#\# $(title)
-$(./TTYzara.sh | sed -e 's/^/>/')
+\\begin{center}
+
+## $(title)
+
+$(pos2tracery generate $dreams -m)
+
+\\end{center}
+
+$(tracery)
+$(tracery)
+$(tracery)
+$(tracery)
+$(tracery)
+
 \\hfill
 \\pagebreak
-\#\# $(title)
+\\begin{center}
+
+## $(title)
+
+$(pos2tracery generate $dreams -m)
+
+\\end{center}
+
 $(./TTYzara.sh | sed -e 's/^/>/')
+
+\\hfill
+\\pagebreak
+\\begin{center}
+
+## $(title)
+
+$(pos2tracery generate $dreams -m)
+
+\\end{center}
+
+$(./TTYzara.sh | sed -e 's/^/>/')
+
 \\hfill
 \\pagebreak
 EOF

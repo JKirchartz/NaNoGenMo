@@ -7,37 +7,60 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 #
 
-# default to NPR
-url=$(lynx -dump https://text.npr.org/ | grep "=[7-9][7-9]" | rev | cut -d' ' -f1 | rev | shuf | head -n 1);
 # grab an article from:
-case $(( ( RANDOM % 5 )  + 1 )) in
-  5)
-    # Lobsters
-    url=$(lynx -dump https://lobste.rs/newest | grep -v "lobste" | grep [[:digit:]] | rev | cut -d' ' -f1 | rev | grep http | shuf -n1)
-    ;;
-  4)
-    # Reuters
-    url=$(lynx -dump https://www.reuters.com/commentary | grep article | rev | cut -d' ' -f1 | rev | shuf -n1);
-    ;;
-  3)
+num=$(shuf -i1-8 -n1)
+echo $num
+case "$num" in
+  [7])
     # NPR
     url=$(lynx -dump https://text.npr.org/ | grep "=[7-9][7-9]" | rev | cut -d' ' -f1 | rev | shuf -n 1);
     ;;
-  2)
+  [6])
+    # Lobsters
+    url=$(lynx -dump https://lobste.rs/newest | grep -v "lobste" | grep [[:digit:]] | rev | cut -d' ' -f1 | rev | grep http | shuf -n1)
+    ;;
+  [5])
+    # Reuters
+    url=$(lynx -dump https://www.reuters.com/commentary | grep article | rev | cut -d' ' -f1 | rev | shuf -n1);
+    ;;
+  [4])
     # Christian Science Monitor
     url=$(lynx -dump https://www.csmonitor.com/layout/set/text/textedition | grep \/20 | rev | cut -d' ' -f1 | rev | shuf -n1);
     ;;
-  1)
+  [3])
     # CNN
     url=$(lynx -dump https://lite.cnn.io/en | grep article | rev | cut -d' ' -f1 | rev | shuf -n1);
+    ;;
+  [2])
+    # Folding Story
+    url=$(lynx -dump http://foldingstory.com/read/ | grep http | tail -n 10 | rev | cut -d' ' -f1 | rev | shuf -n1)
+    ;;
+  *)
+    # Dreams
+    url=$(lynx -dump http://www.dreamjournal.net/main/dreams.cfm?timeframe=month | grep /journal/ | grep -v /user/ | shuf -n1 | rev | cut -d' ' -f1 | rev)
+    ;;
+esac;
+
+case $(shuf -i1-4 -n1) in
+  [4])
+    linepattern='n;n;n;n;G;'
+    ;;
+  [3])
+    linepattern='n;n;n;G;'
+    ;;
+  [2])
+    linepattern='n;n;G;'
+    ;;
+  *)
+    linepattern='n;n;n;n;n;G;'
     ;;
 esac;
 
 # generate poem
-lynx -dump -nolist ${url} | grep -o -E "[A-Za-z\'-]+" |\
-  shuf | tr '\n' ' ' | fold -sw $(shuf -i 40-200 -n1) |\
-  shuf -n $(shuf -i 3-10 -n1) | fold -sw $(shuf -i 10-60 -n1) |\
-  sed 'n;n;n;n;G;'
+lynx -dump -nolist ${url} | awk 'NF>=10' | sed -e "s/\[[^\]]*\]//g" | sed -e "/^[ \t]*\*/d" | grep -o -E "[A-Za-z\'-]+" |\
+  shuf | tr '\n' ' ' | fold -sw $(shuf -i 60-100 -n1) |\
+  shuf -n $(shuf -i 3-10 -n1) | fold -sw $(shuf -i 13-30 -n1) |\
+  sed "${linepattern}"
 
 echo "\n\n   by T.T(Y)zara.sh\n   (from ${url})"
 
