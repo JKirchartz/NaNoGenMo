@@ -38,23 +38,22 @@ tracery () {
 title () {
   word=$(shuf -n1 /usr/share/dict/words)
   second=$({ cat /usr/share/dict/words; printf %s\\n "$word"; } | rev | sort | rev | grep -FxC15 -e "${word?}" | grep -Fxve "$word" | shuf -n1)
-  echo "${word} ${second}" | sed 's!/.!\U&!g'
+  echo "${word^} ${second^}" | sed -e 's!/.!\U&!g'
 }
 
 imgdir="$(dirname $FILE)/images/"
 booktitle=$(title)
 mkdir -p "$imgdir"
-echo -e "---\ntitle: Triptograph: Dreams of ${booktitle}\ndocumentclass: \"book\"\nauthor: \"JKirchartz\'s Triptograph\"\n---\n\n" > $FILE
+echo -e "---\ntitle: Triptograph: Dreams of ${booktitle}\ndocumentclass: \"book\"\nauthor: \"Triptography by JKirchartz\"\n---\n\n" > $FILE
 WORDCOUNT=0;
 echo "writing to file: $FILE"
 while [ $WORDCOUNT -le 50000 ]; do
-  echo "writing..."
   cat << EOF >> $FILE
 \hfill
 \\pagebreak
 \\begin{center}
 
-![](./images/$(./imagegen.js "$imgdir" | sed -e 's/\/issues\///'))
+![$(title)]($(./imagegen.js "$imgdir")){max-width=90% height=auto}
 
 \\end{center}
 \\hfill
@@ -101,5 +100,5 @@ $(./TTYzara.sh | sed -e 's/^/>/')
 \\pagebreak
 EOF
 WORDCOUNT=$(wc -w $FILE | cut -d' ' -f1)
-  echo "... $WORDCOUNT words";
+  echo -e "\r\e[K... $WORDCOUNT words";
 done

@@ -7,6 +7,12 @@
 DEST_DIR ?= dist
 IGNOREPOS ?= IN VBP DT JJ
 
+# generate issue number, or allow input
+ISSUE ?= $(shell echo $$(($$(find . -path "./issues/*" -type d | sed -e 's/[^0-9]*//g' | sort -n | tail -n1) + 1)))
+ifndef ISSUE
+  ISSUE = 0
+endif
+
 # find all issues and determine required output files
 # DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/issue-%.pdf)
 # DEST_EPUB_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/issue-%.epub)
@@ -21,10 +27,6 @@ soundextracery = tmp/soundex.corpus.json
 defstracery = tmp/defs.corpus.json
 mergedtracery = tmp/merged.corpus.json
 
-ISSUE := $(shell echo $$(($$(find . -path "./issues/*" -type d | sed -e 's/[^0-9]*//g' | sort -n | tail -n1) + 1)))
-ifndef ISSUE
-  ISSUE = 0
-endif
 
 FILENAME := issues/$(ISSUE)/book-$(ISSUE).md
 outputfile := $(DEST_DIR)/book-$(ISSUE).pdf
@@ -76,6 +78,7 @@ publish:
 	$(info publishing book)
 	$(info $(FILENAME) to $(outputfile))
 	@pandoc $(FILENAME) \
+	-r markdown_strict \
 	-s \
 	--table-of-contents \
 	--smart \
