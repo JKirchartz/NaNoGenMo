@@ -1,0 +1,15 @@
+{
+  "name": "megatagger",
+  "version": "1.0.0",
+  "description": "Use Compromise to analyse text to create better tracery grammars",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "JKirchartz",
+  "license": "ISC",
+  "dependencies": {
+    "compromise": "^11.14.3",
+    "wink-nlp-utils": "^2.0.5"
+  }
+}

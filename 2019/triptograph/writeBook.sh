@@ -44,11 +44,11 @@ title () {
 imgdir="$(dirname $FILE)/images/"
 booktitle=$(title)
 mkdir -p "$imgdir"
-echo -e "---\ntitle: Triptograph: Dreams of ${booktitle}\ndocumentclass: \"book\"\nauthor: \"Triptography by JKirchartz\"\n---\n\n" > $FILE
+echo -e "---\ntitle: \"Triptograph: Dreams of ${booktitle}\"\ndocumentclass: \"book\"\nauthor: \"Triptography by JKirchartz\"\ndate: \"$(date +"%D %T")\"\n---\n\n" > $FILE
 WORDCOUNT=0;
 echo "writing to file: $FILE"
 while [ $WORDCOUNT -le 50000 ]; do
-  cat << EOF >> $FILE
+  cat <<- EOF >> $FILE
 \hfill
 \\pagebreak
 \\begin{center}

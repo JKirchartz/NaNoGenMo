@@ -8,7 +8,7 @@ DEST_DIR ?= dist
 IGNOREPOS ?= IN VBP DT JJ
 
 # generate issue number, or allow input
-ISSUE ?= $(shell echo $$(($$(find . -path "./issues/*" -type d | sed -e 's/[^0-9]*//g' | sort -n | tail -n1) + 1)))
+ISSUE := $(shell echo $$(($$(find . -path "./issues/*" -type d | sed -e 's/[^0-9]*//g' | sort -n | tail -n1) + 1)))
 ifndef ISSUE
   ISSUE = 0
 endif
@@ -29,7 +29,7 @@ mergedtracery = tmp/merged.corpus.json
 
 
 FILENAME := issues/$(ISSUE)/book-$(ISSUE).md
-outputfile := $(DEST_DIR)/book-$(ISSUE).pdf
+outputfile := $(DEST_DIR)/$(basename $(notdir $(FILENAME))).pdf
 
 all: setup dldata dlimages gentracery generate publish
 write: setup generate publish
@@ -76,21 +76,25 @@ generate:
 
 publish:
 	$(info publishing book)
-	$(info $(FILENAME) to $(outputfile))
-	@pandoc $(FILENAME) \
-	-r markdown_strict \
-	-s \
-	--table-of-contents \
-	--smart \
-	--wrap=preserve \
-	--latex-engine=xelatex \
-	--template=layout.tex \
-	-o $(outputfile)
+	$(MAKE) -f publish.makefile
+# used to do this... but IDK
+# $(info $(FILENAME) to $(outputfile))
+# @pandoc $(FILENAME) \
+# --from markdown \
+# --to latex \
+# --file-scope \
+# --standalone \
+# --table-of-contents \
+# --smart \
+# --wrap=preserve \
+# --latex-engine=xelatex \
+# --template=layout.tex \
+# -o $(outputfile)
 
 clean:
-	$(info cleaning up tmp files)
-	@rm -rf tmp/
+	$(info cleaning up files)
+	@rm -rf tmp/ $(DEST_DIR) ./issues
 
-.PHONY: all
+.PHONY: all write help setup dlimages dldata gentracery generate publish clean
 
 # vim:ft=make
