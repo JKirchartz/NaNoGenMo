@@ -44,11 +44,17 @@ function generateBook() {
 
     openTimer.text = ("Corpus read & Generating Text");
 
-    var grammar = tracery.createGrammar(JSON.parse(data));
+    data = JSON.parse(data);
+
+    var grammar = tracery.createGrammar(p2t.del({ input: data,
+                                                  toss: 'sentences'}));
+    var d = new Date();
+    var datestring = d.getDate()  + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " " +
+      d.getHours() + ":" + d.getMinutes();
     var bookText = "---\n" +
       "title: Sinclair Lewis Carrol\n" +
-      "title: Sinclair Lewis Carrol\n" +
       "author: \"Sherlock Shuffle 4.0 by JKirchartz\"\n" +
+      "date: \""+ datestring +"\"\n" +
       "---\n\n";
     var bookLength = 0;
     var chapters = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" , "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
@@ -60,19 +66,32 @@ function generateBook() {
     var chCounter = 0;
 
 
-    for (var bookLength = 0; bookLength < 50000; ) {
+    for (var i in data.sentences) {
       if ( chapters.length && bookLength >= chCounter) {
         bookText += "\n\\hfill\n\\pagebreak\n\n";
         bookText += "## CHAPTER " + chapters.shift() + "\n\n\n";
         chCounter += ch;
       }
       // stich paragraphs back into a 50,000 word book
-      bookText += grammar.flatten('#origin.capitalize#') + "\n\n";
+      bookText += grammar.flatten(data.sentences[i]) + "\n\n";
       bookLength = bookText.split(" ").length;
       if (bookLength%100 == 0) { // update spinner every 100th word
         openTimer.render();
       }
     }
+    // for (var bookLength = 0; bookLength < 50000; ) {
+    //   if ( chapters.length && bookLength >= chCounter) {
+    //     bookText += "\n\\hfill\n\\pagebreak\n\n";
+    //     bookText += "## CHAPTER " + chapters.shift() + "\n\n\n";
+    //     chCounter += ch;
+    //   }
+    //   // stich paragraphs back into a 50,000 word book
+    //   bookText += grammar.flatten('#origin.capitalize#') + "\n\n";
+    //   bookLength = bookText.split(" ").length;
+    //   if (bookLength%100 == 0) { // update spinner every 100th word
+    //     openTimer.render();
+    //   }
+    // }
 
     //   if ( /\d+/.test(bookOutputLocation) ) {
     //     var bookNum = bookOutputLocation.match(/\d+/)[0];

@@ -60,7 +60,7 @@ while [ $WORDCOUNT -le 50000 ]; do
 \\pagebreak
 \\begin{center}
 
-## $(title)
+\\Large $(title)
 
 $(pos2tracery generate $dreams -m)
 
@@ -76,7 +76,7 @@ $(tracery)
 \\pagebreak
 \\begin{center}
 
-## $(title)
+\\Large $(title)
 
 $(pos2tracery generate $dreams -m)
 
@@ -88,7 +88,7 @@ $(./TTYzara.sh | sed -e 's/^/>/')
 \\pagebreak
 \\begin{center}
 
-## $(title)
+\\Large $(title)
 
 $(pos2tracery generate $dreams -m)
 

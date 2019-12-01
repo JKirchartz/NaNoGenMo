@@ -7,8 +7,6 @@ DEST_DIR ?= dist
 ISSUES != find . -path "./issues/*" -type d
 DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/book-%.pdf)
 
-pdf: $(DEST_PDF_FILES)
-
 $(DEST_DIR)/book-%.pdf: output/%
 	$(info building $@)
 	pandoc -s \
@@ -20,6 +18,8 @@ $(DEST_DIR)/book-%.pdf: output/%
 	--template=layout.tex \
 	-o $@ \
 	$</*.md
+
+pdf: $(DEST_PDF_FILES)
 
 .PHONY: pdf
 
