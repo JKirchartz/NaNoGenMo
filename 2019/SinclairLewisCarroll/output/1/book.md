@@ -1,7 +1,6 @@
 ---
 title: Sinclair Lewis Carrol
 author: "Sherlock Shuffle 4.0 by JKirchartz"
-date: "30/11/2019 23:5"
 ---
 
 

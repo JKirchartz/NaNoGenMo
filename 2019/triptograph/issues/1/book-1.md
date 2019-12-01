@@ -2,7 +2,6 @@
 title: "Triptograph: Dreams of Antigone's Dictaphone's"
 documentclass: "book"
 author: "Triptography by JKirchartz"
-date: "11/30/19 14:35:54"
 ---
 
 
