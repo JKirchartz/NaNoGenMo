@@ -39,12 +39,12 @@ There were a few other things I was playing with:
 
 [1]: https://www.npmjs.com/package/pos2tracery
 [2]: https://tildegit.org/tildeverse/zine/src/branch/master/Makefile
-[3]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/SinclairLewisCaroll/books/
+[3]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/SinclairLewisCarroll/books/
 [4]: https://triptograph.glitch.me/
 [5]: https://en.wikipedia.org/wiki/Surrealist_techniques#Triptography
 [6]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/triptograph/TTYzara.sh
 [7]: https://en.wikipedia.org/wiki/Tristan_Tzara
 [8]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/triptograph/dist/
 [9]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/BashBigramKeyboard/
-[10]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/metatagger
+[10]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/megatagger
 [11]: https://github.com/spencermountain/compromise
