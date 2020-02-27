@@ -7,7 +7,7 @@ DEST_DIR ?= dist
 ISSUES != find . -path "./issues/*" -type d
 DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/book-%.pdf)
 
-$(DEST_DIR)/book-%.pdf: output/%
+$(DEST_DIR)/book-%.pdf: issues/%
 	$(info building $@)
 	pandoc -s \
 	--from markdown \
