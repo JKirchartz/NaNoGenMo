@@ -1,0 +1,10 @@
+asciimatics==1.11.0
+autopep8==1.5.4
+future==0.18.2
+opensimplex==0.2
+Pillow==7.2.0
+pkg-resources==0.0.0
+pycodestyle==2.6.0
+pyfiglet==0.8.post1
+toml==0.10.2
+wcwidth==0.2.5

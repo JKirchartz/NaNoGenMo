@@ -1,0 +1,46 @@
+#! /bin/bash
+#
+# cos.sh
+#
+# Copyleft (ↄ) 2020 jkirchartz <me@jkirchartz.com>
+#
+# Distributed under terms of the NPL (Necessary Public License) license.
+#
+
+function activate {
+  echo "I can't actually help you with this, run \\\`source ./venv/bin/activate\\\`"
+}
+function deact {
+  echo "I can't actually help you with this, run \\\`deactivate\\\`"
+}
+function init {
+  python3 -v venv ./venv/
+}
+function install {
+  pip3 install -r requirements.txt
+}
+function freeze {
+  pip3 freeze > requirements.txt
+}
+
+case $1 in
+  start*)
+    activate
+    ;;
+  end*)
+    freeze;
+    deact;
+    ;;
+  init*)
+    init;
+    activate;
+  ;;
+  help*|*)
+    echo "Welcome to cos, the cosmic nanogenmo helper"
+    echo "cos init        initialize virtualenv and install requirements"
+    echo "cos start       start up virtualenv"
+    echo "cos end         freeze requirements and deactivate virtualenv"
+    ;;
+esac
+
+# ft=bash
