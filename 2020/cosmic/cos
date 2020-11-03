@@ -14,6 +14,7 @@ function deact {
   echo "I can't actually help you with this, run \\\`deactivate\\\`"
 }
 function init {
+  git clone https://tildegit.org/cosmic/cosmic-backup.git
   python3 -v venv ./venv/
 }
 function install {
@@ -22,24 +23,37 @@ function install {
 function freeze {
   pip3 freeze > requirements.txt
 }
+function list {
+    cut -f2 cosmic-backup/gopher/listing.gophermap | awk '{print "./cosmic-backup/gopher"$0}'
+}
+function publish {
+  scp "$1" cosmic:"~/ships/EPX\ Corazon\ 23/"
+  ssh cosmic 'log -f "$1" -t "$2"' # -f <filename> -t "Title String"
+}
 
 case $1 in
-  start*)
+  start)
     activate
     ;;
-  end*)
+  end)
     freeze;
     deact;
     ;;
-  init*)
+  list)
+    list;
+    ;;
+  init)
     init;
     activate;
   ;;
-  help*|*)
+  help|*)
     echo "Welcome to cos, the cosmic nanogenmo helper"
     echo "cos init        initialize virtualenv and install requirements"
     echo "cos start       start up virtualenv"
     echo "cos end         freeze requirements and deactivate virtualenv"
+    echo "cos list        list all files published on cosmic.voyage in chronological order"
+    echo "cos publish <filename> \"Title String\""
+    echo "                should be self-explanatory, but it moves a file from here to publish on cosmic"
     ;;
 esac
 
