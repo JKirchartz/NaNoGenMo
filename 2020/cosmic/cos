@@ -30,6 +30,16 @@ function publish {
   scp "$1" cosmic:"~/ships/EPX\ Corazon\ 23/"
   ssh cosmic 'log -f "$1" -t "$2"' # -f <filename> -t "Title String"
 }
+function rnn {
+  mkdir -p cv
+  cat ./cosmic-backup/gopher/**/*.txt > ./cosmic-backup/gopher/input.txt
+  # https://github.com/mbartoli/docker-char-rnn
+  docker run --name charnn -v $(pwd)/cv:/home/char-rnn/cv -v $(pwd)/cosmic-backup/gopher:/home/char-rnn/data/my-training-data -it mbartoli/char-rnn
+}
+
+function gen {
+  docker exec -d charnn th sample.lua "cv/$1" -gpuid -1
+}
 
 case $1 in
   start)
@@ -45,6 +55,15 @@ case $1 in
   init)
     init;
     activate;
+  ;;
+  rnn)
+    rnn;
+    ;;
+  train)
+    docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.5
+    ;;
+  gen)
+    rnngen;
   ;;
   help|*)
     echo "Welcome to cos, the cosmic nanogenmo helper"
