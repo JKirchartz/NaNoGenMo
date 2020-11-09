@@ -24,7 +24,7 @@ import random
 class Biome:
     which = 0 # random.randint(0,1)
     numlist= [0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9]
-    palette = "default"
+    palette = "default - colorful"
     ## COLORS
     WATER=[0,0,255,255]
     LAND=[0,255,0,255]
@@ -165,8 +165,6 @@ def makeMap(height, width):
             elif island == 2:
                 d = abs(nx) + abs(ny)
                 e = (1 + e - d) / 2
-            else:
-                e = e # do nothing
             value[y][x] = bio.generate(e , m)
 
     return np.array(value, dtype=np.uint8)
@@ -182,16 +180,16 @@ def planet():
     output=output.convert("RGBA")
     output.save("./tmp/planet.png") # asciimatics seems to only take image files, not blobs
 
-def art(screen):
+def art():
     # generate a planet graphic
     planet()
+    screen=Screen.open(64,64)
     size=random.randint(10,60)
     effects=[
             Stars(screen, (screen.width + screen.height) // 2),
-            Print(screen, ImageFile('./tmp/planet.png', size, colours=8), 0)
+            Print(screen, ImageFile('./tmp/planet.png', size, colours=2), 0)
             ]
-    screen.set_scenes([Scene(effects, 1)])
-    screen.draw_next_frame(False)
+    screen.set_scenes([Scene(effects, 1)], repeat=False)
     # write ascii from screen object to textfile
     print(screen.dimensions)
     doc = ""
@@ -205,5 +203,5 @@ def art(screen):
     f.close()
     screen.close()
 
-Screen.wrapper(art)
+art();
 
