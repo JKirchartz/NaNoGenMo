@@ -36,7 +36,7 @@ class Biome:
     SNOW=[255,255,255,255]
 
     def __init__(self):
-        self.which = random.randint(0,3) # make sure to keep this in-line with the number of generate options
+        self.which = random.randint(0,5) # make sure to keep this in-line with the number of generate options
         self.numlist= sorted([x/100 for x in random.sample(range(0, 100), 7)])
         paletteRand=random.randint(0,2)
         if (paletteRand == 1):
@@ -129,6 +129,11 @@ class Biome:
                     return self.SNOW
                 else:
                     return self.FOREST
+        if self.which == 5:
+            if (e < m):
+                return self.WATER
+            else:
+                return self.SNOW
 
 def makeMap(height, width):
     # ideas from https://www.redblobgames.com/maps/terrain-from-noise/
@@ -177,27 +182,28 @@ def planet():
     output=output.convert("RGBA")
     output.save("./tmp/planet.png") # asciimatics seems to only take image files, not blobs
 
-def art():
+def art(screen):
     # generate a planet graphic
     planet()
-    screen = Screen.open()
-    # generate a starfield & convert graphic to ascii art
+    size=random.randint(10,60)
     effects=[
             Stars(screen, (screen.width + screen.height) // 2),
-            Print(screen, ImageFile('./planet.png', 20, colours=8), 0)
+            Print(screen, ImageFile('./tmp/planet.png', size, colours=8), 0)
             ]
-    screen.set_scenes([Scene(effects, 0)])
-    # screen.draw_next_frame(repeat=False)
+    screen.set_scenes([Scene(effects, 1)])
+    screen.draw_next_frame(False)
     # write ascii from screen object to textfile
+    print(screen.dimensions)
     doc = ""
-    for x in range(0, screen.dimensions[0] - 1):
+    for y in range(0, screen.dimensions[0] - 1):
         doc += "\n"
-        for y in range(0, screen.dimensions[1] - 1):
-            print(chr(screen.get_from(x, y)[0])) # returns a tuple, 0 = ascii code
-    f = open("./tmp/planet.txt", "a")
+        for x in range(0, screen.dimensions[1] - 1):
+            code=screen.get_from(x, y) # returns a tuple, ascii = 0
+            doc += chr(code[0])
+    f = open("./tmp/planet.txt", "w")
     f.write(doc)
     f.close()
+    screen.close()
 
-# Screen.wrapper(art)
-art()
+Screen.wrapper(art)
 
