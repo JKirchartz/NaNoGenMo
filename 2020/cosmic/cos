@@ -34,11 +34,18 @@ function rnn {
   mkdir -p cv
   cat ./cosmic-backup/gopher/**/*.txt > ./cosmic-backup/gopher/input.txt
   # https://github.com/mbartoli/docker-char-rnn
-  docker run --name charnn -v $(pwd)/cv:/home/char-rnn/cv -v $(pwd)/cosmic-backup/gopher:/home/char-rnn/data/my-training-data -it mbartoli/char-rnn
+  docker run --name cosmicAI -v $(pwd)/cv:/home/char-rnn/cv -v $(pwd)/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn
+}
+
+function gpt2 {
+  echo "text analysis is online"
+  echo "visit https://colab.research.google.com/drive/1VLG8e7YSEwypxU-noRNhsv5dW4NfTGce"
+  echo "and create a GPT-2 model for the generator"
+  echo "read more: https://medium.com/@stasinopoulos.dimitrios/a-beginners-guide-to-training-and-generating-text-using-gpt2-c2f2e1fbd10a"
 }
 
 function gen {
-  docker exec -d charnn th sample.lua "cv/$1" -gpuid -1
+  docker exec -d cosmicAI ./th sample.lua "cv/$1"
 }
 
 case $1 in
@@ -60,7 +67,9 @@ case $1 in
     rnn;
     ;;
   train)
-    docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.5
+    # docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.5
+    # docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 127 -num_layers 2 -dropout 0.5
+    docker exec -dt charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.4 -seq_length 40
     ;;
   gen)
     rnngen;
