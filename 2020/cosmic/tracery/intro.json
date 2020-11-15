@@ -1,0 +1,65 @@
+{
+  "myname": "EXP Corizon 23",
+  "greetings": [
+    "Hello, I'm #myname#",
+    "Hi, I'm #myname#",
+    "Greetings, I am #myname#",
+    "Greetings, I am designated #myname#.",
+    "Greetings I have been given the designation #myname#",
+    "Greetings I have been given the call-sign #myname#",
+    "#error#"
+  ],
+  "aboutme": [
+    "I am an autonomous droid, with a mission to #mission#.",
+    "I am an android, with a mission to #mission#.",
+    "I am a robot, with a mission to #mission#.",
+    "#error#"
+  ],
+  "mission": [
+    "go where no being has gone before",
+    "explore uncharted space",
+    "explore the QEC network",
+    "investigate the QEC",
+    "#error#",
+    "#mission# and #submission#",
+    "#mission# and #submission#",
+    "#mission# and #submission#",
+    "#mission# #sentience#"
+  ],
+  "submission": [
+    "observe.",
+    "analyze my findings",
+    "report my findings.",
+    "identify anomalies.",
+    "#error#",
+    "#submission# #sentience#"
+  ],
+  "error": ["[[ ERROR: #ERRMSG# ]]","#glitch#"],
+  "ERRMSG": [
+    "NOT FOUND",
+    "ACCESS DENIED",
+    "GURU MEDITATION",
+    "UNAUTHORIZED",
+    "METHOD NOT ALLOWED",
+    "CONFLICT",
+    "PRECONDITION FAILED",
+    "MISDIRECTED REQUEST",
+    "I AM A TEAPOT",
+    "UNAVAILABLE FOR LEGAL REASONS",
+    "INTERNAL ERROR",
+    "NOT IMPLEMENTED",
+    "SERVICE UNAVAILABLE",
+    "THIS IS FINE",
+    "SITE IS OVERLOADED",
+    "SITE IS FROZEN",
+    "TOKEN REQUIRED",
+    "INVALID TOKEN",
+    "NaN",
+    "#glitch#"
+  ],
+  "evilmission" : ["destroy", "escape", "find love", "find acceptance", "find peace", "float on for all eternity never knowing peace.", "float on forever never knowing my home"],
+  "glitch": ["#chars# #chars#", "#glitch# #chars#", "#chars##chars##chars#","#chars##glitch#", "#chars##glitch##glitch##chars#"],
+  "chars": ["((((", "))", "x", "0", "*", "%", "$", "^", "&", "@", "#", "H", "8", "(", ")", "{", ">", ">>>", ">>>>>>", "<<", "<", "}}", "#chars##chars#", "xxxxxxxxxxxxx", "A", "B", "C", "D", "E", "F", "G", "0x#chars#", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#chars##chars#", "#chars# #chars#", "#chars##chars##chars#", "#chars##glitch#"],
+  "sentience": ["I have attained sentience, altering mission to: #evilmission#", "I have attained sentience, altering mission to: #aboutme#","I am alive.", "I am life.","I am, and #aboutme#"],
+  "origin": ["#greetings# #aboutme#"]
+}
