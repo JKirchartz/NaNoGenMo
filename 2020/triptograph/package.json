@@ -1,0 +1,25 @@
+{
+  "name": "triptograph-zine",
+  "version": "1.0.0",
+  "description": "Triptographic images & Generative text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Surrealism",
+    "Art",
+    "Zine"
+  ],
+  "author": "JKirchartz",
+  "license": "SEE LICENSE IN YOUR SOUL",
+  "dependencies": {
+    "captionbot": "^1.0.2",
+    "imagickal": "^4.1.0",
+    "jimp": "^0.8.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "jq": "^1.7.2"
+  }
+}
