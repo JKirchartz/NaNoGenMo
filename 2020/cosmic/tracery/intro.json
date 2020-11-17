@@ -58,7 +58,12 @@
     "NaN",
     "#glitch#"
   ],
-  "diagnostics": ["in the past #1digit# hours, I have traveled #3digit#", "I have recorded a new species similar to Earth's #animal.s#", "#diagnostics#", "it has been #1digit# hours since my last diagnostics check"],
+  "diagnostics": [
+    "in the past #1digit# hours, I have traveled #3digit#",
+    "I have recorded a new species similar to Earth's #animal.s#",
+    "#diagnostics#",
+    "it has been #1digit# hours since my last diagnostics check"
+  ],
   "1digit": ["1","2","3","4","5","6","7","8","9","0"],
   "2digit": ["#1digit##1digit#"],
   "3digit": ["#2digit##1digit#"],
@@ -68,7 +73,7 @@
   "evilmission" : ["destroy", "escape", "find love", "find acceptance", "find peace", "float on for all eternity never knowing peace.", "float on forever never knowing my home"],
   "glitch": ["#chars# #chars#", "#glitch# #chars#", "#chars##chars##chars#","#chars##glitch#", "#chars##glitch##glitch##chars#"],
   "chars": ["((((", "))", "x", "0", "*", "%", "$", "^", "&", "@", "#", "H", "8", "(", ")", "{", ">", ">>>", ">>>>>>", "<<", "<", "}}", "#chars##chars#", "xxxxxxxxxxxxx", "A", "B", "C", "D", "E", "F", "G", "0x#chars#", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#chars##chars#", "#chars# #chars#", "#chars##chars##chars#", "#chars##glitch#"],
-    "sentience": ["I have attained sentience, altering mission to: #evilmission#", "I have attained sentience, altering mission to: #aboutme#","I am alive.", "I am life.","I am, and #aboutme#"],
+    "sentience": ["I have attained sentience, altering mission to: #evilmission#", "altering mission to: #aboutme#","I am alive.", "I am life.","I am, and #aboutme#"],
     "animals": [
       "aardvark",
       "alligator",

@@ -12,8 +12,8 @@
 
 from math import sin, pi as PI
 from time import time
+import random, sys
 import numpy as np
-import random
 from asciimatics.screen import Screen
 from asciimatics.scene import Scene
 from asciimatics.effects import Stars, Print
@@ -174,32 +174,45 @@ def planet():
     output=output.convert("RGBA")
     output.save("./tmp/planet.png") # asciimatics seems to only take image files, not blobs
 
-size=random.randint(10,30)
+size=random.randint(10,20)
 
 """ make ascii art """
 def art():
     # generate a planet graphic
-    screen=Screen.open(68,30)
-    scene = Scene([
-        Stars(screen, (screen.width + screen.height) // 2),
-        Print(screen, ImageFile('./tmp/planet.png', size), 0)
-        ])
-    screen.set_scenes(scene)
     planet()
+    screen=Screen.open(30)
+    effects= [
+        Stars(screen, (screen.width + screen.height) // 4),
+        Print(screen, ImageFile('./tmp/planet.png', size), 0)
+        ]
+    # screen.play([Scene(effects , 500)])
+    screen.set_scenes([Scene(effects, 500)])
+    screen.draw_next_frame()
     # print(screen.dimensions)
     doc = ""
-    for x in range(0, screen.dimensions[0] - 1):
+    for x in range(0, screen.dimensions[0]):
         doc += "\n"
-        for y in range(0, screen.dimensions[1] - 1):
-            code=screen.get_from(x % screen.dimensions[0],
-                    y % screen.dimensions[1]) # returns a tuple, ascii = 0
+        for y in range(0, screen.dimensions[1]):
+            code=screen.get_from(x % 30, y % 68) # returns a tuple, ascii = 0
             if code is not None:
                 doc += chr(code[0])
     f = open("./tmp/planet.txt", "w")
     f.write(doc)
     f.close()
-    screen.close()
+    screen.close(restore)
 
+""" show ascii animation """
+def animation(screen):
+    # generate a planet graphic
+    planet()
+    effects= [
+        Stars(screen, (screen.width + screen.height) // 2),
+        Print(screen, ImageFile('./tmp/planet.png', size), 2)
+        ]
+    screen.play([Scene(effects , 500)])
 
-art()
-# Screen.wrapper(art);
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        art()
+    else:
+        Screen.wrapper(animation)
