@@ -1,16 +1,12 @@
 #! /usr/bin/env node
 
 // init project
-var get = require("request");
 var jimp = require("jimp");
-var captionbot = require("captionbot");
-var fs = require('fs');
+var fs = require("fs");
 
-var allimages = [];
+var fileprefix = process.argv[2] || "./tmp/";
 
-var fileprefix = process.argv[2] || './tmp/';
-
-const compositeImages = function (images, type) {
+const compositeImages = function (images) {
   var jimps = [];
 
   // shuffle images
@@ -21,12 +17,12 @@ const compositeImages = function (images, type) {
     images[j] = x;
   }
 
-  for (var i = 0; i < 5; i++) {
-    jimps.push(jimp.read(images[i]));
+  for (var k = 0; k < 5; k++) {
+    jimps.push(jimp.read(images[k]));
   }
 
- Promise.all(jimps)
-    .then(function(data) {
+  Promise.all(jimps)
+    .then(function() {
       return Promise.all(jimps);
     })
     .then(function(data) {
@@ -40,11 +36,9 @@ const compositeImages = function (images, type) {
       for (var i = 1; i <=4; i++) {
         data[i].cover(x, y);
       }
-      if (type !== "small"){
-        // layer one
-        data[0].composite(data[1], offset, 0, {mode:jimp.BLEND_LIGHTEN});
-        data[0].composite(data[2], offset - data[2].width, 0, {mode:jimp.BLEND_LIGHTEN});
-      }
+      // layer one
+      data[0].composite(data[1], offset, 0, {mode:jimp.BLEND_LIGHTEN});
+      data[0].composite(data[2], offset - data[2].width, 0, {mode:jimp.BLEND_LIGHTEN});
       // layer two
       data[0].composite(data[3], randOffset, 0, {mode:jimp.BLEND_LIGHTEN});
       data[0].composite(data[4], randOffset - data[4].width, 0, {mode:jimp.BLEND_LIGHTEN});
@@ -55,16 +49,16 @@ const compositeImages = function (images, type) {
     });
 };
 
-const imagegen = function(type, width, height) {
-  fs.readdir('./tmp/images/', {withFileType: true}, function(err, files) {
-    compositeImages(files.map((i) => './tmp/images/' + i), type);
+const imagegen = function(type) {
+  fs.readdir("./tmp/images/", {withFileType: true}, function(err, files) {
+    compositeImages(files.map((i) => "./tmp/images/" + i), type);
   });
 };
 
 module.exports = imagegen;
 
 if (process.argv[1]) {
-  imagegen("large");
+  imagegen();
 } else {
   module.exports = imagegen;
 }

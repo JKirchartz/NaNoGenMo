@@ -15,9 +15,9 @@
   "license": "SEE LICENSE IN YOUR SOUL",
   "dependencies": {
     "captionbot": "^1.0.2",
-    "imagickal": "^4.1.0",
-    "jimp": "^0.8.4",
-    "request": "^2.88.0"
+    "imagickal": "^4.2.0",
+    "jimp": "^0.8.5",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "jq": "^1.7.2"
