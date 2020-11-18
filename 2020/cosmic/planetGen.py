@@ -339,21 +339,23 @@ def art():
     size=random.randint(10,20)
     screen=Screen.open(None)
     effects= [
-        PrintInSpace(screen, ImageFile('./tmp/planet.png', size),
+        PrintInSpace(screen, ImageFile('./tmp/planet.png', size,
+            screen.height/2 - size/2),
             (screen.width + screen.height) // 4),
         ]
-    # screen.play([Scene(effects , 500)])
-    # screen.draw_next_frame()
-    screen.play([Scene(effects, duration=5, clear=False)], repeat=False)
+    screen.set_scenes([Scene(effects , 500)])
+    for i in range(0,10):
+        screen.draw_next_frame()
+    # screen.play([Scene(effects, duration=5, clear=False)], repeat=False)
     # print(screen)
     # print(screen.dimensions)
     doc = ""
     for y in range(0, screen.dimensions[0]):
         doc += "\n"
         for x in range(0, screen.dimensions[1]):
-            code=screen.get_from(x % 30, y % 68) # returns a tuple, ascii = 0
-            if code is not None:
-                doc += chr(code[0])
+            code=screen.get_from(x, y) # returns a tuple, ascii = 0
+            # if code is not None:
+            doc += chr(code[0])
     f = open("./tmp/planet.txt", "w")
     f.write(doc)
     screen.close(True)

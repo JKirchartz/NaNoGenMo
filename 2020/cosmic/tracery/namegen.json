@@ -1,0 +1,112 @@
+{
+  "nameGen_notes": "adapted from: https://github.com/hbi99/namegen by using the crappiest statistical analysis in the world: https://codepen.io/JKirchartz/pen/GRqLwWQ?editors=0010 I ran the namegen thousands of times, noted which paths the algorithm took, then removed duplicate paths.",
+
+  "nameGen1": ["b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"],
+  "nameGen2": ["a", "e", "o", "u"],
+  "nameGen3": ["br", "cr", "dr", "fr", "gr", "pr", "str", "tr", "bl", "cl", "fl", "gl", "pl", "sl", "sc", "sk", "sm", "sn", "sp", "st", "sw", "ch", "sh", "th", "wh"],
+  "nameGen4": ["ae", "ai", "ao", "au", "a", "ay", "ea", "ei", "eo", "eu", "e", "ey", "ua", "ue", "ui", "uo", "u", "uy", "ia", "ie", "iu", "io", "iy", "oa", "oe", "ou", "oi", "o", "oy"],
+  "nameGen5": ["turn", "ter", "nus", "rus", "tania", "hiri", "hines", "gawa", "nides", "carro", "rilia", "stea", "lia", "lea", "ria", "nov", "phus", "mia", "nerth", "wei", "ruta", "tov", "zuno", "vis", "lara", "nia", "liv", "tera", "gantu", "yama", "tune", "ter", "nus", "cury", "bos", "pra", "thea", "nope", "tis", "clite"],
+  "nameGen6": ["una", "ion", "iea", "iri", "illes", "ides", "agua", "olla", "inda", "eshan", "oria", "ilia", "erth", "arth", "orth", "oth", "illon", "ichi", "ov", "arvis", "ara", "ars", "yke", "yria", "onoe", "ippe", "osie", "one", "ore", "ade", "adus", "urn", "ypso", "ora", "iuq", "orix", "apus", "ion", "eon", "eron", "ao", "omia"],
+
+  "nameGenOrigin": [
+    "#nameGen1##nameGen2##nameGen5#",
+    "#nameGen2##nameGen3##nameGen6#",
+    "#nameGen3##nameGen4##nameGen5#",
+    "#nameGen4##nameGen3##nameGen6#",
+    "#nameGen3##nameGen4##nameGen2##nameGen5#",
+    "#nameGen2##nameGen1##nameGen3##nameGen6#",
+    "#nameGen4##nameGen3##nameGen1##nameGen6#",
+    "#nameGen3##nameGen4##nameGen1##nameGen4##nameGen5#",
+    "#nameGen4##nameGen1##nameGen4##nameGen3##nameGen6#"
+  ],
+
+  "PNG_notes": "stole stems from: https://github.com/jpbetz/planet-generator/blob/dbb54661f96529fd1cbec56d0995f8dd8a028a44/Assets/PlanetNameGenerator.cs - tried to replicate probabilities somewhat",
+
+  "PNGtitles": [
+    "New", "Proxima",
+    "Psi", "Alpha", "Beta", "Delta", "Gamma",
+    "Epsilon", "Sigma" ],
+
+    "PNGordinals": ["I", "II", "III", "IV", "V", "Prime"],
+
+    "PNGfirst": [
+      "Hel", "Bal", "Can", "Mal", "Gal",
+      "Aven", "Far", "Fat", "Fur", "Ot",
+      "Gor", "Un", "Min", "Hel", "Khaf",
+      "Tar", "Vord", "Sol", "Avan", "Os",
+      "Erm", "Avit", "Ber", "Uaf", "Att",
+      "Val", "Avit", "Gil", "Nord", "Sing",
+      "Riv", "Delt", "Az", "Rek", "Ant",
+      "Mag", "Cat", "Lat", "Ekur", "Lan",
+      "Oc", "Bak", "Om", "Carac", "Shon",
+      "Phob", "Blerr", "Harmon", "Vent", "Max",
+      "Lum", "Dor", "Lad", "Fid", "End",
+      "God", "Gav", "Gald", "Hal", "Had",
+      "Kev", "Cham", "Lor", "Mar", "Op",
+      "Qat", "Rav", "Ral", "Rel"
+    ],
+
+      "PNGsecond": [
+        "ion", "zar", "ina", "erius", "ana",
+        "tia", "ia", "alus", "aria", "ra",
+        "una", "vos", "ania", "is", "ius",
+        "lon", "ria", "adria", "alla", "ataine",
+        "lingen", "ara", "da", "iri", "asta",
+        "icron", "icore", "ian", "eer", "etor",
+        "eon", "cus", "ra", "ron"],
+
+        "PNGorigin_notes": "25% chance of prefix, 20% chance of 2-word name, 33% chance of ordinals",
+        "PNGorigin": [
+          "#PNGfirst##PNGsecond#",
+          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+          "#PNGtitles# #PNGfirst##PNGsecond#",
+          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+          "#PNGtitles# #PNGfirst##PNGsecond# #PNGordinals#",
+          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond# #PNGordinals#"
+        ],
+        "PNGNameOrigin": [
+          "#PNGfirst##PNGsecond#",
+          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#"
+        ],
+
+        "PG_notes": "stolen from: https://github.com/adinaelisheva/PlanetGenerator/blob/master/generator.js",
+
+        "PGvowels" : ["a","a","e","e","i","i","o","o","u","ea","ie","ou","oi","ia","io","eo"],
+        "PGconsonants" : ["b","d","f","g","k","l","m","n","p","r","s","t","v","z"],
+        "PGbegins" : ["c","h","j","w","bl","br","cr","cl","fr","fl","gr","gl","pr",
+          "pl","tr","ts","sk","st","tr","sp","spr","str"],
+          "PGendings" : ["rth","na","nna","nd","rd","xy","van","dan","mire","more"],
+
+          "PGorigin": [
+            "#PGbegins#y",
+            "#PGbegins#y",
+            "#PGconsonants#y",
+            "#PGbegins#y#PGconsonants#",
+            "#PGbegins#y#PGconsonants#",
+            "#PGconsonants#y#PGconsonants#",
+            "#PGbegins##PGvowels#",
+            "#PGbegins##PGvowels#",
+            "#PGconsonants##PGvowels#",
+            "#PGbegins##PGvowels##PGconsonants#",
+            "#PGbegins##PGvowels##PGconsonants#",
+            "#PGconsonants##PGvowels##PGconsonants#",
+            "#PGbegins##PGvowels##PGendings#",
+            "#PGbegins##PGvowels##PGendings#",
+            "#PGconsonants##PGvowels##PGendings#"
+          ],
+
+          "origin": [
+            "#PNGorigin.capitalize#",
+            "#nameGenOrigin.capitalize#",
+            "#PGorigin.capitalize#",
+            "#nameGenOrigin.capitalize# #PNGNameOrigin.capitalize#",
+            "#PGorigin.capitalize# #PNGNameOrigin.capitalize#",
+            "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize#",
+            "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize#",
+            "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
+            "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
+            "#nameGenOrigin.capitalize# #PNGordinals#",
+            "#PGorigin.capitalize# #PNGordinals#"
+          ]
+
+}
