@@ -55,9 +55,15 @@ dldata:
 	$(info downloading corpus)
 	-wget http://www.gutenberg.org/cache/epub/926/pg926.txt -P tmp/ --no-clobber -q
 	-wget https://www.gutenberg.org/files/60045/60045-0.txt  -P tmp/ --no-clobber -q
+	-wget http://www.gutenberg.org/cache/epub/131/pg131.txt -P tmp/ --no-clobber -q
+	-wget http://www.gutenberg.org/cache/epub/13137/pg13137.txt -P tmp/ --no-clobber -q
+	-wget http://www.gutenberg.org/files/53879/53879-0.txt -P tmp/ --no-clobber -q
 	@tail -n 25469 tmp/pg926.txt | head -n 24777 > $(corpus)
 	@tail -n 23297 $(corpus) > $(defs)
+	@tail -n 6615 tmp/pg131.txt | head -n 6250 >> $(corpus)
+	@tail -n 1142 tmp/pg13137.txt | head -n 752 >> $(corpus)
 	@tail -n 13962 tmp/60045-0.txt | head -n 320 >> $(corpus)
+	@head -n 5998 tmp/53879-0.txt | tail -n 5908 >> $(corpus)
 	@tail -n 13029 tmp/60045-0.txt | head -n 7647 >> $(defs)
 	@sed -e 's/[^0-9A-Za-z,\.\!\"\; \t]*//g' -i $(corpus)
 	@sed -e 's/[^0-9A-Za-z,\.\!\"\; \t]*//g' -i $(defs)
