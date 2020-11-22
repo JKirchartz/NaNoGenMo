@@ -95,6 +95,11 @@
             "#PGconsonants##PGvowels##PGendings#"
           ],
 
+          "JSPGstarts": ["R", "B", "Le", "Sn", "Cr", "Pl", "L", "K", "Qu", "Ap"],
+          "JSPGmiddles": ["ara", "er", "oh", "ee", "al", "am", "ra", "o", "e", "apa"],
+          "JSPGends": ["ard", "et", "eck", "als", "ck", "la", "re", "t", "d", "do"],
+          "JSPGorigin": "#JSPGstarts##JSPGmiddles##JSPGends#",
+
           "origin": [
             "#PNGorigin.capitalize#",
             "#nameGenOrigin.capitalize#",

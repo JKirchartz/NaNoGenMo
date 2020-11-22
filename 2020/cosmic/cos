@@ -8,7 +8,7 @@
 #
 
 function activate {
-  echo "I can't actually help you with this, run \\\`source ./venv/bin/activate\\\`"
+  source ./venv/bin/activate
 }
 function deact {
   echo "I can't actually help you with this, run \\\`deactivate\\\`"
@@ -18,7 +18,7 @@ function init {
   git clone https://tildegit.org/cosmic/cosmic-backup.git
   cat ./cosmic-backup/gopher/**/*.txt > ./cosmic-backup/gopher/input.txt
   npx pos2tracery pos tracery/pos.json
-  npx soundex2tracery soundex tracery/soundex.json
+  npx pos2tracery soundex tracery/soundex.json
   python3 -v venv ./venv/
 }
 function install {
@@ -34,9 +34,9 @@ function publish {
   scp "$1" cosmic:"~/ships/EPX\ Corazon\ 23/"
   ssh cosmic 'log -f "$1" -t "$2"' # -f <filename> -t "Title String"
 }
-function rnn {
+function run {
   # https://github.com/mbartoli/docker-char-rnn
-  docker run --name cosmicAI -v $(pwd)/cv:/home/char-rnn/cv -v $(pwd)/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn
+  docker run --name cosmic_ai -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn
 }
 
 function gpt2 {
@@ -46,8 +46,12 @@ function gpt2 {
   echo "read more: https://medium.com/@stasinopoulos.dimitrios/a-beginners-guide-to-training-and-generating-text-using-gpt2-c2f2e1fbd10a"
 }
 
-function gen {
-  docker exec -d cosmicAI ./th sample.lua "$1"
+function genrnn {
+  docker run -d cosmic_ai ./th sample.lua "$1"
+}
+
+function correct {
+  ./lib/correcter.py "$1"
 }
 
 function ships {
@@ -66,13 +70,15 @@ case $1 in
     init;
     activate;
   ;;
-  rnn) rnn; ;;
+  correct) correct "$@"; ;;
+  run) run; ;;
   train)
     # docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.5
     # docker exec -d charnn th train.lua -data_dir data/my-training-data -rnn_size 127 -num_layers 2 -dropout 0.5
-    docker exec -dt charnn th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.4 -seq_length 40
+    docker run -dt cosmicAI th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.4 -seq_length 40
     ;;
-  gen) rnngen; ;;
+  pub) publish "$@"; ;;
+  gen) genrnn "$@"; ;;
   help|*)
     echo "Welcome to cos, the cosmic nanogenmo helper"
     echo "cos init        initialize virtualenv and install requirements"
@@ -81,7 +87,7 @@ case $1 in
     echo "cos list        list all files published on cosmic.voyage in chronological order"
     echo "cos ships       list all ships"
     echo "cos gen         generate from char-rnn cv/ file"
-    echo "cos publish <filename> \"Title String\""
+    echo "cos pub <filename> \"Title String\""
     echo "                should be self-explanatory, but it moves a file from here to publish on cosmic"
     ;;
 esac

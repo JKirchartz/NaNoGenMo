@@ -19,13 +19,7 @@
 
 	"size": ["tiny", "small", "average-sized", "large", "enormous"],
 
-	"colour": ["#bold#", "#pastel#"],
-
-	"pastel": ["accede", "beaded", "bedded", "beefed", "cabbed", "dabbed", "decade", "deeded", "deface", "efface", "facade", "ace", "add", "baa", "bad", "bed", "bee", "cab", "cad", "cee", "dab", "dad", "dee", "ebb", "eff", "fad", "fed", "fee"],
-	"bold": "#hexdigit##hexdigit##hexdigit##hexdigit##hexdigit##hexdigit#",
-
 	"origin": "[name:#planet_start##planet_end#]#planet_name#\n#description#",
-
 
 	"description":
 	[
