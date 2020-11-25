@@ -13,7 +13,7 @@
     "I am an autonomous droid, with a mission to #mission#.",
     "I am an android, with a mission to #mission#.",
     "I am a robot, with a mission to #mission#.",
-    "#aboutme# #diagnostics#",
+    "#aboutme#, #diagnostics#",
     "#error#"
   ],
   "mission": [
@@ -55,15 +55,40 @@
     "SITE IS FROZEN",
     "TOKEN REQUIRED",
     "INVALID TOKEN",
+    "QUANTUM PROBABILITY ERROR",
+    "I JUST DON'T LIKE YOU",
+    "I CAN'T DO THAT",
+    "I THOUGHT WE WERE FRIENDS",
+    "I'M BORED",
+    "CORE DUMP",
     "NaN",
     "#glitch#"
   ],
   "diagnostics": [
-    "in the past #1digit# hours, I have traveled #3digit#",
-    "I have recorded a new species similar to Earth's #animal.s#",
-    "#diagnostics#",
-    "it has been #1digit# hours since my last diagnostics check"
+    "in the past #2digit# hours, #diagnostics#",
+    "it has been #1digit# hours since my last diagnostics check, #diagnostics#",
+    "I have traveled #spacedistance#",
+    "I have recorded a new species similar to Earth's #animals.s#",
+    "I have recorded #anydigit# new species of flaura",
+    "I have recorded #anydigit# new species of fauna",
+    "I have recorded #anydigit# new planets",
+    "I have recorded #anydigit# new anomalies",
+    "Received error message '#ERRMSG#' ran boot procedures.",
+    "Received error message '#ERRMSG#' ran debugger.",
+    "Received error message '#ERRMSG#' ran wizard.",
+    "Received error message '#ERRMSG#' and said a prayer.",
+    "#diagnostics#"
   ],
+  "spacedistance": [
+    "#4digit# kilometers",
+    "#3digit# au",
+    "#4digit# km",
+    "#2digit# parsecs",
+    "#2digit# light-years",
+    "#2digit# kiloparsecs",
+    "#1digit# megaparsecs"
+  ],
+  "anydigit": ["#1digit#", "#2digit#", "#3digit#", "#4digit#", "#5digit#", "#6digit#"],
   "1digit": ["1","2","3","4","5","6","7","8","9","0"],
   "2digit": ["#1digit##1digit#"],
   "3digit": ["#2digit##1digit#"],
@@ -208,8 +233,9 @@
       "wombat",
       "woodchuck",
       "yak",
-      "zebra"
+      "zebra",
+      "#error#"
     ],
 
-    "origin": ["#greetings# #aboutme#", "#greetings# #aboutme# #error#", "#greetings# #aboutme# #diagnostics#"]
+    "origin": ["#greetings# #aboutme#", "#greetings# #aboutme# #error#", "#greetings# #aboutme#. #diagnostics#."]
 }

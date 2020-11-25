@@ -1,0 +1,390 @@
+{
+	"minus": ["", "-"],
+	"0-1": ["0", "1"],
+	"0-2": ["0", "1", "2"],
+	"0-3": ["0", "1", "2", "3"],
+	"0-4": ["0", "1", "2", "3", "4"],
+	"0-5": ["0", "1", "2", "3", "4", "5"],
+	"0-6": ["0", "1", "2", "3", "4", "5", "6"],
+	"1-5": ["1", "2", "3", "4", "5"],
+	"3-5": ["3", "4", "5"],
+	"3-6": ["3", "4", "5", "6"],
+	"3-8": ["3", "4", "5", "6", "7", "8"],
+	"digit": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+	"hexdigit": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"],
+	"character": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+	"roman_numerals": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"],
+	"a-d": ["a", "b", "c", "d"],
+
+
+	"size": ["tiny", "small", "average-sized", "large", "enormous"],
+
+	"origin": "[name:#planet_start##planet_end#]#planet_name#\n#description#",
+
+	"description":
+	[
+		"#planet-adj.a.capitalize# #planet# with #feature# and #feature#. #fact.capitalize#.",
+		"#name# is populated by #civilisation#. #civ-desc.capitalize#."
+	],
+
+	"planet_name":
+	[
+		"#name#",
+		"#name#",
+		"#name#",
+		"#name# #roman_numerals#",
+		"#name# #roman_numerals##a-d#",
+		"#name# #planet_number#"
+	],
+
+	"planet_start":
+	[
+		"Ach",
+		"Arch",
+		"Ason",
+		"Big",
+		"Bom",
+		"Chino",
+		"Chunro",
+		"Chyr",
+		"Dec",
+		"Drar",
+		"Ear",
+		"Ela",
+		"Enga",
+		"Et",
+		"Gno",
+		"Graz",
+		"Heng",
+		"Jup",
+		"Mar",
+		"Mei",
+		"Mer",
+		"Moz",
+		"Nep",
+		"Sat",
+		"Strev",
+		"Ven",
+		"Zar"
+	],
+
+	"planet_end":
+	[
+		"atov",
+		"awa",
+		"cry",
+		"ia",
+		"ides",
+		"illon",	
+		"itov",
+		"iuq",
+		"kin",
+		"mar",
+		"mia",
+		"ogawa",
+		"pus",
+		"rs",
+		"tania",
+		"ter",
+		"th",
+		"tov",
+		"tune",
+		"ulia",
+		"uno",
+		"urn",
+		"van",
+		"var",
+		"vis",
+		"vok"
+	],
+
+	"planet_number":
+	[
+		"#digit##planet_number#",
+		"#character.capitalize##planet_number#",
+		"#digit##character.capitalize#",
+		"#character.capitalize##digit#"
+	],
+
+	"planet-adj": ["lush", "vibrant", "rocky", "humid", "breathtaking", "average", "inhospitable", "hospitable", "charming",  "molten", "warm", "temperate", "chilly", "icy", "frozen", "#planet_size#"],
+
+	"planet": ["[is_moon:]world", "[is_moon:]planet", "[is_moon:]planetoid", "[is_moon:]asteroid", "[is_moon: of its own]moon"],
+
+	"feature":
+	[
+		"#vegetation-adj# #vegetation#",
+		"#quantity# #resources#",
+		"#civilisation#",
+		"#moon#",
+		"#atmosphere#",
+		"#volcanoes#",
+		"#biome-adj# #biome.s#",
+		"#tectonics#",
+		"#underground-feature#"
+	],
+
+	"underground": ["underground", "subsurface", "subterranean"],
+
+	"cave": ["cave", "cavern", "tunnel"],
+
+	"underground-feature": ["a network of #underground# #cave.s#"],
+
+	"very": ["very", "extremely", "moderately"],
+
+	"tectonics": ["shifting tectonic plates", "#very# active tectonics", "a liquid core", "frequent #earthquakes#"],
+
+	"earthquakes": ["earthquakes", "geological tremors", "#underground# rumblings"],
+
+	"biome-adj": ["vast", "sweeping", "wind-swept", "frozen", "scorching"],
+
+	"biome": ["mountain range", "plain", "hill", "grassland", "desert", "tundra", "wasteland", "oceans of liquid #ocean-mat#"],
+
+	"vegetation": ["forests", "trees", "savanna", "jungles", "scrub-land", "tundra", "vegetation"],
+
+	"vegetation-adj": ["lush", "poisonous", "thick", "straggly", "weedy", "deadly", "vast", "sweeping"],
+
+	"quantity": ["sparse", "few", "frequent", "substantial", "abundant"],
+
+	"resources": ["bodies of liquid water", "deposits of #rare-metals#", "signs of life"],
+
+	"rare-metals": ["rare metals", "lithium", "uranium", "gold", "silicon", "unobtanium", "precious gems", "dilithium crystals", "transnewtonian elements"],
+
+	"is": "is",
+
+	"civ-tense-present": "[is:is][have:have][are:are]",
+
+	"civ-tense-past": "[is:was][have:had][are:were]",
+
+	"civilisation": ["#civ-tense-present##age.a#-age civilisation", "#civ-tense-present##civ-adj-active.a# #age#-age civilisation", "#civ-tense-past##civ-adj-abandoned.a# #age#-age civilisation", "#civ-tense-past#the #remnants# of #age.a#-age civilisation"],
+
+	"age": ["stone", "bronze", "iron", "steam", "industrial", "machine", "atomic", "information"],
+
+	"remnants": ["remnants", "ruins", "remains", "relics", "lost artifacts"],
+
+	"civ-adj-active": ["thriving", "bustling", "utopian", "dystopian"],
+
+	"civ-adj-abandoned": ["abandoned", "deserted"],
+
+	"civ-desc": "#species.capitalize#. #civ-fact.capitalize#, and #civ-fact#",
+
+	"civ-fact":[
+		"#culture#",
+		"#worship#",
+		"#diet#",
+		"#entertainment#"
+	],
+
+	"culture": [
+		"they #have# #culture-type.a# culture",
+		"#quality# #is# highly prized in their culture"
+	],
+
+	"culture-type": ["warlike", "peaceful", "studious", "suspicious", "artistic", "materialistic", "spiritual"],
+
+	"quality": ["physical might", "cunning", "ingenuity", "avarice", "raw strength", "diplomacy"],
+
+	"worship": [
+		"worship of #deity# #is# widespread",
+		"organised religion #is# #org-religion#"
+	],
+
+	"org-religion": ["prevalent", "widespread", "outlawed", "banned"],
+
+	"deity": ["a Creator", "a pantheon of Gods", "material wealth", "technology", "dark forces", "Nature", "the Stars", "'demons'", "spirits"],
+
+	"diet": [
+		"their diet #is# mostly made up of #food#",
+		"there #are# strict rules around the consumption of food"
+	],
+
+	"food": ["plants", "synthetic foodstuffs", "nutrient-rich slurry", "rocks and minerals", "raw meat", "exquisitely prepared food", "heavily seasoned food"],
+
+	"entertainment": [
+		"#pastime# #is# a popular pastime",
+		"there #is# little frivolity on display"
+	],
+
+	"pastime": ["duelling", "gladiatorial combat", "writing", "singing", "theatre", "watching hypervids", "competing in sport", "trading", "playing boardgames"],
+
+	"atmosphere": "#atmosphere-adj.a# atmosphere",
+
+	"atmosphere-adj": ["thick", "thin", "breathable", "poisonous", "toxic", "corrosive", "sweet-smelling", "delightful", "pleasant", "rainy", "stormy", "swirling", "electrically-charged"],
+
+	"moon": [
+		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon#]#moon_size.a# moon#is_moon#",
+		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon#]two #moon_size# moons#is_moon#",
+		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon#]three #moon_size# moons#is_moon#",
+		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]four #moon_size# moons#is_moon#",
+		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]five #moon_size# moons#is_moon#"
+	],
+
+	"volcanoes":
+	[
+		"#volcano-adj# volcanoes",
+		"#volcano-mat#-spewing volcanoes",
+		"volcanoes of #molten# #volcano-mat#"
+	],
+
+	"volcano-adj": ["#size#", "fiery", "dormant", "active", "extinct", "fuming"],
+
+	"volcano-mat": ["rock", "diamond", "sulphur", "gold", "mercury"],
+
+	"ocean-mat": ["#volcano-mat#", "methane", "helium", "oxygen"],
+
+	"molten": ["molten", "liquid", "superheated"],
+
+	"fact":
+	[
+		"#planet-pronoun's.capitalize# surface #surface#",
+		"#fauna-flora#",
+		"#planet-pronoun's.capitalize# #star-adjective##star-colour# star #star#",
+		"#species#",
+		"#legends#",
+		"#signal#"
+	],
+
+	"star-adjective": ["", "impressive ", "flaming ", "bright ", "dim ", "dying ", "young "],
+
+	"planet-pronoun": ["it", "#name#"],
+
+	"planet-pronoun's": ["its", "#name#'s"],
+
+	"surface":
+	[
+		"is littered with the #remnants# of a precursor race",
+		"has been #scarred# by ancient #nuclear# weapons",
+		"bears #alien#, #alien# #monuments#",
+		"is wracked with fierce #storm.s#",
+		"is covered in vast #geography.s#",
+		"has been carved with gigantic writing"
+	],
+
+	"nuclear": ["nuclear", "proton", "plasma", "incendiary", "dark-matter", "fusion"],
+
+	"alien" : ["alien", "ancient", "eldrich", "mystifying", "mysterious", "indescribable"],
+
+	"monuments": ["monuments", "statues", "monoliths", "writing", "symbols", "artifacts"],
+
+	"scarred": ["scarred", "pockmarked", "obliterated", "irradiated"],
+
+	"storm": ["storm", "sandstorm", "electrical storm", "storm", "sandstorm", "electrical storm", "firestorm", "plasma storm"],
+
+	"geography": ["canyon", "mountain", "crevasse"],
+
+	"fauna-flora":
+	[
+		"the fauna is #particularly# #fauna-adj#",
+		"the flora is #particularly# #flora-adj#"
+	],
+
+	"fauna-adj":
+	[
+		"poisonous",
+		"deadly",
+		"ferocious",
+		"playful",
+		"friendly",
+		"intelligent",
+		"observant",
+		"inquisitive",
+		"helpful",
+		"delicious",
+		"foul-tasting",
+		"mundane",
+		"violent",
+		"vicious",
+		"aggressive",
+		"peaceful",
+		"timid",
+		"cautious",
+		"whimsical"
+	],
+
+	"flora-adj":
+	[
+		"poisonous",
+		"deadly",
+		"sweet-smelling",
+		"foul-smelling",
+		"foul-tasting",
+		"delicious",
+		"nutritious",
+		"mundane"
+	],
+
+	"particularly": ["particularly", "somewhat", "fairly", "especially", "rather", "surprisingly", "extremely", "thoroughly", "unusually"],
+
+	"species":
+	[
+		"The dominant species #is# #fauna-adj.a# race of #species-type.s# with #limb-number##limb-adj#limbs"
+	],
+
+	"limb-number": ["two", "four", "six", "eight", "four", "six", "eight", "ten", "hundreds of"],
+
+	"limb-adj":
+	[
+		" ",
+		" writhing ", " double-jointed ", " dexterous ", " clumsy ",
+		" clammy ", " fuzzy ", " slimy ", " wiggly ", " leathery ", " feathery ", " scaly ",
+		" prehensile ", " sucker-covered ", " wing-like "
+	],
+
+	"species-type": ["mammal", "reptile", "arthropod", "avian", "amphibian", "mollusc", "sentient plant"],
+
+	"species-type-ian": ["mammalian", "reptilian", "arthropod", "avian", "amphibian", "molluscoid", "plantoid"],
+
+	"legends":
+	[
+		"legends say that #legend#",
+		"there is a galactic myth that suggests #legend#",
+		"#across# the #galaxy#, people whisper that #legend#"
+	],
+
+	"across": ["across", "throughout"],
+
+	"galaxy": ["galaxy", "stars", "universe", "known planets"],
+
+	"legend":
+	[
+		"#name# #hides# #treasure#",
+		"#name# is the centre of the Universe",
+		"#name# will one day...hatch",
+		"#name# is actually #true-form.a#",
+		"#name# protects those on its surface",
+		"#name# does not tolerate trespassers",
+		"#name# is the lost eye of an ancient God",
+		"#name# is a piece in a game played by the Gods",
+		"#name#'s orbit is the key to #secret.a# map"
+	],
+
+	"secret": ["secret", "hidden", "unknown", "#alien#"],
+
+	"hides": ["hides", "conceals", "protects", "holds at its core"],
+
+	"fabulous": ["fabulous", "glittering", "priceless", "valuable"],
+
+	"treasure": ["the elixir of life", "#fabulous.a# treasure", "#secret.a# treasure", "a nameless horror", "the end of all things"],
+
+	"true-form": ["living being", "enormous computer", "advanced hologram", "carefully crafted illusion"],
+
+	"signal":
+	[
+		"#alien.a# signal pulses on the surface",
+		"#planet-pronoun# acts as a cosmic lighthouse",
+		""
+	],
+
+	"star":[
+		"bathes the planet in #star-radiation##star-colour# light",
+		"is #particularly# #star-colour#",
+		"is on the verge of burning out",
+		"is on the verge of collapse",
+		"will one day turn into a black hole",
+		"is gradually expanding",
+		"is gradually shrinking",
+		"has only recently formed"
+	],
+
+	"star-radiation": ["", "soft ", "harsh ", "intense ", "pleasant ", "faint ", "mellow ", "mild "]
+
+}

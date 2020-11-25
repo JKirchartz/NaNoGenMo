@@ -1,3 +1,5 @@
 venv
 cosmic-backup
 *.pyc
+tmp
+cv

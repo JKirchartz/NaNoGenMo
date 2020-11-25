@@ -19,7 +19,7 @@
   "solarSystem": ["a small solar system with ", "a thinly populated solar system with only ", "a fairly small solar system with ", "a fairly large solar system with ", "a densely populated solar system with ", "a huge solar system filled with ", "a vast solar system with "],
   "fiveToTen": ["five", "six", "seven", "eight", "nine", "ten"],
   "multiplier_note": "returns random number in range to compare size of planet to earth",
-  "multiplier": ["${multiplier}"],
+  "multiplier": ["${Math.floor((Math.random * 400) + 5)}"],
   "intelligent": ["#intelligentA# #intelligentB#"],
   "intelligentA": [", named so by its discoverer, ", ", named after a famous scientist, ", ", as it's called by most scientists, ", ", which is a name which is still disputed, ",  ", named so for the planet's properties, ", ", named so for its similarities to the fictional version, "],
   "intelligentB": [", as it's called by most of the natives, ", ", the most popular name of the natives, ", ", as it's named by the native population, "]
