@@ -49,8 +49,7 @@ function gpt2 {
 }
 
 function genrnn {
-  docker run -dit -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && ./th sample.lua $1"
-  # docker exec -d cosmic_ai th sample.lua "$1"
+  docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext 'the planet is'"
 }
 
 function correct {

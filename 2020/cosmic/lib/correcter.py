@@ -13,8 +13,11 @@ Correct spelling and grammar of provided file
 import sys
 import language_tool_python
 tool = language_tool_python.LanguageTool('en-US')
-textfile = open(sys.argv[1], 'w')
-text = textfile.read()
+textcontents = open(sys.argv[1], 'r', encoding='unicode_escape')
+text = textcontents.read()
+textcontents.close()
 tool.correct(text)
+textfile = open(sys.argv[1], 'w', encoding='utf-8', newline='\n')
 textfile.write(text)
+textfile.truncate()
 textfile.close()
