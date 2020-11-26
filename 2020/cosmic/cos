@@ -52,15 +52,23 @@ function genrnn {
   docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext 'the planet is'"
 }
 
+function planet {
+  if [ -x "$(env | grep -i tmux)" ]; then
+    tmux new-session
+  fi
+  tmux split-window -h \; split-window -v \; resize-pane -x 70 -y 20\;./planetGen.py; kill-window
+}
+
+function description {
+  npx pos2tracery generate -e tracery/planetDescription.json
+}
+
 function correct {
   ./lib/correcter.py "$1"
 }
 
 function ships {
   find cosmic-backup/gopher/* -maxdepth 1 -type d  | tr / ' '
-}
-function planet {
-    tmux new-session\; split-window -h \; split-window -v \; resize-pane -x 70 -y 20\;./planetGen.py; kill-window
 }
 
 case $1 in
@@ -85,6 +93,7 @@ case $1 in
     ;;
   pub) publish "$@"; ;;
   gen) genrnn "$@"; ;;
+  gen2) description "$@"; ;;
   help|*)
     echo "Welcome to cos, the cosmic nanogenmo helper"
     echo "cos init        initialize virtualenv and install requirements"
