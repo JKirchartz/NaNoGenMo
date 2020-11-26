@@ -27,77 +27,6 @@
 		"#name# is populated by #civilisation#. #civ-desc.capitalize#."
 	],
 
-	"planet_name":
-	[
-		"#name#",
-		"#name#",
-		"#name#",
-		"#name# #roman_numerals#",
-		"#name# #roman_numerals##a-d#",
-		"#name# #planet_number#"
-	],
-
-	"planet_start":
-	[
-		"Ach",
-		"Arch",
-		"Ason",
-		"Big",
-		"Bom",
-		"Chino",
-		"Chunro",
-		"Chyr",
-		"Dec",
-		"Drar",
-		"Ear",
-		"Ela",
-		"Enga",
-		"Et",
-		"Gno",
-		"Graz",
-		"Heng",
-		"Jup",
-		"Mar",
-		"Mei",
-		"Mer",
-		"Moz",
-		"Nep",
-		"Sat",
-		"Strev",
-		"Ven",
-		"Zar"
-	],
-
-	"planet_end":
-	[
-		"atov",
-		"awa",
-		"cry",
-		"ia",
-		"ides",
-		"illon",	
-		"itov",
-		"iuq",
-		"kin",
-		"mar",
-		"mia",
-		"ogawa",
-		"pus",
-		"rs",
-		"tania",
-		"ter",
-		"th",
-		"tov",
-		"tune",
-		"ulia",
-		"uno",
-		"urn",
-		"van",
-		"var",
-		"vis",
-		"vok"
-	],
-
 	"planet_number":
 	[
 		"#digit##planet_number#",
@@ -139,15 +68,15 @@
 
 	"biome": ["mountain range", "plain", "hill", "grassland", "desert", "tundra", "wasteland", "oceans of liquid #ocean-mat#"],
 
-	"vegetation": ["forests", "trees", "savanna", "jungles", "scrub-land", "tundra", "vegetation"],
+	"vegetation": ["flora", "forests", "trees", "savanna", "jungles", "scrub-land", "tundra", "vegetation"],
 
 	"vegetation-adj": ["lush", "poisonous", "thick", "straggly", "weedy", "deadly", "vast", "sweeping"],
 
 	"quantity": ["sparse", "few", "frequent", "substantial", "abundant"],
 
-	"resources": ["bodies of liquid water", "deposits of #rare-metals#", "signs of life"],
+	"resources": ["bodies of liquid water", "deposits of #rare-metals#", "signs of life", "architecture", "art"],
 
-	"rare-metals": ["rare metals", "lithium", "uranium", "gold", "silicon", "unobtanium", "precious gems", "dilithium crystals", "transnewtonian elements"],
+	"rare-metals": ["rare metals", "lithium", "uranium", "gold", "silicon", "unobtanium", "precious gems", "dilithium crystals", "transnewtonian elements", "#technobabble#"],
 
 	"is": "is",
 
