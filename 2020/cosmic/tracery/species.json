@@ -1,0 +1,40 @@
+{
+  "specieses": [
+"[species:Acanthocephala][species_adj:thorny-headed, worm-like]",
+"[species:Annelida][species_adj:worm-like]",
+"[species:Arthropoda][species_adj:armored,aquatic,]",
+"[species:Brachiopoda][species_adj:aquatic,filter-feeder]",
+Bryozoa
+Cephalorhyncha
+Chaetognatha
+Chordata
+Cnidaria
+Ctenophora
+Cycliophora
+Echinodermata
+Echiura
+Gastrotricha
+Gnathostomulida
+Hemichordata
+Kamptozoa
+Kinorhyncha
+Loricifera
+Micrognathozoa
+Mollusca
+Myxozoa
+Nematoda
+Nematomorpha
+Nemertea
+Onychophora
+Orthonectida
+Phoronida
+Placozoa
+Platyhelminthes
+Porifera
+Rhombozoa
+Rotifera
+Sipuncula
+Tardigrada
+Xenacoelomorpha
+  ]
+}
