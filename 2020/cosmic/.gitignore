@@ -3,3 +3,4 @@ cosmic-backup
 *.pyc
 tmp
 cv
+lib/checkpoint/*

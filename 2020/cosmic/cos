@@ -12,6 +12,7 @@ function activate {
 }
 function init {
   mkdir -p cv
+  mkdir -p output
   git clone https://tildegit.org/cosmic/cosmic-backup.git
   cat ./cosmic-backup/gopher/**/*.txt > ./cosmic-backup/gopher/input.txt
   npx pos2tracery pos tracery/pos.json
@@ -49,18 +50,26 @@ function gpt2 {
 }
 
 function genrnn {
-  docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext 'the planet is'"
+  docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext '$(npx pos2tracery generate tracery/cosmic.json --origin planet_name)'"
+}
+
+function planet {
+  if [ -x "$(env | grep -i tmux)" ]; then
+    tmux new-session
+  fi
+  tmux split-window -h \; split-window -v \; resize-pane -x 70 -y 20\;./planetGen.py; kill-window
+}
+
+function description {
+  npx pos2tracery generate -e tracery/cosmic.json
 }
 
 function correct {
-  ./lib/correcter.py "$1"
+  ./lib/correcter.py "$2"
 }
 
 function ships {
   find cosmic-backup/gopher/* -maxdepth 1 -type d  | tr / ' '
-}
-function planet {
-    tmux new-session\; split-window -h \; split-window -v \; resize-pane -x 70 -y 20\;./planetGen.py; kill-window
 }
 
 case $1 in
@@ -84,7 +93,20 @@ case $1 in
     docker run -dt cosmicAI th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.4 -seq_length 40
     ;;
   pub) publish "$@"; ;;
-  gen) genrnn "$@"; ;;
+  gen)
+    planet;
+    touch "output/$2.txt"
+    cat <<EOF> "output/$2.txt"
+description
+
+cat tmp/planet.txt
+
+\-\-\-\-\-\{\{ TAPPING INTO QEC FEED \}\}\-\-\-\-\-\-
+
+genrnn
+EOF
+
+    ;;
   help|*)
     echo "Welcome to cos, the cosmic nanogenmo helper"
     echo "cos init        initialize virtualenv and install requirements"

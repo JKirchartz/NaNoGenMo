@@ -27,7 +27,7 @@
     "Psi", "Alpha", "Beta", "Delta", "Gamma",
     "Epsilon", "Sigma" ],
 
-    "PNGordinals": ["I", "II", "III", "IV", "V", "Prime"],
+    "PNGordinals": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "Prime"],
 
     "PNGfirst": [
       "Hel", "Bal", "Can", "Mal", "Gal",
@@ -46,27 +46,27 @@
       "Qat", "Rav", "Ral", "Rel"
     ],
 
-      "PNGsecond": [
-        "ion", "zar", "ina", "erius", "ana",
-        "tia", "ia", "alus", "aria", "ra",
-        "una", "vos", "ania", "is", "ius",
-        "lon", "ria", "adria", "alla", "ataine",
-        "lingen", "ara", "da", "iri", "asta",
-        "icron", "icore", "ian", "eer", "etor",
-        "eon", "cus", "ra", "ron"],
+    "PNGsecond": [
+      "ion", "zar", "ina", "erius", "ana",
+      "tia", "ia", "alus", "aria", "ra",
+      "una", "vos", "ania", "is", "ius",
+      "lon", "ria", "adria", "alla", "ataine",
+      "lingen", "ara", "da", "iri", "asta",
+      "icron", "icore", "ian", "eer", "etor",
+      "eon", "cus", "ra", "ron"],
 
-        "PNGorigin_notes": "25% chance of prefix, 20% chance of 2-word name, 33% chance of ordinals",
-        "PNGorigin": [
-          "#PNGfirst##PNGsecond#",
-          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGordinals#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond# #PNGordinals#"
-        ],
-        "PNGNameOrigin": [
-          "#PNGfirst##PNGsecond#",
-          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#"
+      "PNGorigin_notes": "25% chance of prefix, 20% chance of 2-word name, 33% chance of ordinals",
+      "PNGorigin": [
+        "#PNGfirst##PNGsecond#",
+        "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+        "#PNGtitles# #PNGfirst##PNGsecond#",
+        "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+        "#PNGtitles# #PNGfirst##PNGsecond# #PNGordinals#",
+        "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond# #PNGordinals#"
+      ],
+      "PNGNameOrigin": [
+        "#PNGfirst##PNGsecond#",
+        "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#"
         ],
 
         "PG_notes": "stolen from: https://github.com/adinaelisheva/PlanetGenerator/blob/master/generator.js",
@@ -100,6 +100,71 @@
           "JSPGends": ["ard", "et", "eck", "als", "ck", "la", "re", "t", "d", "do"],
           "JSPGorigin": "#JSPGstarts##JSPGmiddles##JSPGends#",
 
+          "PGBname": [
+          ],
+
+          "PGBstart":
+          [
+            "Ach",
+            "Arch",
+            "Ason",
+            "Big",
+            "Bom",
+            "Chino",
+            "Chunro",
+            "Chyr",
+            "Dec",
+            "Drar",
+            "Ear",
+            "Ela",
+            "Enga",
+            "Et",
+            "Gno",
+            "Graz",
+            "Heng",
+            "Jup",
+            "Mar",
+            "Mei",
+            "Mer",
+            "Moz",
+            "Nep",
+            "Sat",
+            "Strev",
+            "Ven",
+            "Zar"
+          ],
+
+          "PGBend":
+          [
+            "atov",
+            "awa",
+            "cry",
+            "ia",
+            "ides",
+            "illon",	
+            "itov",
+            "iuq",
+            "kin",
+            "mar",
+            "mia",
+            "ogawa",
+            "pus",
+            "rs",
+            "tania",
+            "ter",
+            "th",
+            "tov",
+            "tune",
+            "ulia",
+            "uno",
+            "urn",
+            "van",
+            "var",
+            "vis",
+            "vok"
+          ],
+
+          "a-d": ["a", "b", "c", "d", "X"],
           "origin": [
             "#PNGorigin.capitalize#",
             "#nameGenOrigin.capitalize#",
@@ -111,7 +176,15 @@
             "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
             "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
             "#nameGenOrigin.capitalize# #PNGordinals#",
-            "#PGorigin.capitalize# #PNGordinals#"
+            "#PGorigin.capitalize# #PNGordinals#",
+            "#PGBstart##PGBend#",
+            "#PGBstart##PGBend#",
+            "#PGBstart##PGBend#",
+            "#PGBstart##PGBend# #PNGordinals#",
+            "#PGBstart##PGBend# #PNGordinals#",
+            "#PGBstart##PGBend# #PNGordinals#",
+            "#PGBstart##PGBend# #number#",
+            "#PGBstart##PGBend# #number##a-d#"
           ]
 
 }
