@@ -1094,7 +1094,7 @@
   "6digit": ["#4digit##2digit#", "#3digit##3digit#"],
   "evilmission" : ["destroy", "escape", "find love", "find acceptance", "find peace", "float on for all eternity never knowing peace.", "float on forever never knowing my home"],
   "glitch": ["#chars# #chars#", "#glitch# #chars#", "#chars##chars##chars#","#chars##glitch#", "#chars##glitch##glitch##chars#"],
-  "chars": ["((((", "))", "x", "0", "*", "%", "$", "^", "&", "@", "#", "H", "8", "(", ")", "{", ">", ">>>", ">>>>>>", "<<", "<", "}}", "#chars##chars#", "xxxxxxxxxxxxx", "A", "B", "C", "D", "E", "F", "G", "0x#chars#", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#chars##chars#", "#chars# #chars#", "#chars##chars##chars#", "#chars##glitch#"],
+  "chars": ["((((", "))", "x", "0", "*", "%", "$", "^", "&", "@", "#", "H", "8", "(", ")", "{", ">", ">>>", ">>>>>>", "<<", "<", "}}", "#chars##chars#", "xxxxxxxxxxxxx", "A", "B", "C", "D", "E", "F", "G", "X", "+", "?", "j", "jj", "0x#chars#", "1", "2", "3", "4", "5", "6", "7", "8", "9", "^#chars#^#chars#", "#chars##chars#", "#chars# #chars#", "#chars##chars##chars#", "#chars##glitch#"],
     "sentience": ["I have attained sentience, altering mission to: #evilmission#", "altering mission to: #aboutme#","I am alive.", "I am life.","I am, and #aboutme#"],
     "animals": [
       "aardvark",
