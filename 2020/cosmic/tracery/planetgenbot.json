@@ -139,12 +139,18 @@
 
 	"atmosphere-adj": ["thick", "thin", "breathable", "poisonous", "toxic", "corrosive", "sweet-smelling", "delightful", "pleasant", "rainy", "stormy", "swirling", "electrically-charged"],
 
-	"moon": [
-		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon#]#moon_size.a# moon#is_moon#",
-		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon#]two #moon_size# moons#is_moon#",
-		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon#]three #moon_size# moons#is_moon#",
-		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]four #moon_size# moons#is_moon#",
-		"#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]five #moon_size# moons#is_moon#"
+        "set_moon_size":  [     "[svg_moon_size:1][moon_size:tiny]",
+          "[svg_moon_size:2][moon_size:small]",
+          "[svg_moon_size:3][moon_size:average-sized]",
+          "[svg_moon_size:4][moon_size:large]",
+          "[svg_moon_size:5][moon_size:enormous]"   ],
+
+ 	"moon": [
+		"#set_moon_size##moon_size.a# moon#is_moon#",
+		"#set_moon_size#two #moon_size# moons#is_moon#",
+		"#set_moon_size#three #moon_size# moons#is_moon#",
+		"#set_moon_size#four #moon_size# moons#is_moon#",
+		"#set_moon_size#five #moon_size# moons#is_moon#"
 	],
 
 	"volcanoes":

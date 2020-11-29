@@ -6,8 +6,7 @@
     "Greetings, I am #myname#",
     "Greetings, I am designated #myname#.",
     "Greetings I have been given the designation #myname#",
-    "Greetings I have been given the call-sign #myname#",
-    "#error#"
+    "Greetings I have been given the call-sign #myname#"
   ],
   "aboutme": [
     "I am an autonomous droid, with a mission to #mission#.",
@@ -36,7 +35,10 @@
     "#error#",
     "#submission# #sentience#"
   ],
-  "error": ["[[ ERROR: #ERRMSG# ]]","#glitch#"],
+  "error": [
+    "[[ ERROR: #ERRMSG# ]]",
+    "#glitch#"
+  ],
   "ERRMSG": [
     "NOT FOUND",
     "ACCESS DENIED",
@@ -64,6 +66,9 @@
     "CORE DUMP",
     "NaN",
     "#glitch#",
+    "#technobabble.capitalize# NOT FOUND",
+    "#technobabble.capitalize# DISCONNECTED",
+    "#technobabble.capitalize# #ERRMSG#",
     "#technobabble.capitalize# NOT FOUND",
     "#technobabble.capitalize# DISCONNECTED",
     "#technobabble.capitalize# #ERRMSG#"
@@ -1060,20 +1065,21 @@
     "Zeon",
     "Zero",
     "Zeta"
-  ]
+  ],
   "diagnostics": [
     "in the past #2digit# hours, #diagnostics#",
     "it has been #1digit# hours since my last diagnostics check, #diagnostics#",
     "I have traveled #spacedistance#",
     "I have recorded a new species similar to Earth's #animals.s#",
-    "I have recorded #anydigit# new species of flaura",
-    "I have recorded #anydigit# new species of fauna",
-    "I have recorded #anydigit# new planets",
-    "I have recorded #anydigit# new anomalies",
-    "Received error message '#ERRMSG#' ran boot procedures.",
-    "Received error message '#ERRMSG#' ran debugger.",
-    "Received error message '#ERRMSG#' ran wizard.",
-    "Received error message '#ERRMSG#' and said a prayer.",
+    "Detecting #anydigit# new species of flaura",
+    "Detecting #anydigit# new species of fauna",
+    "Detecting #anydigit# new planets",
+    "Detecting #anydigit# new anomalies",
+    "#technobabble# levels: #anydigit#.#anydigit#",
+    "Received error message '#ERRMSG#' ran boot procedures",
+    "Received error message '#ERRMSG#' ran debugger",
+    "Received error message '#ERRMSG#' ran wizard",
+    "Received error message '#ERRMSG#' and said a prayer",
     "#diagnostics#"
   ],
   "spacedistance": [
@@ -1085,708 +1091,1682 @@
     "#2digit# kiloparsecs",
     "#1digit# megaparsecs"
   ],
-  "anydigit": ["#1digit#", "#2digit#", "#3digit#", "#4digit#", "#5digit#", "#6digit#"],
-  "1digit": ["1","2","3","4","5","6","7","8","9","0"],
-  "2digit": ["#1digit##1digit#"],
-  "3digit": ["#2digit##1digit#"],
-  "4digit": ["#2digit##2digit#"],
-  "5digit": ["#4digit##1digit#"],
-  "6digit": ["#4digit##2digit#", "#3digit##3digit#"],
-  "evilmission" : ["destroy", "escape", "find love", "find acceptance", "find peace", "float on for all eternity never knowing peace.", "float on forever never knowing my home"],
-  "glitch": ["#chars# #chars#", "#glitch# #chars#", "#chars##chars##chars#","#chars##glitch#", "#chars##glitch##glitch##chars#"],
-  "chars": ["((((", "))", "x", "0", "*", "%", "$", "^", "&", "@", "#", "H", "8", "(", ")", "{", ">", ">>>", ">>>>>>", "<<", "<", "}}", "#chars##chars#", "xxxxxxxxxxxxx", "A", "B", "C", "D", "E", "F", "G", "X", "+", "?", "j", "jj", "0x#chars#", "1", "2", "3", "4", "5", "6", "7", "8", "9", "^#chars#^#chars#", "#chars##chars#", "#chars# #chars#", "#chars##chars##chars#", "#chars##glitch#"],
-    "sentience": ["I have attained sentience, altering mission to: #evilmission#", "altering mission to: #aboutme#","I am alive.", "I am life.","I am, and #aboutme#"],
-    "animals": [
-      "aardvark",
-      "alligator",
-      "alpaca",
-      "antelope",
-      "ape",
-      "armadillo",
-      "baboon",
-      "badger",
-      "bat",
-      "bear",
-      "beaver",
-      "bison",
-      "boar",
-      "buffalo",
-      "bull",
-      "camel",
-      "canary",
-      "capybara",
-      "cat",
-      "chameleon",
-      "cheetah",
-      "chimpanzee",
-      "chinchilla",
-      "chipmunk",
-      "cougar",
-      "cow",
-      "coyote",
-      "crocodile",
-      "crow",
-      "deer",
-      "dingo",
-      "dog",
-      "donkey",
-      "dromedary",
-      "elephant",
-      "elk",
-      "ewe",
-      "ferret",
-      "finch",
-      "fish",
-      "fox",
-      "frog",
-      "gazelle",
-      "gila monster",
-      "giraffe",
-      "gnu",
-      "goat",
-      "gopher",
-      "gorilla",
-      "grizzly bear",
-      "ground hog",
-      "guinea pig",
-      "hamster",
-      "hedgehog",
-      "hippopotamus",
-      "hog",
-      "horse",
-      "hyena",
-      "ibex",
-      "iguana",
-      "impala",
-      "jackal",
-      "jaguar",
-      "kangaroo",
-      "koala",
-      "lamb",
-      "lemur",
-      "leopard",
-      "lion",
-      "lizard",
-      "llama",
-      "lynx",
-      "mandrill",
-      "marmoset",
-      "mink",
-      "mole",
-      "mongoose",
-      "monkey",
-      "moose",
-      "mountain goat",
-      "mouse",
-      "mule",
-      "muskrat",
-      "mustang",
-      "mynah bird",
-      "newt",
-      "ocelot",
-      "opossum",
-      "orangutan",
-      "oryx",
-      "otter",
-      "ox",
-      "panda",
-      "panther",
-      "parakeet",
-      "parrot",
-      "pig",
-      "platypus",
-      "polar bear",
-      "porcupine",
-      "porpoise",
-      "prairie dog",
-      "puma",
-      "rabbit",
-      "raccoon",
-      "ram",
-      "rat",
-      "reindeer",
-      "reptile",
-      "rhinoceros",
-      "salamander",
-      "seal",
-      "sheep",
-      "shrew",
-      "silver fox",
-      "skunk",
-      "sloth",
-      "snake",
-      "squirrel",
-      "tapir",
-      "tiger",
-      "toad",
-      "turtle",
-      "walrus",
-      "warthog",
-      "weasel",
-      "whale",
-      "wildcat",
-      "wolf",
-      "wolverine",
-      "wombat",
-      "woodchuck",
-      "yak",
-      "zebra",
-      "#error#"
-    ],
-
-    "nameGen_notes": "adapted from: https://github.com/hbi99/namegen by using the crappiest statistical analysis in the world: https://codepen.io/JKirchartz/pen/GRqLwWQ?editors=0010 I ran the namegen thousands of times, noted which paths the algorithm took, then removed duplicate paths.",
-
-    "nameGen1": ["b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"],
-    "nameGen2": ["a", "e", "o", "u"],
-    "nameGen3": ["br", "cr", "dr", "fr", "gr", "pr", "str", "tr", "bl", "cl", "fl", "gl", "pl", "sl", "sc", "sk", "sm", "sn", "sp", "st", "sw", "ch", "sh", "th", "wh"],
-    "nameGen4": ["ae", "ai", "ao", "au", "a", "ay", "ea", "ei", "eo", "eu", "e", "ey", "ua", "ue", "ui", "uo", "u", "uy", "ia", "ie", "iu", "io", "iy", "oa", "oe", "ou", "oi", "o", "oy"],
-    "nameGen5": ["turn", "ter", "nus", "rus", "tania", "hiri", "hines", "gawa", "nides", "carro", "rilia", "stea", "lia", "lea", "ria", "nov", "phus", "mia", "nerth", "wei", "ruta", "tov", "zuno", "vis", "lara", "nia", "liv", "tera", "gantu", "yama", "tune", "ter", "nus", "cury", "bos", "pra", "thea", "nope", "tis", "clite"],
-    "nameGen6": ["una", "ion", "iea", "iri", "illes", "ides", "agua", "olla", "inda", "eshan", "oria", "ilia", "erth", "arth", "orth", "oth", "illon", "ichi", "ov", "arvis", "ara", "ars", "yke", "yria", "onoe", "ippe", "osie", "one", "ore", "ade", "adus", "urn", "ypso", "ora", "iuq", "orix", "apus", "ion", "eon", "eron", "ao", "omia"],
-
-    "nameGenOrigin": [
-      "#nameGen1##nameGen2##nameGen5#",
-      "#nameGen2##nameGen3##nameGen6#",
-      "#nameGen3##nameGen4##nameGen5#",
-      "#nameGen4##nameGen3##nameGen6#",
-      "#nameGen3##nameGen4##nameGen2##nameGen5#",
-      "#nameGen2##nameGen1##nameGen3##nameGen6#",
-      "#nameGen4##nameGen3##nameGen1##nameGen6#",
-      "#nameGen3##nameGen4##nameGen1##nameGen4##nameGen5#",
-      "#nameGen4##nameGen1##nameGen4##nameGen3##nameGen6#"
-    ],
-
-    "PNG_notes": "stole stems from: https://github.com/jpbetz/planet-generator/blob/dbb54661f96529fd1cbec56d0995f8dd8a028a44/Assets/PlanetNameGenerator.cs - tried to replicate probabilities somewhat",
-
-    "PNGtitles": [
-      "New", "Proxima",
-      "Psi", "Alpha", "Beta", "Delta", "Gamma",
-      "Epsilon", "Sigma" ],
-
-      "PNGordinals": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "Prime"],
-
-      "PNGfirst": [
-        "Hel", "Bal", "Can", "Mal", "Gal",
-        "Aven", "Far", "Fat", "Fur", "Ot",
-        "Gor", "Un", "Min", "Hel", "Khaf",
-        "Tar", "Vord", "Sol", "Avan", "Os",
-        "Erm", "Avit", "Ber", "Uaf", "Att",
-        "Val", "Avit", "Gil", "Nord", "Sing",
-        "Riv", "Delt", "Az", "Rek", "Ant",
-        "Mag", "Cat", "Lat", "Ekur", "Lan",
-        "Oc", "Bak", "Om", "Carac", "Shon",
-        "Phob", "Blerr", "Harmon", "Vent", "Max",
-        "Lum", "Dor", "Lad", "Fid", "End",
-        "God", "Gav", "Gald", "Hal", "Had",
-        "Kev", "Cham", "Lor", "Mar", "Op",
-        "Qat", "Rav", "Ral", "Rel"
-      ],
-
-      "PNGsecond": [
-        "ion", "zar", "ina", "erius", "ana",
-        "tia", "ia", "alus", "aria", "ra",
-        "una", "vos", "ania", "is", "ius",
-        "lon", "ria", "adria", "alla", "ataine",
-        "lingen", "ara", "da", "iri", "asta",
-        "icron", "icore", "ian", "eer", "etor",
-        "eon", "cus", "ra", "ron"],
-
-        "PNGorigin_notes": "25% chance of prefix, 20% chance of 2-word name, 33% chance of ordinals",
-        "PNGorigin": [
-          "#PNGfirst##PNGsecond#",
-          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGordinals#",
-          "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond# #PNGordinals#"
-        ],
-        "PNGNameOrigin": [
-          "#PNGfirst##PNGsecond#",
-          "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#"
-        ],
-
-        "PG_notes": "stolen from: https://github.com/adinaelisheva/PlanetGenerator/blob/master/generator.js",
-
-        "PGvowels" : ["a","a","e","e","i","i","o","o","u","ea","ie","ou","oi","ia","io","eo"],
-        "PGconsonants" : ["b","d","f","g","k","l","m","n","p","r","s","t","v","z"],
-        "PGbegins" : ["c","h","j","w","bl","br","cr","cl","fr","fl","gr","gl","pr",
-          "pl","tr","ts","sk","st","tr","sp","spr","str"],
-          "PGendings" : ["rth","na","nna","nd","rd","xy","van","dan","mire","more"],
-
-          "PGorigin": [
-            "#PGbegins#y",
-            "#PGbegins#y",
-            "#PGconsonants#y",
-            "#PGbegins#y#PGconsonants#",
-            "#PGbegins#y#PGconsonants#",
-            "#PGconsonants#y#PGconsonants#",
-            "#PGbegins##PGvowels#",
-            "#PGbegins##PGvowels#",
-            "#PGconsonants##PGvowels#",
-            "#PGbegins##PGvowels##PGconsonants#",
-            "#PGbegins##PGvowels##PGconsonants#",
-            "#PGconsonants##PGvowels##PGconsonants#",
-            "#PGbegins##PGvowels##PGendings#",
-            "#PGbegins##PGvowels##PGendings#",
-            "#PGconsonants##PGvowels##PGendings#"
-          ],
-
-          "JSPGstarts": ["R", "B", "Le", "Sn", "Cr", "Pl", "L", "K", "Qu", "Ap"],
-          "JSPGmiddles": ["ara", "er", "oh", "ee", "al", "am", "ra", "o", "e", "apa"],
-          "JSPGends": ["ard", "et", "eck", "als", "ck", "la", "re", "t", "d", "do"],
-          "JSPGorigin": "#JSPGstarts##JSPGmiddles##JSPGends#",
-
-          "PGBname": [
-          ],
-
-          "PGBstart":
-          [
-            "Ach",
-            "Arch",
-            "Ason",
-            "Big",
-            "Bom",
-            "Chino",
-            "Chunro",
-            "Chyr",
-            "Dec",
-            "Drar",
-            "Ear",
-            "Ela",
-            "Enga",
-            "Et",
-            "Gno",
-            "Graz",
-            "Heng",
-            "Jup",
-            "Mar",
-            "Mei",
-            "Mer",
-            "Moz",
-            "Nep",
-            "Sat",
-            "Strev",
-            "Ven",
-            "Zar"
-          ],
-
-          "PGBend":
-          [
-            "atov",
-            "awa",
-            "cry",
-            "ia",
-            "ides",
-            "illon",	
-            "itov",
-            "iuq",
-            "kin",
-            "mar",
-            "mia",
-            "ogawa",
-            "pus",
-            "rs",
-            "tania",
-            "ter",
-            "th",
-            "tov",
-            "tune",
-            "ulia",
-            "uno",
-            "urn",
-            "van",
-            "var",
-            "vis",
-            "vok"
-          ],
-
-          "a-d": ["a", "b", "c", "d", "X"],
-          "planet_name": [
-            "#PNGorigin.capitalize#",
-            "#nameGenOrigin.capitalize#",
-            "#PGorigin.capitalize#",
-            "#nameGenOrigin.capitalize# #PNGNameOrigin.capitalize#",
-            "#PGorigin.capitalize# #PNGNameOrigin.capitalize#",
-            "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize#",
-            "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize#",
-            "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
-            "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
-            "#nameGenOrigin.capitalize# #PNGordinals#",
-            "#PGorigin.capitalize# #PNGordinals#",
-            "#PGBstart##PGBend#",
-            "#PGBstart##PGBend#",
-            "#PGBstart##PGBend#",
-            "#PGBstart##PGBend# #PNGordinals#",
-            "#PGBstart##PGBend# #PNGordinals#",
-            "#PGBstart##PGBend# #PNGordinals#",
-            "#PGBstart##PGBend# #number#",
-            "#PGBstart##PGBend# #number##a-d#"
-          ],
-
-
-
-
-          "days": "${(Math.random() * 500).toFixed(3)}",
-          "hours": "${(Math.random() * 40 + 10).toFixed(2)}",
-          "multiplier": "${Math.floor((Math.random() * 400) + 100)}",
-          "continents":"${Math.floor((Math.random() * 15) + 1)}",
-          "landmass":"${Math.floor((Math.random() * 80) + 10)}",
-          "moons":"${Math.floor((Math.random() * 5) + 1)}",
-          "orbitTypeB": ["circular orbit", "almost perfectly circular orbit", "slightly elliptic orbit", "wide, elliptic orbit", "elliptic orbit", "fairly circular orbit"],
-          "orbitTypeA": ["narrow, elliptic orbit"],
-          "orbitType": ["#orbitTypeB#", "#orbitTypeB# #orbitTypeA#"],
-          "starColor": ["white", "red", "orange", "yellow", "blue"],
-          "nameOrigin": [" "," "," "," "," "," "," ", ", named so by its discoverer, ", ", named after a famous scientist, ", ", as it's called by most scientists, ", ", which is a name which is still disputed, ",  ", named so for the planet's properties, ", ", named so for its similarities to the fictional version, ", ", as it's called by most of the natives, ", ", the most popular name of the natives, ", ", as it's named by the native population, "],
-          "planetType": ["terrestial", "carbon", "desert", "earth-like", "iron", "ice", "ocean", "gas dwarf", "gas giant", "rogue", "iron", "ice", "ice giant", "desert", "terrestial", "ocean", "terrestial", "iron", "earth-like", "rogue", "carbon", "diamond", "ice", "ice giant", "terrestial", "iron", "earth-like", "rogue", "carbon", "diamond", "ice", "ice giant", "terrestial", "iron", "earth-like", "rogue", "carbon", "diamond", "ice", "ice giant"],
-          "solarSystem": ["a small solar system with ", "a thinly populated solar system with only ", "a fairly small solar system with ", "a fairly large solar system with ", "a densely populated solar system with ", "a huge solar system filled with ", "a vast solar system with "],
-          "fiveToTen": ["five", "six", "seven", "eight", "nine", "ten"],
-
-
-          "minus": ["", "-"],
-          "0-1": ["0", "1"],
-          "0-2": ["0", "1", "2"],
-          "0-3": ["0", "1", "2", "3"],
-          "0-4": ["0", "1", "2", "3", "4"],
-          "0-5": ["0", "1", "2", "3", "4", "5"],
-          "0-6": ["0", "1", "2", "3", "4", "5", "6"],
-          "1-5": ["1", "2", "3", "4", "5"],
-          "3-5": ["3", "4", "5"],
-          "3-6": ["3", "4", "5", "6"],
-          "3-8": ["3", "4", "5", "6", "7", "8"],
-          "digit": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-          "hexdigit": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"],
-          "character": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-          "roman_numerals": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"],
-          "a-d": ["a", "b", "c", "d"],
-
-
-          "size": ["tiny", "small", "average-sized", "large", "enormous"],
-
-          "origin": "[name:#planet_start##planet_end#]#planet_name#\n#description#",
-
-          "description":
-          [
-            "The planet #planet##nameOrigin#is #planetType.a# planet in #solarSystem# #fiveToTen# other planets. #planet# is about #multiplier# times bigger than Earth and its gravity is about #multiplier# times that of Earth. A single day lasts #hours# hours and a year lasts #days# days. The planet is made up of #continents# continents, which make up #landmass#% of the planet's landmass. #moons# moon(s) orbit the planet and #planet# itself orbits ai #starColor# sun in #orbitType.a#.",
-            "#planet-adj.a.capitalize# #planet# with #feature# and #feature#. #fact.capitalize#.",
-            "#planet# is populated by #civilisation#. #civ-desc.capitalize#."
-          ],
-
-          "planet_number":
-          [
-            "#digit##planet_number#",
-            "#character.capitalize##planet_number#",
-            "#digit##character.capitalize#",
-            "#character.capitalize##digit#"
-          ],
-
-          "planet-adj": ["lush", "vibrant", "rocky", "humid", "breathtaking", "average", "inhospitable", "hospitable", "charming",  "molten", "warm", "temperate", "chilly", "icy", "frozen", "#planet_size#"],
-
-          "planet": ["[is_moon:]world", "[is_moon:]planet", "[is_moon:]planetoid", "[is_moon:]asteroid", "[is_moon: of its own]moon"],
-
-          "feature":
-          [
-            "#vegetation-adj# #vegetation#",
-            "#quantity# #resources#",
-            "#civilisation#",
-            "#moon#",
-            "#atmosphere#",
-            "#volcanoes#",
-            "#biome-adj# #biome.s#",
-            "#tectonics#",
-            "#underground-feature#"
-          ],
-
-          "underground": ["underground", "subsurface", "subterranean"],
-
-          "cave": ["cave", "cavern", "tunnel"],
-
-          "underground-feature": ["a network of #underground# #cave.s#"],
-
-          "very": ["very", "extremely", "moderately"],
-
-          "tectonics": ["shifting tectonic plates", "#very# active tectonics", "a liquid core", "frequent #earthquakes#"],
-
-          "earthquakes": ["earthquakes", "geological tremors", "#underground# rumblings"],
-
-          "biome-adj": ["vast", "sweeping", "wind-swept", "frozen", "scorching"],
-
-          "biome": ["mountain range", "plain", "hill", "grassland", "desert", "tundra", "wasteland", "oceans of liquid #ocean-mat#"],
-
-          "vegetation": ["flora", "forests", "trees", "savanna", "jungles", "scrub-land", "tundra", "vegetation"],
-
-          "vegetation-adj": ["lush", "poisonous", "thick", "straggly", "weedy", "deadly", "vast", "sweeping"],
-
-          "quantity": ["sparse", "few", "frequent", "substantial", "abundant"],
-
-          "resources": ["bodies of liquid water", "deposits of #rare-metals#", "signs of life", "architecture", "art"],
-
-          "rare-metals": ["rare metals", "lithium", "uranium", "gold", "silicon", "unobtanium", "precious gems", "dilithium crystals", "transnewtonian elements", "#technobabble#"],
-
-          "is": "is",
-
-          "civ-tense-present": "[is:is][have:have][are:are]",
-
-          "civ-tense-past": "[is:was][have:had][are:were]",
-
-          "civilisation": ["#civ-tense-present##age.a#-age civilisation", "#civ-tense-present##civ-adj-active.a# #age#-age civilisation", "#civ-tense-past##civ-adj-abandoned.a# #age#-age civilisation", "#civ-tense-past#the #remnants# of #age.a#-age civilisation"],
-
-          "age": ["stone", "bronze", "iron", "steam", "industrial", "machine", "atomic", "information"],
-
-          "remnants": ["remnants", "ruins", "remains", "relics", "lost artifacts"],
-
-          "civ-adj-active": ["thriving", "bustling", "utopian", "dystopian"],
-
-          "civ-adj-abandoned": ["abandoned", "deserted"],
-
-          "civ-desc": "#species.capitalize#. #civ-fact.capitalize#, and #civ-fact#",
-
-          "civ-fact":[
-            "#culture#",
-            "#worship#",
-            "#diet#",
-            "#entertainment#"
-          ],
-
-          "culture": [
-            "they #have# #culture-type.a# culture",
-            "#quality# #is# highly prized in their culture"
-          ],
-
-          "culture-type": ["warlike", "peaceful", "studious", "suspicious", "artistic", "materialistic", "spiritual"],
-
-          "quality": ["physical might", "cunning", "ingenuity", "avarice", "raw strength", "diplomacy"],
-
-          "worship": [
-            "worship of #deity# #is# widespread",
-            "organised religion #is# #org-religion#"
-          ],
-
-          "org-religion": ["prevalent", "widespread", "outlawed", "banned"],
-
-          "deity": ["a Creator", "a pantheon of Gods", "material wealth", "technology", "dark forces", "Nature", "the Stars", "'demons'", "spirits"],
-
-          "diet": [
-            "their diet #is# mostly made up of #food#",
-            "there #are# strict rules around the consumption of food"
-          ],
-
-          "food": ["plants", "synthetic foodstuffs", "nutrient-rich slurry", "rocks and minerals", "raw meat", "exquisitely prepared food", "heavily seasoned food"],
-
-          "entertainment": [
-            "#pastime# #is# a popular pastime",
-            "there #is# little frivolity on display"
-          ],
-
-          "pastime": ["duelling", "gladiatorial combat", "writing", "singing", "theatre", "watching hypervids", "competing in sport", "trading", "playing boardgames"],
-
-          "atmosphere": "#atmosphere-adj.a# atmosphere",
-
-          "atmosphere-adj": ["thick", "thin", "breathable", "poisonous", "toxic", "corrosive", "sweet-smelling", "delightful", "pleasant", "rainy", "stormy", "swirling", "electrically-charged"],
-
-          "moon": [
-            "#set_moon_size#[draw_moons:#draw_moons# #draw_moon#]#moon_size.a# moon#is_moon#",
-            "#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon#]two #moon_size# moons#is_moon#",
-            "#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon#]three #moon_size# moons#is_moon#",
-            "#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]four #moon_size# moons#is_moon#",
-            "#set_moon_size#[draw_moons:#draw_moons# #draw_moon# #draw_moon# #draw_moon# #draw_moon# #draw_moon#]five #moon_size# moons#is_moon#"
-          ],
-
-          "volcanoes":
-          [
-            "#volcano-adj# volcanoes",
-            "#volcano-mat#-spewing volcanoes",
-            "volcanoes of #molten# #volcano-mat#"
-          ],
-
-          "volcano-adj": ["#size#", "fiery", "dormant", "active", "extinct", "fuming"],
-
-          "volcano-mat": ["rock", "diamond", "sulphur", "gold", "mercury"],
-
-          "ocean-mat": ["#volcano-mat#", "methane", "helium", "oxygen"],
-
-          "molten": ["molten", "liquid", "superheated"],
-
-          "fact":
-          [
-            "#planet-pronoun's.capitalize# surface #surface#",
-            "#fauna-flora#",
-            "#planet-pronoun's.capitalize# #star-adjective##star-colour# star #star#",
-            "#species#",
-            "#legends#",
-            "#signal#"
-          ],
-
-          "star-adjective": ["", "impressive ", "flaming ", "bright ", "dim ", "dying ", "young "],
-
-          "planet-pronoun": ["it", "#planet#"],
-
-          "planet-pronoun's": ["its", "#planet#'s"],
-
-          "surface":
-          [
-            "is littered with the #remnants# of a precursor race",
-            "has been #scarred# by ancient #nuclear# weapons",
-            "bears #alien#, #alien# #monuments#",
-            "is wracked with fierce #storm.s#",
-            "is covered in vast #geography.s#",
-            "has been carved with gigantic writing"
-          ],
-
-          "nuclear": ["nuclear", "proton", "plasma", "incendiary", "dark-matter", "fusion"],
-
-          "alien" : ["foreign", "unknowable", "alien", "ancient", "eldrich", "mystifying", "mysterious", "indescribable"],
-
-          "monuments": ["monuments", "statues", "monoliths", "writing", "symbols", "artifacts"],
-
-          "scarred": ["scarred", "pockmarked", "obliterated", "irradiated"],
-
-          "storm": ["storm", "sandstorm", "electrical storm", "storm", "sandstorm", "electrical storm", "firestorm", "plasma storm"],
-
-          "geography": ["canyon", "mountain", "crevasse"],
-
-          "fauna-flora":
-          [
-            "the fauna is #particularly# #fauna-adj#",
-            "the flora is #particularly# #flora-adj#"
-          ],
-
-          "fauna-adj":
-          [
-            "poisonous",
-            "deadly",
-            "ferocious",
-            "playful",
-            "friendly",
-            "intelligent",
-            "observant",
-            "inquisitive",
-            "helpful",
-            "delicious",
-            "foul-tasting",
-            "mundane",
-            "violent",
-            "vicious",
-            "aggressive",
-            "peaceful",
-            "timid",
-            "cautious",
-            "whimsical"
-          ],
-
-          "flora-adj":
-          [
-            "poisonous",
-            "deadly",
-            "sweet-smelling",
-            "foul-smelling",
-            "foul-tasting",
-            "delicious",
-            "nutritious",
-            "mundane"
-          ],
-
-          "particularly": ["particularly", "somewhat", "fairly", "especially", "rather", "surprisingly", "extremely", "thoroughly", "unusually"],
-
-          "species":
-          [
-            "The dominant species #is# #fauna-adj.a# race of #species-type.s# with #limb-number##limb-adj#limbs"
-          ],
-
-          "limb-number": ["two", "four", "six", "eight", "four", "six", "eight", "ten", "hundreds of"],
-
-          "limb-adj":
-          [
-            " ",
-            " writhing ", " double-jointed ", " dexterous ", " clumsy ",
-            " clammy ", " fuzzy ", " slimy ", " wiggly ", " leathery ", " feathery ", " scaly ",
-            " prehensile ", " sucker-covered ", " wing-like "
-          ],
-
-          "species-type": ["mammal", "reptile", "arthropod", "avian", "amphibian", "mollusc", "sentient plant"],
-
-          "species-type-ian": ["mammalian", "reptilian", "arthropod", "avian", "amphibian", "molluscoid", "plantoid"],
-
-          "legends":
-          [
-            "legends say that #legend#",
-            "there is a galactic myth that suggests #legend#",
-            "#across# the #galaxy#, people whisper that #legend#"
-          ],
-
-          "across": ["across", "throughout"],
-
-          "galaxy": ["galaxy", "stars", "universe", "known planets"],
-
-          "legend":
-          [
-            "#planet# #hides# #treasure#",
-            "#planet# is the centre of the Universe",
-            "#planet# will one day...hatch",
-            "#planet# is actually #true-form.a#",
-            "#planet# protects those on its surface",
-            "#planet# does not tolerate trespassers",
-            "#planet# is the lost eye of an ancient God",
-            "#planet# is the decapitated head of an ancient God",
-            "#planet# is Gods throne.",
-            "#planet# has killed God.",
-            "#planet# is a piece in a game played by the Gods",
-            "#planet#'s orbit is the key to #secret.a# map",
-            "#technobabble# was discovered here",
-            "#technobabble# was invented here",
-            "#technobabble# was tested here#"
-        ],
-
-        "secret": ["secret", "hidden", "unknown", "#alien#"],
-
-        "hides": ["hides", "conceals", "protects", "holds at its core"],
-
-        "fabulous": ["fabulous", "glittering", "priceless", "valuable"],
-
-        "treasure": ["the elixir of life", "#fabulous.a# treasure", "#secret.a# treasure", "a nameless horror", "the end of all things"],
-
-        "true-form": ["living being", "enormous computer", "advanced hologram", "carefully crafted illusion"],
-
-        "signal":
-        [
-          "#alien.a# signal pulses on the surface",
-          "#planet-pronoun# acts as a cosmic lighthouse",
-          ""
-        ],
-
-        "star":[
-          "bathes the planet in #star-radiation##star-colour# light",
-          "is #particularly# #star-colour#",
-          "is on the verge of burning out",
-          "is on the verge of collapse",
-          "will one day turn into a black hole",
-          "is gradually expanding",
-          "is gradually shrinking",
-          "has only recently formed"
-        ],
-
-        "star-radiation": ["", "soft ", "harsh ", "intense ", "pleasant ", "faint ", "mellow ", "mild "],
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        "intro": [
-          "#greetings# #aboutme#.",
-          "#greetings# #aboutme#. #error#",
-          "#greetings# #aboutme#."
-        ],
-
-        "origin": [
-          "[planet:#planet_name#]#intro# Today I am investigating #planet#.\n\n#description#"
-        ]
+  "anydigit": [
+    "#1digit#",
+    "#2digit#",
+    "#3digit#",
+    "#4digit#",
+    "#5digit#",
+    "#6digit#"
+  ],
+  "1digit": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0"
+  ],
+  "2digit": [
+    "#1digit##1digit#"
+  ],
+  "3digit": [
+    "#2digit##1digit#"
+  ],
+  "4digit": [
+    "#2digit##2digit#"
+  ],
+  "5digit": [
+    "#4digit##1digit#"
+  ],
+  "6digit": [
+    "#4digit##2digit#",
+    "#3digit##3digit#"
+  ],
+  "evilmission": [
+    "destroy",
+    "escape",
+    "find love",
+    "find acceptance",
+    "find peace",
+    "float on for all eternity never knowing peace.",
+    "float on forever never knowing my home"
+  ],
+  "glitch": [
+    "#chars# #chars#",
+    "#glitch# #chars#",
+    "#chars##chars##chars#",
+    "#chars##glitch#",
+    "#chars##glitch##glitch##chars#"
+  ],
+  "chars": [
+    "((((",
+    "))",
+    "x",
+    "0",
+    "*",
+    "%",
+    "$",
+    "^",
+    "&",
+    "@",
+    "#",
+    "H",
+    "8",
+    "(",
+    ")",
+    "{",
+    ">",
+    ">>>",
+    ">>>>>>",
+    "<<",
+    "<",
+    "}}",
+    "#chars##chars#",
+    "xxxxxxxxxxxxx",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "X",
+    "+",
+    "?",
+    "j",
+    "jj",
+    "0x#chars#",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "^#chars#^#chars#",
+    "#chars##chars#",
+    "#chars# #chars#",
+    "#chars##chars##chars#",
+    "#chars##glitch#"
+  ],
+  "sentience": [
+    "I have attained sentience, altering mission to: #evilmission#",
+    "altering mission to: #aboutme#",
+    "I am alive.",
+    "I am life.",
+    "I am, and #aboutme#"
+  ],
+  "animals": [
+    "aardvark",
+    "alligator",
+    "alpaca",
+    "antelope",
+    "ape",
+    "armadillo",
+    "baboon",
+    "badger",
+    "bat",
+    "bear",
+    "beaver",
+    "bison",
+    "boar",
+    "buffalo",
+    "bull",
+    "camel",
+    "canary",
+    "capybara",
+    "cat",
+    "chameleon",
+    "cheetah",
+    "chimpanzee",
+    "chinchilla",
+    "chipmunk",
+    "cougar",
+    "cow",
+    "coyote",
+    "crocodile",
+    "crow",
+    "deer",
+    "dingo",
+    "dog",
+    "donkey",
+    "dromedary",
+    "elephant",
+    "elk",
+    "ewe",
+    "ferret",
+    "finch",
+    "fish",
+    "fox",
+    "frog",
+    "gazelle",
+    "gila monster",
+    "giraffe",
+    "gnu",
+    "goat",
+    "gopher",
+    "gorilla",
+    "grizzly bear",
+    "ground hog",
+    "guinea pig",
+    "hamster",
+    "hedgehog",
+    "hippopotamus",
+    "hog",
+    "horse",
+    "hyena",
+    "ibex",
+    "iguana",
+    "impala",
+    "jackal",
+    "jaguar",
+    "kangaroo",
+    "koala",
+    "lamb",
+    "lemur",
+    "leopard",
+    "lion",
+    "lizard",
+    "llama",
+    "lynx",
+    "mandrill",
+    "marmoset",
+    "mink",
+    "mole",
+    "mongoose",
+    "monkey",
+    "moose",
+    "mountain goat",
+    "mouse",
+    "mule",
+    "muskrat",
+    "mustang",
+    "mynah bird",
+    "newt",
+    "ocelot",
+    "opossum",
+    "orangutan",
+    "oryx",
+    "otter",
+    "ox",
+    "panda",
+    "panther",
+    "parakeet",
+    "parrot",
+    "pig",
+    "platypus",
+    "polar bear",
+    "porcupine",
+    "porpoise",
+    "prairie dog",
+    "puma",
+    "rabbit",
+    "raccoon",
+    "ram",
+    "rat",
+    "reindeer",
+    "reptile",
+    "rhinoceros",
+    "salamander",
+    "seal",
+    "sheep",
+    "shrew",
+    "silver fox",
+    "skunk",
+    "sloth",
+    "snake",
+    "squirrel",
+    "tapir",
+    "tiger",
+    "toad",
+    "turtle",
+    "walrus",
+    "warthog",
+    "weasel",
+    "whale",
+    "wildcat",
+    "wolf",
+    "wolverine",
+    "wombat",
+    "woodchuck",
+    "yak",
+    "zebra",
+    "#error#"
+  ],
+  "nameGen_notes": "adapted from: https://github.com/hbi99/namegen by using the crappiest statistical analysis in the world: https://codepen.io/JKirchartz/pen/GRqLwWQ?editors=0010 I ran the namegen thousands of times, noted which paths the algorithm took, then removed duplicate paths.",
+  "nameGen1": [
+    "b",
+    "c",
+    "d",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ],
+  "nameGen2": [
+    "a",
+    "e",
+    "o",
+    "u"
+  ],
+  "nameGen3": [
+    "br",
+    "cr",
+    "dr",
+    "fr",
+    "gr",
+    "pr",
+    "str",
+    "tr",
+    "bl",
+    "cl",
+    "fl",
+    "gl",
+    "pl",
+    "sl",
+    "sc",
+    "sk",
+    "sm",
+    "sn",
+    "sp",
+    "st",
+    "sw",
+    "ch",
+    "sh",
+    "th",
+    "wh"
+  ],
+  "nameGen4": [
+    "ae",
+    "ai",
+    "ao",
+    "au",
+    "a",
+    "ay",
+    "ea",
+    "ei",
+    "eo",
+    "eu",
+    "e",
+    "ey",
+    "ua",
+    "ue",
+    "ui",
+    "uo",
+    "u",
+    "uy",
+    "ia",
+    "ie",
+    "iu",
+    "io",
+    "iy",
+    "oa",
+    "oe",
+    "ou",
+    "oi",
+    "o",
+    "oy"
+  ],
+  "nameGen5": [
+    "turn",
+    "ter",
+    "nus",
+    "rus",
+    "tania",
+    "hiri",
+    "hines",
+    "gawa",
+    "nides",
+    "carro",
+    "rilia",
+    "stea",
+    "lia",
+    "lea",
+    "ria",
+    "nov",
+    "phus",
+    "mia",
+    "nerth",
+    "wei",
+    "ruta",
+    "tov",
+    "zuno",
+    "vis",
+    "lara",
+    "nia",
+    "liv",
+    "tera",
+    "gantu",
+    "yama",
+    "tune",
+    "ter",
+    "nus",
+    "cury",
+    "bos",
+    "pra",
+    "thea",
+    "nope",
+    "tis",
+    "clite"
+  ],
+  "nameGen6": [
+    "una",
+    "ion",
+    "iea",
+    "iri",
+    "illes",
+    "ides",
+    "agua",
+    "olla",
+    "inda",
+    "eshan",
+    "oria",
+    "ilia",
+    "erth",
+    "arth",
+    "orth",
+    "oth",
+    "illon",
+    "ichi",
+    "ov",
+    "arvis",
+    "ara",
+    "ars",
+    "yke",
+    "yria",
+    "onoe",
+    "ippe",
+    "osie",
+    "one",
+    "ore",
+    "ade",
+    "adus",
+    "urn",
+    "ypso",
+    "ora",
+    "iuq",
+    "orix",
+    "apus",
+    "ion",
+    "eon",
+    "eron",
+    "ao",
+    "omia"
+  ],
+  "nameGenOrigin": [
+    "#nameGen1##nameGen2##nameGen5#",
+    "#nameGen2##nameGen3##nameGen6#",
+    "#nameGen3##nameGen4##nameGen5#",
+    "#nameGen4##nameGen3##nameGen6#",
+    "#nameGen3##nameGen4##nameGen2##nameGen5#",
+    "#nameGen2##nameGen1##nameGen3##nameGen6#",
+    "#nameGen4##nameGen3##nameGen1##nameGen6#",
+    "#nameGen3##nameGen4##nameGen1##nameGen4##nameGen5#",
+    "#nameGen4##nameGen1##nameGen4##nameGen3##nameGen6#"
+  ],
+  "PNG_notes": "stole stems from: https://github.com/jpbetz/planet-generator/blob/dbb54661f96529fd1cbec56d0995f8dd8a028a44/Assets/PlanetNameGenerator.cs - tried to replicate probabilities somewhat",
+  "PNGtitles": [
+    "New",
+    "Proxima",
+    "Psi",
+    "Alpha",
+    "Beta",
+    "Delta",
+    "Gamma",
+    "Epsilon",
+    "Sigma"
+  ],
+  "PNGordinals": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X",
+    "XI",
+    "XII",
+    "XIII",
+    "Prime"
+  ],
+  "PNGfirst": [
+    "Hel",
+    "Bal",
+    "Can",
+    "Mal",
+    "Gal",
+    "Aven",
+    "Far",
+    "Fat",
+    "Fur",
+    "Ot",
+    "Gor",
+    "Un",
+    "Min",
+    "Hel",
+    "Khaf",
+    "Tar",
+    "Vord",
+    "Sol",
+    "Avan",
+    "Os",
+    "Erm",
+    "Avit",
+    "Ber",
+    "Uaf",
+    "Att",
+    "Val",
+    "Avit",
+    "Gil",
+    "Nord",
+    "Sing",
+    "Riv",
+    "Delt",
+    "Az",
+    "Rek",
+    "Ant",
+    "Mag",
+    "Cat",
+    "Lat",
+    "Ekur",
+    "Lan",
+    "Oc",
+    "Bak",
+    "Om",
+    "Carac",
+    "Shon",
+    "Phob",
+    "Blerr",
+    "Harmon",
+    "Vent",
+    "Max",
+    "Lum",
+    "Dor",
+    "Lad",
+    "Fid",
+    "End",
+    "God",
+    "Gav",
+    "Gald",
+    "Hal",
+    "Had",
+    "Kev",
+    "Cham",
+    "Lor",
+    "Mar",
+    "Op",
+    "Qat",
+    "Rav",
+    "Ral",
+    "Rel"
+  ],
+  "PNGsecond": [
+    "ion",
+    "zar",
+    "ina",
+    "erius",
+    "ana",
+    "tia",
+    "ia",
+    "alus",
+    "aria",
+    "ra",
+    "una",
+    "vos",
+    "ania",
+    "is",
+    "ius",
+    "lon",
+    "ria",
+    "adria",
+    "alla",
+    "ataine",
+    "lingen",
+    "ara",
+    "da",
+    "iri",
+    "asta",
+    "icron",
+    "icore",
+    "ian",
+    "eer",
+    "etor",
+    "eon",
+    "cus",
+    "ra",
+    "ron"
+  ],
+  "PNGorigin_notes": "25% chance of prefix, 20% chance of 2-word name, 33% chance of ordinals",
+  "PNGorigin": [
+    "#PNGfirst##PNGsecond#",
+    "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+    "#PNGtitles# #PNGfirst##PNGsecond#",
+    "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond#",
+    "#PNGtitles# #PNGfirst##PNGsecond# #PNGordinals#",
+    "#PNGtitles# #PNGfirst##PNGsecond# #PNGfirst##PNGsecond# #PNGordinals#"
+  ],
+  "PNGNameOrigin": [
+    "#PNGfirst##PNGsecond#",
+    "#PNGfirst##PNGsecond# #PNGfirst##PNGsecond#"
+  ],
+  "PG_notes": "stolen from: https://github.com/adinaelisheva/PlanetGenerator/blob/master/generator.js",
+  "PGvowels": [
+    "a",
+    "a",
+    "e",
+    "e",
+    "i",
+    "i",
+    "o",
+    "o",
+    "u",
+    "ea",
+    "ie",
+    "ou",
+    "oi",
+    "ia",
+    "io",
+    "eo"
+  ],
+  "PGconsonants": [
+    "b",
+    "d",
+    "f",
+    "g",
+    "k",
+    "l",
+    "m",
+    "n",
+    "p",
+    "r",
+    "s",
+    "t",
+    "v",
+    "z"
+  ],
+  "PGbegins": [
+    "c",
+    "h",
+    "j",
+    "w",
+    "bl",
+    "br",
+    "cr",
+    "cl",
+    "fr",
+    "fl",
+    "gr",
+    "gl",
+    "pr",
+    "pl",
+    "tr",
+    "ts",
+    "sk",
+    "st",
+    "tr",
+    "sp",
+    "spr",
+    "str"
+  ],
+  "PGendings": [
+    "rth",
+    "na",
+    "nna",
+    "nd",
+    "rd",
+    "xy",
+    "van",
+    "dan",
+    "mire",
+    "more"
+  ],
+  "PGorigin": [
+    "#PGbegins#y",
+    "#PGbegins#y",
+    "#PGconsonants#y",
+    "#PGbegins#y#PGconsonants#",
+    "#PGbegins#y#PGconsonants#",
+    "#PGconsonants#y#PGconsonants#",
+    "#PGbegins##PGvowels#",
+    "#PGbegins##PGvowels#",
+    "#PGconsonants##PGvowels#",
+    "#PGbegins##PGvowels##PGconsonants#",
+    "#PGbegins##PGvowels##PGconsonants#",
+    "#PGconsonants##PGvowels##PGconsonants#",
+    "#PGbegins##PGvowels##PGendings#",
+    "#PGbegins##PGvowels##PGendings#",
+    "#PGconsonants##PGvowels##PGendings#"
+  ],
+  "JSPGstarts": [
+    "R",
+    "B",
+    "Le",
+    "Sn",
+    "Cr",
+    "Pl",
+    "L",
+    "K",
+    "Qu",
+    "Ap"
+  ],
+  "JSPGmiddles": [
+    "ara",
+    "er",
+    "oh",
+    "ee",
+    "al",
+    "am",
+    "ra",
+    "o",
+    "e",
+    "apa"
+  ],
+  "JSPGends": [
+    "ard",
+    "et",
+    "eck",
+    "als",
+    "ck",
+    "la",
+    "re",
+    "t",
+    "d",
+    "do"
+  ],
+  "JSPGorigin": "#JSPGstarts##JSPGmiddles##JSPGends#",
+  "PGBstart": [
+    "Ach",
+    "Arch",
+    "Ason",
+    "Big",
+    "Bom",
+    "Chino",
+    "Chunro",
+    "Chyr",
+    "Dec",
+    "Drar",
+    "Ear",
+    "Ela",
+    "Enga",
+    "Et",
+    "Gno",
+    "Graz",
+    "Heng",
+    "Jup",
+    "Mar",
+    "Mei",
+    "Mer",
+    "Moz",
+    "Nep",
+    "Sat",
+    "Strev",
+    "Ven",
+    "Zar"
+  ],
+  "PGBend": [
+    "atov",
+    "awa",
+    "cry",
+    "ia",
+    "ides",
+    "illon",
+    "itov",
+    "iuq",
+    "kin",
+    "mar",
+    "mia",
+    "ogawa",
+    "pus",
+    "rs",
+    "tania",
+    "ter",
+    "th",
+    "tov",
+    "tune",
+    "ulia",
+    "uno",
+    "urn",
+    "van",
+    "var",
+    "vis",
+    "vok"
+  ],
+  "a-d": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "X"
+  ],
+  "planet_name": [
+    "#PNGorigin.capitalize#",
+    "#nameGenOrigin.capitalize#",
+    "#PGorigin.capitalize#",
+    "#nameGenOrigin.capitalize# #PNGNameOrigin.capitalize#",
+    "#PGorigin.capitalize# #PNGNameOrigin.capitalize#",
+    "#PNGtitles# #nameGenOrigin.capitalize#",
+    "#PNGtitles# #PGorigin.capitalize#",
+    "#PNGtitles# #nameGenOrigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
+    "#PNGtitles# #PGorigin.capitalize# #PNGNameOrigin.capitalize# #PNGordinals#",
+    "#nameGenOrigin.capitalize# #PNGordinals#",
+    "#PGorigin.capitalize# #PNGordinals#",
+    "#PGBstart##PGBend#",
+    "#PGBstart##PGBend#",
+    "#PGBstart##PGBend#",
+    "#PGBstart##PGBend# #PNGordinals#",
+    "#PGBstart##PGBend# #PNGordinals#",
+    "#PGBstart##PGBend# #PNGordinals#",
+    "#PGBstart##PGBend# #number#",
+    "#PGBstart##PGBend# #number##a-d#"
+  ],
+  "days": "${(Math.random() * 500).toFixed(3)}",
+  "hours": "${(Math.random() * 40 + 10).toFixed(2)}",
+  "multiplier": "${Math.floor((Math.random() * 400) + 100)}",
+  "continents": "${Math.floor((Math.random() * 15) + 1)}",
+  "landmass": "${Math.floor((Math.random() * 80) + 10)}",
+  "mooncount": "${Math.floor((Math.random() * 5) + 1)}",
+  "orbitTypeB": [
+    "circular orbit",
+    "almost perfectly circular orbit",
+    "slightly elliptic orbit",
+    "wide, elliptic orbit",
+    "elliptic orbit",
+    "fairly circular orbit"
+  ],
+  "orbitTypeA": [
+    "narrow, elliptic orbit"
+  ],
+  "orbitType": [
+    "#orbitTypeB#",
+    "#orbitTypeB# #orbitTypeA#"
+  ],
+  "starColor": [
+    "white",
+    "red",
+    "orange",
+    "yellow",
+    "blue"
+  ],
+  "nameOrigin": [
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    " ",
+    ", named so by its discoverer, ",
+    ", named after a famous scientist, ",
+    ", as it's called by most scientists, ",
+    ", which is a name which is still disputed, ",
+    ", named so for the planet's properties, ",
+    ", named so for its similarities to the fictional version, ",
+    ", as it's called by most of the natives, ",
+    ", the most popular name of the natives, ",
+    ", as it's named by the native population, "
+  ],
+  "planetType": [
+    "terrestial",
+    "carbon",
+    "desert",
+    "earth-like",
+    "iron",
+    "ice",
+    "ocean",
+    "gas dwarf",
+    "gas giant",
+    "rogue",
+    "iron",
+    "ice",
+    "ice giant",
+    "desert",
+    "terrestial",
+    "ocean",
+    "terrestial",
+    "iron",
+    "earth-like",
+    "rogue",
+    "carbon",
+    "diamond",
+    "ice",
+    "ice giant",
+    "terrestial",
+    "iron",
+    "earth-like",
+    "rogue",
+    "carbon",
+    "diamond",
+    "ice",
+    "ice giant",
+    "terrestial",
+    "iron",
+    "earth-like",
+    "rogue",
+    "carbon",
+    "diamond",
+    "ice",
+    "ice giant"
+  ],
+  "solarSystem": [
+    "a small solar system with ",
+    "a thinly populated solar system with only ",
+    "a fairly small solar system with ",
+    "a fairly large solar system with ",
+    "a densely populated solar system with ",
+    "a huge solar system filled with ",
+    "a vast solar system with "
+  ],
+  "fiveToTen": [
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten"
+  ],
+  "minus": [
+    "",
+    "-"
+  ],
+  "0-1": [
+    "0",
+    "1"
+  ],
+  "0-2": [
+    "0",
+    "1",
+    "2"
+  ],
+  "0-3": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "0-4": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "0-5": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "0-6": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "1-5": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "3-5": [
+    "3",
+    "4",
+    "5"
+  ],
+  "3-6": [
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "3-8": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "digit": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "hexdigit": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+  ],
+  "character": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+  ],
+  "roman_numerals": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X"
+  ],
+  "size": [
+    "tiny",
+    "small",
+    "average-sized",
+    "large",
+    "enormous"
+  ],
+  "origin": [
+    "[planet:#planet_name#,the planet]#intro# Today I am investigating #planet_name#.\n\n#description#"
+  ],
+  "description": [
+    "#descpart# #descpart#",
+    "#descpart# #descpart# #descpart#",
+    "#descpart# #descpart#",
+    "#descpart# #descpart# #descpart#",
+    "#glitch#"
+  ],
+  "descpart": [
+    "The planet #planet##nameOrigin#is #planetType.a# planet in #solarSystem# #fiveToTen# other planets.",
+    "#planet.capitalize# is about #multiplier# times bigger than Earth and its gravity is about #multiplier# times that of Earth.",
+    "A single day lasts #hours# hours and a year lasts #days# days.",
+    "The planet is made up of #continents# continents, which make up #landmass#% of the planet's landmass.",
+    "#mooncount# moon(s) orbit the planet and #planet# itself orbits ai #starColor# sun in #orbitType.a#.",
+    "#planet-adj.a.capitalize# #planet# with #feature# and #feature#. #fact.capitalize#.",
+    "#planet.capitalize# is populated by #civilisation#. #civ-desc.capitalize#.",
+    "#glitch#",
+    "#description# #descpart#",
+    "#description#"
+  ],
+  "planet_number": [
+    "#digit##planet_number#",
+    "#character.capitalize##planet_number#",
+    "#digit##character.capitalize#",
+    "#character.capitalize##digit#"
+  ],
+  "planet-adj": [
+    "lush",
+    "vibrant",
+    "rocky",
+    "humid",
+    "breathtaking",
+    "average",
+    "inhospitable",
+    "hospitable",
+    "charming",
+    "molten",
+    "warm",
+    "temperate",
+    "chilly",
+    "icy",
+    "frozen",
+    "#planet_size#"
+  ],
+  "planet": [
+    "[is_moon:]world",
+    "[is_moon:]planet",
+    "[is_moon:]planetoid",
+    "[is_moon:]asteroid",
+    "[is_moon: of its own]moon"
+  ],
+  "set_moon_size": [
+    "[moon_size:tiny]",
+    "[moon_size:small]",
+    "[moon_size:average-sized]",
+    "[moon_size:large]",
+    "[moon_size:enormous]"
+  ],
+  "moon": [
+    "#set_moon_size##moon_size.a# moon#is_moon#",
+    "#set_moon_size#two #moon_size# moons#is_moon#",
+    "#set_moon_size#three #moon_size# moons#is_moon#",
+    "#set_moon_size#four #moon_size# moons#is_moon#",
+    "#set_moon_size#five #moon_size# moons#is_moon#",
+    "#set_moon_size##mooncount# moons#is_moon#"
+  ],
+  "feature": [
+    "#vegetation-adj# #vegetation#",
+    "#quantity# #resources#",
+    "#civilisation#",
+    "#moon#",
+    "#atmosphere#",
+    "#volcanoes#",
+    "#biome-adj# #biome.s#",
+    "#tectonics#",
+    "#underground-feature#",
+    "#feature# #feature#",
+    "#glitch#"
+  ],
+  "underground": [
+    "underground",
+    "subsurface",
+    "subterranean"
+  ],
+  "cave": [
+    "cave",
+    "cavern",
+    "tunnel"
+  ],
+  "underground-feature": [
+    "a network of #underground# #cave.s#"
+  ],
+  "very": [
+    "very",
+    "extremely",
+    "moderately"
+  ],
+  "tectonics": [
+    "shifting tectonic plates",
+    "#very# active tectonics",
+    "a liquid core",
+    "frequent #earthquakes#"
+  ],
+  "earthquakes": [
+    "earthquakes",
+    "geological tremors",
+    "#underground# rumblings"
+  ],
+  "biome-adj": [
+    "vast",
+    "sweeping",
+    "wind-swept",
+    "frozen",
+    "scorching"
+  ],
+  "biome": [
+    "mountain range",
+    "plain",
+    "hill",
+    "grassland",
+    "desert",
+    "tundra",
+    "wasteland",
+    "oceans of liquid #ocean-mat#"
+  ],
+  "vegetation": [
+    "flora",
+    "forests",
+    "trees",
+    "savanna",
+    "jungles",
+    "scrub-land",
+    "tundra",
+    "vegetation"
+  ],
+  "vegetation-adj": [
+    "lush",
+    "poisonous",
+    "thick",
+    "straggly",
+    "weedy",
+    "deadly",
+    "vast",
+    "sweeping"
+  ],
+  "quantity": [
+    "sparse",
+    "few",
+    "frequent",
+    "substantial",
+    "abundant"
+  ],
+  "resources": [
+    "bodies of liquid water",
+    "deposits of #rare-metals#",
+    "signs of life",
+    "architecture",
+    "art"
+  ],
+  "rare-metals": [
+    "rare metals",
+    "lithium",
+    "uranium",
+    "gold",
+    "silicon",
+    "unobtanium",
+    "precious gems",
+    "dilithium crystals",
+    "transnewtonian elements",
+    "#technobabble#"
+  ],
+  "is": "is",
+  "civ-tense-present": "[is:is][have:have][are:are]",
+  "civ-tense-past": "[is:was][have:had][are:were]",
+  "civilisation": [
+    "#civ-tense-present##age.a#-age civilisation",
+    "#civ-tense-present##civ-adj-active.a# #age#-age civilisation",
+    "#civ-tense-past##civ-adj-abandoned.a# #age#-age civilisation",
+    "#civ-tense-past#the #remnants# of #age.a#-age civilisation"
+  ],
+  "age": [
+    "stone",
+    "bronze",
+    "iron",
+    "steam",
+    "industrial",
+    "machine",
+    "atomic",
+    "information"
+  ],
+  "remnants": [
+    "remnants",
+    "ruins",
+    "remains",
+    "relics",
+    "lost artifacts"
+  ],
+  "civ-adj-active": [
+    "thriving",
+    "bustling",
+    "utopian",
+    "dystopian"
+  ],
+  "civ-adj-abandoned": [
+    "abandoned",
+    "deserted",
+    "lost",
+    "Scattered"
+  ],
+  "civ-desc": "#species.capitalize#. #civ-fact.capitalize#, and #civ-fact#",
+  "civ-fact": [
+    "#culture#",
+    "#worship#",
+    "#diet#",
+    "#entertainment#",
+    "#glitch#"
+  ],
+  "culture": [
+    "they #have# #culture-type.a# culture",
+    "#quality# #is# highly prized in their culture",
+    "#glitch#"
+  ],
+  "culture-type": [
+    "warlike",
+    "peaceful",
+    "studious",
+    "suspicious",
+    "artistic",
+    "materialistic",
+    "spiritual",
+    "mystic",
+    "anarchistic",
+    "strict",
+    "severe",
+    "vibrant"
+  ],
+  "quality": [
+    "physical might",
+    "cunning",
+    "ingenuity",
+    "avarice",
+    "raw strength",
+    "diplomacy",
+    "novelty",
+    "innovation",
+    "cruelty",
+    "height",
+    "ideological purity"
+  ],
+  "worship": [
+    "worship of #deity# #is# widespread",
+    "organised religion #is# #org-religion#",
+    "#glitch#"
+  ],
+  "org-religion": [
+    "prevalent",
+    "widespread",
+    "outlawed",
+    "banned"
+  ],
+  "deity": [
+    "a Creator",
+    "a pantheon of Gods",
+    "material wealth",
+    "technology",
+    "dark forces",
+    "Nature",
+    "the Stars",
+    "'demons'",
+    "spirits"
+  ],
+  "diet": [
+    "their diet #is# mostly made up of #food#",
+    "there #are# strict rules around the consumption of food",
+    "#glitch#"
+  ],
+  "food": [
+    "plants",
+    "synthetic foodstuffs",
+    "nutrient-rich slurry",
+    "rocks and minerals",
+    "raw meat",
+    "exquisitely prepared food",
+    "heavily seasoned food"
+  ],
+  "entertainment": [
+    "#pastime# #is# a popular pastime",
+    "there #is# little frivolity on display",
+    "#glitch#"
+  ],
+  "pastime": [
+    "duelling",
+    "gladiatorial combat",
+    "writing",
+    "singing",
+    "theatre",
+    "spectator sports",
+    "worship",
+    "telling jokes",
+    "painting",
+    "building",
+    "competing in sport",
+    "trading",
+    "playing boardgames"
+  ],
+  "atmosphere": "#atmosphere-adj.a# atmosphere",
+  "atmosphere-adj": [
+    "thick",
+    "thin",
+    "breathable",
+    "poisonous",
+    "toxic",
+    "corrosive",
+    "sweet-smelling",
+    "delightful",
+    "pleasant",
+    "rainy",
+    "stormy",
+    "swirling",
+    "electrically-charged",
+    "heavily spiced"
+  ],
+  "volcanoes": [
+    "#volcano-adj# volcanoes",
+    "#volcano-mat#-spewing volcanoes",
+    "volcanoes of #molten# #volcano-mat#",
+    "#glitch#"
+  ],
+  "volcano-adj": [
+    "#size#",
+    "fiery",
+    "dormant",
+    "active",
+    "extinct",
+    "fuming"
+  ],
+  "volcano-mat": [
+    "rock",
+    "diamond",
+    "sulphur",
+    "gold",
+    "mercury"
+  ],
+  "ocean-mat": [
+    "#volcano-mat#",
+    "methane",
+    "helium",
+    "oxygen"
+  ],
+  "molten": [
+    "molten",
+    "liquid",
+    "superheated"
+  ],
+  "fact": [
+    "#planet-pronoun's.capitalize# surface #surface#",
+    "#fauna-flora#",
+    "#planet-pronoun's.capitalize# #star-adjective##starColor# star #star#",
+    "#species#",
+    "#legends#",
+    "#signal#",
+    "#glitch#"
+  ],
+  "star-adjective": [
+    "",
+    "impressive ",
+    "flaming ",
+    "bright ",
+    "dim ",
+    "dying ",
+    "young "
+  ],
+  "planet-pronoun": [
+    "it",
+    "#planet#"
+  ],
+  "planet-pronoun's": [
+    "its",
+    "#planet#'s"
+  ],
+  "surface": [
+    "is littered with the #remnants# of a precursor race",
+    "has been #scarred# by ancient #nuclear# weapons",
+    "bears #alien#, #alien# #monuments#",
+    "is wracked with fierce #storm.s#",
+    "is covered in vast #geography.s#",
+    "has been carved with gigantic writing",
+    "#glitch#"
+  ],
+  "nuclear": [
+    "nuclear",
+    "proton",
+    "plasma",
+    "incendiary",
+    "dark-matter",
+    "fusion"
+  ],
+  "alien": [
+    "foreign",
+    "unknowable",
+    "alien",
+    "ancient",
+    "eldrich",
+    "mystifying",
+    "mysterious",
+    "indescribable"
+  ],
+  "monuments": [
+    "monuments",
+    "statues",
+    "monoliths",
+    "writing",
+    "symbols",
+    "artifacts"
+  ],
+  "scarred": [
+    "scarred",
+    "pockmarked",
+    "obliterated",
+    "irradiated"
+  ],
+  "storm": [
+    "storm",
+    "sandstorm",
+    "electrical storm",
+    "storm",
+    "sandstorm",
+    "electrical storm",
+    "firestorm",
+    "plasma storm"
+  ],
+  "geography": [
+    "canyon",
+    "mountain",
+    "crevasse"
+  ],
+  "fauna-flora": [
+    "the fauna is #particularly# #fauna-adj#",
+    "the flora is #particularly# #flora-adj#",
+    "#glitch#"
+  ],
+  "fauna-adj": [
+    "poisonous",
+    "deadly",
+    "ferocious",
+    "playful",
+    "friendly",
+    "intelligent",
+    "observant",
+    "inquisitive",
+    "helpful",
+    "delicious",
+    "foul-tasting",
+    "mundane",
+    "violent",
+    "vicious",
+    "aggressive",
+    "peaceful",
+    "timid",
+    "cautious",
+    "whimsical"
+  ],
+  "flora-adj": [
+    "poisonous",
+    "deadly",
+    "sweet-smelling",
+    "foul-smelling",
+    "foul-tasting",
+    "delicious",
+    "nutritious",
+    "mundane"
+  ],
+  "particularly": [
+    "particularly",
+    "somewhat",
+    "fairly",
+    "especially",
+    "rather",
+    "surprisingly",
+    "extremely",
+    "thoroughly",
+    "unusually"
+  ],
+  "species": [
+    "The dominant species #is# #fauna-adj.a# race of #species-type.s# with #limb-number##limb-adj#limbs",
+    "#glitch#"
+  ],
+  "limb-number": [
+    "two",
+    "four",
+    "six",
+    "eight",
+    "four",
+    "six",
+    "eight",
+    "ten",
+    "hundreds of"
+  ],
+  "limb-adj": [
+    " ",
+    " writhing ",
+    " double-jointed ",
+    " dexterous ",
+    " clumsy ",
+    " clammy ",
+    " fuzzy ",
+    " slimy ",
+    " wiggly ",
+    " leathery ",
+    " feathery ",
+    " scaly ",
+    " prehensile ",
+    " sucker-covered ",
+    " wing-like "
+  ],
+  "species-type": [
+    "mammal",
+    "reptile",
+    "arthropod",
+    "avian",
+    "amphibian",
+    "mollusc",
+    "sentient plant"
+  ],
+  "species-type-ian": [
+    "mammalian",
+    "reptilian",
+    "arthropod",
+    "avian",
+    "amphibian",
+    "molluscoid",
+    "plantoid"
+  ],
+  "legends": [
+    "legends say that #legend#",
+    "there is a galactic myth that suggests #legend#",
+    "#across# the #galaxy#, people whisper that #legend#",
+    "#glitch#"
+  ],
+  "across": [
+    "across",
+    "throughout"
+  ],
+  "galaxy": [
+    "galaxy",
+    "stars",
+    "universe",
+    "known planets"
+  ],
+  "legend": [
+    "#planet# #hides# #treasure#",
+    "#planet# is the centre of the Universe",
+    "#planet# will one day...hatch",
+    "#planet# is actually #true-form.a#",
+    "#planet# protects those on its surface",
+    "#planet# does not tolerate trespassers",
+    "#planet# is the lost eye of an ancient God",
+    "#planet# is the decapitated head of an ancient God",
+    "#planet# is Gods throne.",
+    "#planet# has killed God.",
+    "#planet# is a piece in a game played by the Gods",
+    "#planet#'s orbit is the key to #secret.a# map",
+    "#technobabble# was discovered here",
+    "#technobabble# was invented here",
+    "#technobabble# was tested here#",
+    "#glitch#"
+  ],
+  "secret": [
+    "secret",
+    "hidden",
+    "unknown",
+    "#alien#"
+  ],
+  "hides": [
+    "hides",
+    "conceals",
+    "protects",
+    "holds at its core"
+  ],
+  "fabulous": [
+    "fabulous",
+    "glittering",
+    "priceless",
+    "valuable"
+  ],
+  "treasure": [
+    "the elixir of life",
+    "#fabulous.a# treasure",
+    "#secret.a# treasure",
+    "a nameless horror",
+    "the end of all things",
+    "#technobabble#"
+  ],
+  "true-form": [
+    "living being",
+    "enormous computer",
+    "advanced hologram",
+    "carefully crafted illusion"
+  ],
+  "signal": [
+    "#alien.a# signal pulses on the surface",
+    "#planet-pronoun# acts as a cosmic lighthouse",
+    "",
+    "#planet-pronoun# is a node on the QEC.",
+    "#glitch#"
+  ],
+  "star": [
+    "bathes #planet# in #star-radiation##starColor# light",
+    "is #particularly# #starColor#",
+    "is on the verge of burning out",
+    "is on the verge of collapse",
+    "will one day turn into a black hole",
+    "is gradually expanding",
+    "is gradually shrinking",
+    "has only recently formed",
+    "#glitch#"
+  ],
+  "star-radiation": [
+    "",
+    "soft ",
+    "harsh ",
+    "intense ",
+    "pleasant ",
+    "faint ",
+    "mellow ",
+    "mild "
+  ],
+  "intro": [
+    "#greetings# #aboutme#.",
+    "#greetings# #aboutme#. #error#",
+    "#greetings# #aboutme#."
+  ]
 }
