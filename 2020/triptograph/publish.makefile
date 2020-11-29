@@ -4,10 +4,10 @@
 #
 
 DEST_DIR ?= dist
-ISSUES != find . -path "./issues/*" -type d
-DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/book-%.pdf)
+ISSUES != find ./issues/* -type d | grep -v images
+DEST_PDF_FILES := $(ISSUES:./issues/%=$(DEST_DIR)/issue-%.pdf)
 
-$(DEST_DIR)/book-%.pdf: output/%
+$(DEST_DIR)/issue-%.pdf: issues/%
 	$(info building $@)
 	pandoc -s \
 	--from markdown \
@@ -21,7 +21,11 @@ $(DEST_DIR)/book-%.pdf: output/%
 
 pdf: $(DEST_PDF_FILES)
 
-.PHONY: pdf
+clean:
+	$(info removing build artifacts)
+	@rm $(DEST_DIR)/issue-*
+
+.PHONY: clean pdf
 
 # vim:ft=make
 #

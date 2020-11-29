@@ -42,7 +42,7 @@ title () {
 }
 
 endlines () {
-  sed -e 's/$/\\/' <<< "$@"
+  sed -e 's/$/\\/' -e 's/[\]//' <<< "$@"
 }
 imgdir="$(dirname $FILE)/images/"
 booktitle=$(title)
@@ -50,7 +50,7 @@ mkdir -p "$imgdir"
 echo -e "---\ntitle: \"Triptograph: Dreams of ${booktitle}\"\ndocumentclass: \"book\"\nauthor: \"Triptography by JKirchartz\"\ndate: \"$(date +"%D %T")\"\n---\n\n" > $FILE
 WORDCOUNT=0;
 echo "writing to file: $FILE"
-while [ $WORDCOUNT -le 50000 ]; do
+while [ $WORDCOUNT -le 10000 ]; do
   cat <<- EOF >> $FILE
 \hfill
 \\pagebreak
@@ -69,9 +69,6 @@ $(pos2tracery generate $dreams -m | endlines)
 
 \\end{center}
 
-$(tracery | endlines)
-$(tracery | endlines)
-$(tracery | endlines)
 $(tracery | endlines)
 $(tracery | endlines)
 
