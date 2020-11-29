@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #
 # haiku.sh
 #
@@ -17,13 +17,13 @@
 # }
 
 # input a file, get a list of sentences
-function sentences() {
-  sed 's/[.!?]  */&\n/g' $1
+function sentences () {
+  sed 's/[.!?]  */&\n/g' $1;
 }
 
 
 # input a file containing a list of words
-function wordListToSyllables() {
+function wordListToSyllables () {
   # taken from: https://www.grant-trebbin.com/2012/07/sorting-word-list-by-syllable-with-awk.html
   # The next step is where we actually process each line and is reasonably
   # complicated.  In the "begin" part of the command we set the field separator
@@ -44,8 +44,14 @@ function wordListToSyllables() {
 
 
 function syllables() {
-  echo "$1" | sed -e 's/[^aeiouAEIOU]/ /g' | awk '{print NF}'
+  echo "syl $1"
+  while IFS="$\n" read -r line; do
+    syls=$(echo "$line" | sed -e 's/[^aeiouAEIOU]/ /g' | awk '{print NF}')
+    if [ $syls = "5" ] || [ $syls = "7" ]; then
+      echo "$syls $line";
+    fi;
+  done
 }
 
-
-sentences $1 | syllables
+source=$(sentences "$@" | syllables)
+echo $source
