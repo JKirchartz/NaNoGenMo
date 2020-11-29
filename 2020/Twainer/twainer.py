@@ -22,7 +22,7 @@ with open(sys.argv[1], 'r') as r:
     output_file = "_".join(title.split())
     story = r.read()
 
-    with open(output_file, 'a') as w:
+    with open(''.join(["output/", output_file]), 'a') as w:
 
         w.write("{}: in English, then in French, and then Clawed Back into a Civilized Language Once More by Patient, Unrenumerated Toil, done by a Robot".format(title))
         w.write(story + '\n\n\n\n')
