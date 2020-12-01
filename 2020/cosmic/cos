@@ -28,9 +28,12 @@ function freeze {
 function list {
     cut -f2 cosmic-backup/gopher/listing.gophermap | awk '{print "./cosmic-backup/gopher"$0}'
 }
+
 function publish {
-  scp "$1" cosmic:"~/ships/EPX\ Corazon\ 23/"
-  ssh cosmic 'log -f "$1" -t "$2"' # -f <filename> -t "Title String"
+  rsync "$2" c:"/var/gopher/EPX\ Corazon\ 23"
+  name=$(basename "$2")
+  ssh c -tt bash -cl "cd /home/kirch && log -f \"/home/kirch/ships/EPX\ Corazon\ 23/$name\" -t \"$3\""
+  # ssh c bash -cl 'mv $1 /ships/EPX\ Corazon\ 23/ && log -f "$1" -t "$2"' # -f <filename> -t "Title String"
 }
 function run {
   # https://github.com/mbartoli/docker-char-rnn
@@ -50,7 +53,7 @@ function gpt2 {
 }
 
 function genrnn {
-  docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext '$(npx pos2tracery generate tracery/cosmic.json --origin planet_name)'"
+  docker run -ti -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/cosmic-backup/gopher:/home/char-rnn/data/my-training-data mbartoli/char-rnn bash -lc "cd /home/char-rnn/ && th sample.lua $(find cv/ -type f | shuf -n 1) -primetext '$(npx pos2tracery generate tracery/cosmic.json --origin planet_name)'" | tail -n +8
 }
 
 function planet {
@@ -59,6 +62,16 @@ function planet {
   #   tmux new-session
   # fi
   # tmux split-window -h \; split-window -v \; resize-pane -x 70 -y 20\;./planetGen.py; kill-window
+}
+
+
+function randomGenerator {
+  case $((RANDOM % 3)) in
+    0) genrnn; ;;
+    1) npx pos2tracery generate ./tracery/pos-iNNP-PRO-INT-p80.json -m; ;;
+    2) npx pos2tracery generate ./tracery/pos-iPPN-iADV-p80.json -m; ;;
+    3) npx pos2tracery generate ./tracery/soundex.json -m; ;;
+  esac;
 }
 
 function description {
@@ -96,12 +109,12 @@ case $1 in
   pub) publish "$@"; ;;
   gen)
     touch "$2"
-    cat <<EOF> "$2"
+    fmt <<EOF> "$2"
 $(description)
 
-\-\-\-\-\-\{\{ TAPPING INTO QEC FEED \}\}\-\-\-\-\-\-
+-----{{ TAPPING INTO QEC DATASTREAM }}------
 
-$(genrnn)
+$(randomGenerator)
 EOF
   ./lib/correcter.py "$2"
 

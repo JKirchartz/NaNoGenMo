@@ -5,13 +5,13 @@ import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-cosmic_files = [doc for doc in os.listdir() if doc.endswith('.txt')]
-cosmic_notes = [open(File).read() for File in  cosmic_files]
+cosmic_files = [doc for doc in os.listdir('./cosmic-backup/gopher') if doc.endswith('txt')]
+# cosmic_notes = [open(File).read() for File in cosmic_files]
 
 vectorize = lambda Text: TfidfVectorizer().fit_transform(Text).toarray()
 similarity = lambda doc1, doc2: cosine_similarity([doc1, doc2])
 
-vectors = vectorize(cosmic_notes)
+vectors = vectorize(open('../tmp/cosmic.corpora').read())
 s_vectors = list(zip(cosmic_files, vectors))
 plagiarism_results = set()
 

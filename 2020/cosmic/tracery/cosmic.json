@@ -2135,9 +2135,6 @@
     "large",
     "enormous"
   ],
-  "origin": [
-    "[planet:#planet_name#,the planet]#intro# Today I am investigating #planet_name#.\n\n#description#"
-  ],
   "description": [
     "#descpart# #descpart#",
     "#descpart# #descpart# #descpart#",
@@ -2157,9 +2154,9 @@
     "#description# #descpart#",
     "#description#"
   ],
-  "planet_number": [
-    "#digit##planet_number#",
-    "#character.capitalize##planet_number#",
+  "number": [
+    "#digit##number#",
+    "#character.capitalize##number#",
     "#digit##character.capitalize#",
     "#character.capitalize##digit#"
   ],
@@ -2768,5 +2765,8 @@
     "#greetings# #aboutme#.",
     "#greetings# #aboutme#. #error#",
     "#greetings# #aboutme#."
+  ],
+  "origin": [
+    "[planetName:#planet_name#][planet:#planetName#, the planet]#intro# Today I am investigating #planetName#.\n\n#description#"
   ]
 }
