@@ -7,8 +7,7 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 #
 
-source ./venv/bin/activate
 echo "Picking a random story to use..."
-filename=$(find tmp -type f -name story* | shuf -n 1)
+filename=$(find tmp -type f -name "story*" | shuf -n 1)
 head -n1 "$filename"
 python twainer.py "$filename"

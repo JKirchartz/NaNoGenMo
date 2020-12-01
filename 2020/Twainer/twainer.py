@@ -12,31 +12,31 @@
 
 import sys
 import re
-from googletrans import Translator
+from google_trans_new import google_translator
 
-translator = Translator()
-rex = re.compile('[^a-zA-Z]')
+translator = google_translator()
+rex = re.compile(r'[^a-zA-Z\d\s:]')
 
 with open(sys.argv[1], 'r') as r:
     title = r.readline()
     output_file = "_".join(title.split())
     story = r.read()
 
-    with open(''.join(["output/", output_file]), 'a') as w:
+    with open(''.join(["output/", output_file, '.txt']), 'w+') as w:
 
         w.write("{}: in English, then in French, and then Clawed Back into a Civilized Language Once More by Patient, Unrenumerated Toil, done by a Robot".format(title))
         w.write(story + '\n\n\n\n')
 
-        french = translator.translate(story, src='en', dest='fr').text
+        french = translator.translate(story, 'fr', 'en')
 
         w.write(french + '\n\n\n\n')
 
-        french_words = list(set(re.sub('', french).split())) # is this too much?
+        french_words = list(set(rex.sub(' ', french).split())) # is this too much?
 
-        dic = translator.translate(french_words, src='fr', dest='en')
+        dic = translator.translate(". ".join(french_words), 'en', 'fr')
 
-        for word in dic:
-            french=french.replace(word.original, word.text)
+        for word,key in dic.split(". "):
+            french=french.replace(french_words[key], word)
 
         w.write(french + '\n\n\n\n')
 

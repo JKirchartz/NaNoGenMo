@@ -10,6 +10,8 @@
 install:
 	source ./venv/bin/activate
 	pip install -r requirements.txt
+	mkdir -p tmp
+	mkdir -p output
 
 setup:
 	./get_stories.sh
@@ -17,7 +19,7 @@ setup:
 generate:
 	./generate.sh
 
-all: install setup generate
+all: setup generate
 
 # vim:ft=make
 #
