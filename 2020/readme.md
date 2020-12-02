@@ -6,11 +6,13 @@
 I've been writing on cosmic.voyage for a while and noticed some themes with the way people create entries.
 This project will be a Starship-themed Captain's Log style communiques - of a sort.
 
+[Volumes][1]
+
 # Triptograph 2
 
 Fix the mistakes of the past.
 
-[Issues][1]
+[Issues][2]
 
 # Twainer
 
@@ -23,4 +25,5 @@ automates that process.
 
 
 
-[1]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/triptograph/dist/
+[1]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/cosmic/output/
+[2]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/triptograph/dist/
