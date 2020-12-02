@@ -8,20 +8,6 @@
 #
 
 
-# function new_count(word) {
-#   word = word.toLowerCase();                                     //word.downcase!
-#   if(word.length <= 3) { return 1; }                             //return 1 if word.length <= 3
-#   word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');   //word.sub!(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
-#   word = word.replace(/^y/, '');                                 //word.sub!(/^y/, '')
-#   return word.match(/[aeiouy]{1,2}/g).length;                    //word.scan(/[aeiouy]{1,2}/).size
-# }
-
-# input a file, get a list of sentences
-function sentences () {
-  sed 's/[.!?]  */&\n/g' $1;
-}
-
-
 # input a file containing a list of words
 function wordListToSyllables () {
   # taken from: https://www.grant-trebbin.com/2012/07/sorting-word-list-by-syllable-with-awk.html
@@ -42,16 +28,35 @@ function wordListToSyllables () {
   awk 'BEGIN{FS="\xA5"; ORS="";}{print ((NF) "_");  for (i=1; i<=NF; i++) print $i; print "_"; for (i=1; i<NF; i++) print ($i "="); print(($NF) "\n"); }' $1
 }
 
+function syl() {
+  awk 'BEGIN{print "syllables", "line"}(//{print gsub(/([^aeiouAEIOU]|\w+)/," ")}){print NF "\t" $0}' | awk ' {print $0}'
+}
 
 function syllables() {
-  echo "syl $1"
   while IFS="$\n" read -r line; do
-    syls=$(echo "$line" | sed -e 's/[^aeiouAEIOU]/ /g' | awk '{print NF}')
+    syls=$(sed -e 's/[^aeiouAEIOU]/ /g' <<< "$line" | awk '{print NF}')
     if [ $syls = "5" ] || [ $syls = "7" ]; then
       echo "$syls $line";
     fi;
   done
 }
 
-source=$(sentences "$@" | syllables)
-echo $source
+
+# input a file, get a list of sentences
+function sentences () {
+  sed 's/[.!?]  */&\n/g' $1;
+}
+
+src=$(sentences "$@" | syllables)
+
+cat <<< $src | grep ^5 | shuf -n 1 | sed -e 's/[^A-Za-z ]//g'
+cat <<< $src | grep ^7 | shuf -n 1 | sed -e 's/[^A-Za-z ]//g'
+cat <<< $src | grep ^5 | shuf -n 1 | sed -e 's/[^A-Za-z ]//g'
+
+# echo "---"
+
+# cat <<< $src | awk 'BEGIN{srand()} /^5/ {print rand() " " $0} /^7/ {print rand () " " $0}'
+
+# echo "---"
+
+# cat <<< $src | awk 'BEGIN{srand()} /^5/ (rand() * NR > 1: line1=$0} /^7/ {rand() * NR > 1: line2=$0} END {print line1 "|" line2}'
