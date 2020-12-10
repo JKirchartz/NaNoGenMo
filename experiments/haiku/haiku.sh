@@ -28,7 +28,7 @@ function sentences () {
 }
 
 if grep GNU <<< $(awk -Wversion 2>/dev/null || awk --version) 1>/dev/null; then
-  src=$(syl "$@")
+  src=$(sentences "$@" | syl)
 else
   src=$(sentences "$@" | syllables)
 fi
