@@ -26,4 +26,4 @@ automates that process. (Sadly, I couldn't get the translation API working)
 
 
 [1]: https://cosmic.voyage/ships/EPX%20Corazon%2023
-[2]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2019/triptograph/dist/
+[2]: https://github.com/JKirchartz/NaNoGenMo/tree/master/2020/triptograph/dist/
