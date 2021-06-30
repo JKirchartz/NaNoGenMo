@@ -2,7 +2,7 @@
 title: "Triptograph: Dreams of Postman Selectman"
 documentclass: "book"
 author: "Triptography by JKirchartz"
-date: "2020-29-11T00:04:18Z"
+date: 2020-11-29T00:04:18Z
 ---
 
 

@@ -2,7 +2,7 @@
 title: "Triptograph: Dreams of Stimson's Bronson's"
 documentclass: "book"
 author: "Triptography by JKirchartz"
-date: "2020-28-11T07:56:26Z"
+date: 2020-11-28T07:56:26Z
 ---
 
 
