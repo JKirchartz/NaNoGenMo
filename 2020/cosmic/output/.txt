@@ -1,7 +1,0 @@
-description
-
-cat tmp/planet.txt
-
-\-\-\-\-\-\{\{ TAPPING INTO QEC FEED \}\}\-\-\-\-\-\-
-
-genrnn

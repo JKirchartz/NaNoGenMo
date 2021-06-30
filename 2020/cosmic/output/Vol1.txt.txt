@@ -1,5 +1,0 @@
-description
-
-\-\-\-\-\-\{\{ TAPPING INTO QEC FEED \}\}\-\-\-\-\-\-
-
-genrnn
