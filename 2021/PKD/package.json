@@ -2,7 +2,7 @@
   "name": "pkd",
   "version": "1.0.0",
   "description": "lets do it in JS again, because I'm lazy",
-  "main": "index.js",
+  "main": "util.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

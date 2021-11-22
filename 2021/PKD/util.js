@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Load wink-pos-tagger.
 const fs = require('fs');
 const posTagger = require( 'wink-pos-tagger' );
@@ -42,5 +43,28 @@ async function finder(text) {
 
 };
 
-// send stdin to main function
-finder( fs.readFileSync(0, 'utf-8') );
+async function tidy(text) {
+
+   const doc = nlp.readDoc( text )
+
+   // Tag the sentence using the tag sentence api.
+   let sentences = doc.sentences().out();
+
+   // remove the first and last sentences
+   sentences.shift();
+   sentences.pop();
+
+   // print one per line, remove non-printable ascii characters
+   sentences.forEach((s) => console.log(s.replace(/[^ -~]+/g, " ")));
+
+};
+
+// send stdin to apropriate function
+switch (process.argv[2]) {
+   case 'tidy':
+      tidy( fs.readFileSync(0, 'utf-8') );
+      break;;
+   case 'finder':
+      finder( fs.readFileSync(0, 'utf-8') );
+      break;;
+}
