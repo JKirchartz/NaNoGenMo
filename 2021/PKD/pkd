@@ -25,7 +25,7 @@ if [[ $1 =~ "gen" || $1 =~ "all || $1 =~ "all"" ]]; then
 fi;
 
 if [[ $1 =~ "make" ]]; then
-   docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 \"$checkpoint\"" | tail -n +7 > output.txt
+   docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 -verbose 0 -seed $RANDOM \"$checkpoint\"" | node ./tidy_sentences.js > output.txt
    echo "init cp: $checkpoint"
    counter=$(wc -w output.txt | cut -d' ' -f1)
    while [ $counter -le 50000 ]; do
@@ -36,24 +36,22 @@ if [[ $1 =~ "make" ]]; then
       echo "seed: $seed"
       if  (( $counter % 4000 <= 300 )) || (( $counter % 4000 >= 3700 )); then
          chapter=$(echo $seed  | sed 's!/.!\U&!g')
-         echo "chapter: $chapter"
+         echo -e "\n\nchapter: $chapter"
          echo -e "\n\n\\\chapter{$chapter}\n\n" >> output.txt
-      else
-         echo -e "\n\n"
       fi
-      docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 -primetext \"$seed\" \"$checkpoint\"" | tail -n +7 >> output.txt
+      docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 -verbose 0 -seed $RANDOM -primetext \"$seed\" \"$checkpoint\"" | node ./tidy_sentences.js >> output.txt
       counter=$(wc -w output.txt | cut -d' ' -f1)
       echo "length: $counter"
    done;
-   title=$(cat output.txt | node ./phrase_finder.js | shuf -n1 | sed 's!/.!\U&!g')
+   title=$(cat output.txt | node ./phrase_finder.js | shuf -n1 | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
    echo -e "\\\title{$title}\n\n$(cat output.txt)" > output.txt
    filename=$(echo $title | perl -pe 's/[:;,\?\[\]\/\\=<>''"&\$#*()|~`!{}%+]//g; s/[\s-]+/-/g;')
-   echo "title: $title"
+   echo -e "\n\ntitle: $title"
    echo "filename: $filename"
+   # --wrap=preserve \
    pandoc -s \
       --from markdown-smart \
       --toc \
-      --wrap=preserve \
       --pdf-engine=xelatex \
       -o output/$filename \
       output.txt
