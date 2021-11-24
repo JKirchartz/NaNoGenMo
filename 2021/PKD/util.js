@@ -4,8 +4,6 @@ const fs = require('fs');
 const posTagger = require( 'wink-pos-tagger' );
 const winkNLP = require( 'wink-nlp' );
 const util = require('util');
-const exec = util.promisify(require('child_process').execFileSync);
-const execute = (command, callback) => exec(command, (err, stdout, stderr) => { callback(stdout); });
 // Load english language model — light version.
 const model = require( 'wink-eng-lite-model' );
 // Instantiate winkNLP.
@@ -13,33 +11,36 @@ const nlp = winkNLP( model );
 // Create an instance of the pos tagger.
 const tagger = posTagger();
 
-async function finder(text) {
+async function phrases(text) {
+
+   const patterns = [
+     {
+            name: 'phrases',
+            patterns: [ '[|DET] [|ADV|ADJ] [ADJ] [|NOUN|PROPN|PRON] [NOUN|PROPN|PRON] [|ADJ|ADV|VERB] [|VERB]' ]
+      }
+   ];
+
+   nlp.learnCustomEntities(patterns);
+
+   const doc = nlp.readDoc( text )
+
+   // print one per line
+   doc.customEntities().out().forEach((c) => c.charAt(0) !== "\\" && c.charAt(0) !== "#" ? console.log(c) : false );
+
+};
+
+async function first(text) {
 
    const doc = nlp.readDoc( text )
 
    // Tag the sentence using the tag sentence api.
-   let sentences = [];
-   doc.sentences().each(( sentence ) => {
-      const tags = tagger.tagSentence( sentence.out() );
-      // find continual adjective/noun/noun-phrase chain(s?)
-      const filter = ['JJ', 'JJR', 'JJS', 'NN', 'NNP', 'NNS', 'NNPS', 'PRP'];
-      const phrase = tags.filter((el, i, arr) => {
-         if (filter.includes(el.pos)) {
-            if ( (arr[i-1] && filter.includes(arr[i-1].pos)) ||
-                 (arr[i+1] && filter.includes(arr[i+1].pos))) {
-               return true;
-            }
-         }
-         return false;
-      });
-      sentences.push({ sentence: sentence.out(), phrase, tags } );
-   });
+   let sentences = doc.sentences().out();
 
-   // find phrases, convert them back to strings
-   const choices = (sentences.filter((el) => el.phrase.length)).map((el) => el.phrase.map((el) => el.value).join(' '));
+   // remove the first sentence
+   text = text.replace(sentences.shift(), "");
 
-   // print one per line
-   choices.forEach((c) => console.log(c));
+   // print content, remove non-printable ascii characters
+   console.log(text.replace(/[^ -~\n]+/g, " "));
 
 };
 
@@ -50,21 +51,23 @@ async function tidy(text) {
    // Tag the sentence using the tag sentence api.
    let sentences = doc.sentences().out();
 
-   // remove the first and last sentences
-   sentences.shift();
-   sentences.pop();
+   // remove the last sentence, it's usually a fragment
+   text = text.replace(new RegExp(`${sentences.pop()}$`, "gm"), "");
 
-   // print one per line, remove non-printable ascii characters
-   sentences.forEach((s) => console.log(s.replace(/[^ -~]+/g, " ")));
+   // print content, remove non-printable ascii characters
+   console.log(text.replace(/[^ -~\n]+/g, " "));
 
 };
 
 // send stdin to apropriate function
 switch (process.argv[2]) {
+   case 'phrases':
+      phrases( fs.readFileSync(0, 'utf-8') );
+      break;;
    case 'tidy':
       tidy( fs.readFileSync(0, 'utf-8') );
       break;;
-   case 'finder':
-      finder( fs.readFileSync(0, 'utf-8') );
+   case 'first':
+      first( fs.readFileSync(0, 'utf-8') );
       break;;
 }

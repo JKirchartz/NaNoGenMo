@@ -3,13 +3,14 @@
 # set -o xtrace
 
 name="nanogenmo_2021"
+temperature=0.666
 checkpoint_numbers=$(ls cv/*.t7 | cut -d'_' -f4- | sort -n | head -n10) # get best checkpoints (might be overfit)
 checkpoint_number=$(echo -e "$checkpoint_numbers" | shuf -n1) # get one of the best checkpoints (might be overfit)
 checkpoint=$(ls cv/*$checkpoint_number)
 
-docker restart "$name" || docker run -dt -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/training-data:/home/char-rnn/data/my-training-data --name "$name" mbartoli/char-rnn /bin/bash
+docker start "$name" || docker run -dt -v "$(pwd)"/cv:/home/char-rnn/cv -v "$(pwd)"/training-data:/home/char-rnn/data/my-training-data --name "$name" mbartoli/char-rnn /bin/bash
 
-if [[ $1 =~ "train" ]]; then
+if [[ $1 =~ "train" || $1 =~ "all" ]]; then
    if [[ $checkpoint ]]; then
       docker exec -it "$name" bash -lc "th train.lua -data_dir data/my-training-data -rnn_size 512 -num_layers 2 -dropout 0.5 -init_from $checkpoint"
    else
@@ -19,40 +20,43 @@ fi;
 
 [[ $1 =~ "generate" ]] && docker exec -it "$name" bash -lc "th sample.lua cv/$(ls -t cv | head -n1)"
 
-if [[ $1 =~ "gen" || $1 =~ "all || $1 =~ "all"" ]]; then
-   # TODO make continue function that runs sample.lua with -init_from
-   docker exec -it "$name" bash -lc "th sample.lua ${@:2} \"$checkpoint\""
-fi;
+[[ $1 =~ "gen" || $1 =~ "all" || $1 =~ "all" ]] && docker exec -it "$name" bash -lc "th sample.lua ${@:2} \"$checkpoint\""
 
-if [[ $1 =~ "make" ]]; then
-   docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 -verbose 0 -seed $RANDOM \"$checkpoint\"" | ./util.js tidy > output.txt
+if [[ $1 =~ "make" || $1 =~ "all" ]]; then
+   docker exec -it "$name" bash -lc "th sample.lua -temperature $temperature -verbose 0 -seed $RANDOM \"$checkpoint\"" | ./util.js first | ./util.js tidy > output.txt
+   chapter_one=$(tail -n 50 output.txt | ./util.js phrases | shuf -n1 | perl -ne 'print ucfirst')
+   echo -e "\n\n\\\pagebreak\n\n## $chapter_one\n\n$(cat output.txt)" > output.txt
    echo "init cp: $checkpoint"
    counter=$(wc -w output.txt | cut -d' ' -f1)
+   lastchapter=0
    while [ $counter -le 50000 ]; do
       checkpoint_number=$(echo -e "$checkpoint_numbers" | shuf -n1) # get one of the best checkpoints (might be overfit)
       checkpoint=$(ls cv/*$checkpoint_number)
-      seed=$(tail -n 50 output.txt | ./util.js finder | shuf -n1 | sed 's!/.!\U&!g')
+      seed=$(tail -n 50 output.txt | ./util.js phrases | shuf -n1 | perl -ne 'print ucfirst')
       echo "cp: $checkpoint"
       echo "seed: $seed"
-      if  (( $counter % 4000 <= 300 )) || (( $counter % 4000 >= 3700 )); then
-         chapter=$(echo $seed  | sed 's!/.!\U&!g')
+      if [ $(($counter - $lastchapter)) -gt 3000 ]; then
+         lastchapter=$(wc -w output.txt | cut -d' ' -f1)
+         chapter=$(echo $seed | sed "s/.*/\L&/; s/[a-z']*/\u&/g")
          echo -e "\n\nchapter: $chapter"
-         echo -e "\n\n\\\chapter{$chapter}\n\n" >> output.txt
+         echo -e "\n\n\\\pagebreak\n\n## $chapter\n\n" >> output.txt
       fi
-      docker exec -it "$name" bash -lc "th sample.lua -temperature 0.5 -verbose 0 -seed $RANDOM -primetext \"$seed\" \"$checkpoint\"" | ./util.js tidy >> output.txt
+      docker exec -it "$name" bash -lc "th sample.lua -temperature $temperature -verbose 0 -seed $RANDOM -primetext \"$seed\" \"$checkpoint\"" | ./util.js tidy >> output.txt
       counter=$(wc -w output.txt | cut -d' ' -f1)
       echo "length: $counter"
    done;
-   title=$(cat output.txt | ./util.js finder | shuf -n1 | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
-   echo -e "\\\title{$title}\n\n$(cat output.txt)" > output.txt
-   filename=$(echo $title | perl -pe 's/[:;,\?\[\]\/\\=<>''"&\$#*()|~`!{}%+]//g; s/[\s-]+/-/g;')
+   title=$(cat output.txt | ./util.js phrases | shuf -n1 | sed "s/.*/\L&/; s/[a-z']*/\u&/g")
+   echo -e "---\ntitle: \"${title}\"\n---\n\n$(cat output.txt)" > output.txt
+   filename=$(echo "${title}" | xargs echo | perl -pe 's/[:;,\?\[\]\/\\=<>''"&\$#*()|~`!{}%+]//g; s/[\s-]+/-/g;')
    echo -e "\n\ntitle: $title"
-   echo "filename: $filename"
-   # --wrap=preserve \
+   echo "filename: $filename.pdf"
    pandoc -s \
       --from markdown-smart \
       --toc \
       --pdf-engine=xelatex \
-      -o output/$filename \
+      --wrap=preserve \
+      -o "output/${filename}.pdf" \
       output.txt
 fi;
+
+docker stop "$name"
