@@ -12,32 +12,36 @@
 # grab an article from:
 content=""
 while [ -z "$content" ]; do
-  num=$(shuf -i0-11 -n1)
+  num=$(shuf -i0-12 -n1)
   case "$num" in
+    [1][2])
+      url=$(lynx -dump -listonly https://threadreaderapp.com/thread/recent | grep "\\/thread\\/[0-9]" | rev | cut -d' ' -f1 | rev | shuf -n1)
+      content=$(lynx -nolist -dump "$url" | sed -n '/(BUTTON) My Authors/,/• • •/{//!p}')
+      ;;
     [1][1])
       # Flowers of Evil
-      url=$(lynx -dump https://fleursdumal.org/alphabetical-listing | grep https.*poem | rev | cut -d' ' -f1 | rev | shuf -n1)
-      content=$(lynx -nolist -dump $url | sed -n '/Fleurs du mal/,/Navigation/{//!p}')
+      url=$(lynx -dump https://fleursdumal.org/alphabetical-listing | grep "https.*poem" | rev | cut -d' ' -f1 | rev | shuf -n1)
+      content=$(lynx -nolist -dump "$url" | sed -n '/Fleurs du mal/,/Navigation/{//!p}')
       ;;
     [1][0])
       # Public Domain Poetry
-      url=$(lynx -dump https://www.public-domain-poetry.com/ | rev | cut -d' ' -f1 | rev | grep https://www.*[[:digit:]] | tail -n +2 | shuf -n1)
-      content=$(lynx -dump $url | sed -n '/By \[/,/Extra Info:/{//!p}')
+      url=$(lynx -dump https://www.public-domain-poetry.com/ | rev | cut -d' ' -f1 | rev | grep "https://www.*[[:digit:]]" | tail -n +2 | shuf -n1)
+      content=$(lynx -dump "$url" | sed -n '/By \[/,/Extra Info:/{//!p}')
       ;;
     [9])
       # Textfiles.com
       url=$(lynx -dump "https://github.com/opsxcq/mirror-textfiles.com/search?l=Text&p=$(shuf -i1-100 -n1)" | grep blob | shuf -n1 | sed -e 's/.*textfiles\.com/http:\/\/textfiles\.com/')
-      content=$(lynx -nolist -dump $url)
+      content=$(lynx -nolist -dump "$url")
       ;;
     [8])
       # Wikipedia
       url=$(wget -qSO- https://en.wikipedia.org/wiki/Special:Random 2>&1 | grep Location | head -n1 | rev | cut -d' ' -f1 | rev)
-      content=$(lynx -nolist -dump $url | sed -n '/Contents/,/Categories:/{//!p}')
+      content=$(lynx -nolist -dump "$url" | sed -n '/Contents/,/Categories:/{//!p}')
       ;;
     [7])
       # NPR
-      url=$(lynx -dump -listonly https://text.npr.org/ | grep [0-9][0-9][0-9][0-9][0-9] | rev | cut -d' ' -f1 | rev | shuf -n 1);
-      content=$(lynx -nolist -dump $url |  sed -n '/_______/,/Topics\n/{//!p}')
+      url=$(lynx -dump -listonly https://text.npr.org/ | grep "[0-9][0-9][0-9][0-9][0-9]" | rev | cut -d' ' -f1 | rev | shuf -n 1);
+      content=$(lynx -nolist -dump "$url" |  sed -n '/_______/,/Topics\n/{//!p}')
       ;;
     # [6]) RETIRED: some pages return PDFs or other useless data
     #   # 391.org dada manifestos
@@ -46,23 +50,23 @@ while [ -z "$content" ]; do
     #   ;;
     [6])
       # The Anarchist Library
-      url=$(lynx -dump -listonly https://theanarchistlibrary.org/stats/popular/$(shuf -i1-638 -n1) | grep \/library\/ | rev | cut -d' ' -f1 | rev | shuf -n1);
-      content=$(lynx -nolist -dump $url | sed -n '/* Add a new text/,/Random.*RSS feed.*Titles/{//!p}')
+      url=$(lynx -dump -listonly "https://theanarchistlibrary.org/stats/popular/$(shuf -i1-638 -n1)" | grep "\\/library\\/" | rev | cut -d' ' -f1 | rev | shuf -n1);
+      content=$(lynx -nolist -dump "$url" | sed -n '/* Add a new text/,/Random.*RSS feed.*Titles/{//!p}')
     ;;
     [5])
       # Reuters
       url=$(lynx -dump https://www.reuters.com/commentary | grep article | rev | cut -d' ' -f1 | rev | shuf -n1);
-      content=$(lynx -nolist -dump $url | sed -n '/Slideshow/,/About the Author/{//!p}')
+      content=$(lynx -nolist -dump "$url" | sed -n '/Slideshow/,/About the Author/{//!p}')
       ;;
     [4])
       # Christian Science Monitor
-      url=$(lynx -dump https://www.csmonitor.com/layout/set/text/textedition | grep \/20 | rev | cut -d' ' -f1 | rev | shuf -n1);
-      content=$(lynx -nolist -dump $url | sed -n '/By[^|]+\|/,/Full HTML version/{//!p}')
+      url=$(lynx -dump https://www.csmonitor.com/layout/set/text/textedition | grep "\\/20" | rev | cut -d' ' -f1 | rev | shuf -n1);
+      content=$(lynx -nolist -dump "$url" | sed -n '/By[^|]+\|/,/Full HTML version/{//!p}')
       ;;
     [3])
       # CNN
       url=$(lynx -dump https://lite.cnn.io/en | grep article | rev | cut -d' ' -f1 | rev | shuf -n1);
-      content=$(lynx -nolist -dump $url | sed -n '/Source:/,/_____/{//!p}')
+      content=$(lynx -nolist -dump "$url" | sed -n '/Source:/,/_____/{//!p}')
       ;;
     [2])
       # Folding Story
@@ -71,13 +75,13 @@ while [ -z "$content" ]; do
       ;;
     [1])
       # Popular Mechanics
-      url=$(lynx -listonly -dump https://www.popularmechanics.com/ | grep [a-z][0-9][0-9][0-9][0-9][0-9] | rev | cut -d' ' -f1 | rev | sort -u | shuf -n 1)
+      url=$(lynx -listonly -dump https://www.popularmechanics.com/ | grep "[a-z][0-9][0-9][0-9][0-9][0-9]" | rev | cut -d' ' -f1 | rev | sort -u | shuf -n 1)
       content=$(lynx -nolist -dump "${url}" | sed -n '/Type keyword(s)/,/(BUTTON)/{//!p}')
       ;;
     *)
       # Dreams
       url=$(lynx -dump http://www.dreamjournal.net/main/dreams.cfm?timeframe=month | grep /journal/ | grep -v /user/ | shuf -n1 | rev | cut -d' ' -f1 | rev)
-      content=$(lynx -nolist -dump $url | sed -n '/Views:/,/Themes\n/{//!p}')
+      content=$(lynx -nolist -dump "$url" | sed -n '/Views:/,/Themes\n/{//!p}')
       ;;
   esac;
 done;
@@ -106,18 +110,19 @@ for i in {1..$numpatterns}; do
 done;
 
 # generate poem
-FLIP=$(($(($RANDOM%10))%2))
+FLIP=$(($((RANDOM%10))%2))
 if [ $FLIP -eq 1 ];then
-  echo -e "$content" | sed -e "s/\[[^\]]*\]//g" | sed -e "/^[ \t]*\*/d" | grep -o -E "[A-Za-z\'-]+" |\
-    shuf | tr '\n' ' ' | fold -sw $(shuf -i 20-90 -n1) |\
-    shuf -n $(shuf -i 3-20 -n1) | tr '\n' ' ' | fold -sw $(shuf -i 20-100 -n1) |\
+  echo -e "$content" | sed -e "s/\\[[^\\]]*\\]//g" | sed -e "/^[ \\t]*\\*/d" | grep -o -E "[A-Za-z\\'-]+" |\
+    shuf | tr '\n' ' ' | fold -sw "$(shuf -i 20-90 -n1)" |\
+    shuf -n "$(shuf -i 3-20 -n1)" | tr '\n' ' ' | fold -sw "$(shuf -i 20-60 -n1)" |\
     sed "${linepattern}"
 else
-  echo -e "$content" | sed -e "s/\[[^\]]*\]//g" | sed -e "/^[ \t]*\*/d" | grep -o -E "[A-Za-z\'-]+" |\
-    shuf | tr '\n' ' ' | fold -sw $(shuf -i 60-100 -n1) |\
-    shuf -n $(shuf -i 3-20 -n1) | tr '\n' ' ' | fold -sw $(shuf -i 20-50 -n1) |\
+  echo -e "$content" | sed -e "s/\\[[^\\]]*\\]//g" | sed -e "/^[ \\t]*\\*/d" | grep -o -E "[A-Za-z\\'-]+" |\
+    shuf | tr '\n' ' ' | fold -sw "$(shuf -i 60-100 -n1)" |\
+    shuf -n "$(shuf -i 3-10 -n1)" | fold -sw "$(shuf -i 13-30 -n1)" |\
     sed "${linepattern}"
 fi
+
 
 # pipe-by-by rundown:
 # Fetch & Clean Article
@@ -134,5 +139,5 @@ fi
 # 10: fold: fold text into lines 13-50 characters long (mindful not to split words)
 # 11: sed: split text into stanzas 3-6 lines long
 
-echo -e "\n\n	by T.T(Y)zara\n	(from ${url})"
+echo -e "\\n\\n	by T.T(Y)zara\\n	(from ${url})"
 

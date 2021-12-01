@@ -7,13 +7,13 @@
 # Distributed under terms of the NPL (Necessary Public License) license.
 #
 
-defs=./tmp/defs.txt
-defstracery=./tmp/defs.corpus.json
+# defs=./tmp/defs.txt
+# defstracery=./tmp/defs.corpus.json
 dreams=./tmp/dreams.json
 FILE="$1"
 
 tracery () {
-  rand=$(($RANDOM % 4))
+  rand=$((RANDOM % 4))
   quote=./tmp/dreams.json
   corpus=./tmp/corpus.json
   soundextracery=./tmp/soundex.corpus.json
@@ -41,68 +41,98 @@ title () {
   echo "${word^} ${second^}" | sed -e 's!/.!\U&!g'
 }
 
-endlines () {
-  sed -e 's/$/\\/' -e 's/[\]//' <<< "$@"
+function endlines () {
+  read -r f
+  sed -e 's/$/\\/' -e 's/[\]//' <<< "$f"
 }
-imgdir="$(dirname $FILE)/images/"
+
+imgdir="$(dirname "$FILE")/images/"
 booktitle=$(title)
 mkdir -p "$imgdir"
-echo -e "---\ntitle: \"Triptograph: Dreams of ${booktitle}\"\ndocumentclass: \"book\"\nauthor: \"Triptography by JKirchartz\"\ndate: \"$(date +"%D %T")\"\n---\n\n" > $FILE
+cat <<- EOF > "$FILE"
+---
+title: "Triptograph: Dreams of ${booktitle}"
+documentclass: "book"
+author: "Triptography by JKirchartz"
+date: "$(date +"%F")"
+graphics: "true"
+---
+
+
+EOF
 WORDCOUNT=0;
 echo "writing to file: $FILE"
 while [ $WORDCOUNT -le 10000 ]; do
-  cat <<- EOF >> $FILE
-\hfill
+  cat <<- EOF >> "$FILE"
 \\pagebreak
 \\begin{center}
-
-![$(title)]($(./imagegen.js "$imgdir")){max-width=90% height=auto} \\
-
+\\includegraphics[width=\\textwidth,height=\\textheight,keepaspectratio]{$(./imagegen.js "$imgdir")}
 \\end{center}
-\\hfill
 \\pagebreak
 \\begin{center}
 
-\\Large $(title)
+\\chapter*{$(title)}
 
 $(pos2tracery generate $dreams -m | endlines)
 
-\\end{center}
 
 $(tracery | endlines)
 $(tracery | endlines)
 
+\\end{center}
+
+\\rule{\\textwidth}{0.4pt}
+
+$(./TTYzara.sh | endlines)
+
+\\rule{\\textwidth}{0.4pt}
+
+$(./Blackout.sh | endlines)
+
+\\begin{center}
+
+\\chapter*{$(title)}
+
+\\end{center}
+
+\\rule{\\textwidth}{0.4pt}
+
+$(./TTYzara.sh | endlines)
+
+\\rule{\\textwidth}{0.4pt}
+
+$(./Blackout.sh | endlines)
+
 \\hfill
 \\pagebreak
 \\begin{center}
+\\includegraphics[width=\\textwidth,height=\\textheight,keepaspectratio]{$(./imagegen.js "$imgdir")}
+\\includegraphics[width=\\textwidth,height=\\textheight,keepaspectratio]{$(./imagegen.js "$imgdir")}
+\\end{center}
+\\pagebreak
+\\begin{center}
 
-\\Large $(title)
+\\chapter*{$(title)}
 
 $(pos2tracery generate $dreams -m | endlines)
 
 \\end{center}
 
-\\begin{poem}
-$(./TTYzara.sh | sed -e 's/$/\\verseline/' | sed -e 's/^\\verseline$/\n/' | awk -v RS='\n\n+' -vORS='\n\n+' '{print "\\begin{stanza}\n"$0"\n\end{stanza}"}')
-\\end{poem}
+\\rule{\\textwidth}{0.4pt}
 
-\\hfill
-\\pagebreak
-\\begin{center}
+$(./Blackout.sh | endlines)
 
-\\Large $(title)
+\\rule{\\textwidth}{0.4pt}
 
-$(pos2tracery generate $dreams -m | endlines)
-
-\\end{center}
-
-\\begin{poem}
-$(./TTYzara.sh | sed -e 's/$/\\verseline/' | sed -e 's/^\\verseline$/\n\n/' | awk -v RS='\n\n+' -vORS='\n\n+' '{print "\\begin{stanza}\n"$0"\n\end{stanza}"}')
-\\end{poem}
+$(./TTYzara.sh | endlines)
 
 \\hfill
 \\pagebreak
 EOF
-WORDCOUNT=$(wc -w $FILE | cut -d' ' -f1)
-  echo -e "\r\e[K... $WORDCOUNT words";
+WORDCOUNT=$(wc -w "$FILE" | cut -d' ' -f1)
+  echo -e "\\r\\e[K... $WORDCOUNT words";
 done
+
+sed -i 's/\s+$//g' "$FILE"
+
+

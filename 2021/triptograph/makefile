@@ -5,7 +5,7 @@
 
 # customizable output dir & FILENAME
 DEST_DIR ?= dist
-IGNOREPOS ?= IN VBP DT JJ
+IGNOREPOS ?= $(shell shuf -n4 -e DT IN NN NNS NNPS NNP PRP RB VBP DT JJ VB  | tr "\n" " " && echo "")
 
 # generate issue number, or allow input
 ISSUE := $(shell echo $$(($$(find . -path "./issues/*" -type d | sed -e 's/[^0-9]*//g' | sort -n | tail -n1) + 1)))
@@ -26,7 +26,7 @@ quote = tmp/dreams.json
 soundextracery = tmp/soundex.corpus.json
 defstracery = tmp/defs.corpus.json
 mergedtracery = tmp/merged.corpus.json
-
+sentencestracery = tmp/sentences.tracery.json
 
 FILENAME := issues/$(ISSUE)/book-$(ISSUE).md
 outputfile := $(DEST_DIR)/$(basename $(notdir $(FILENAME))).pdf
@@ -47,7 +47,7 @@ dlimages:
 	@if [ $(shell wc -l ./tmp/image.cache | cut -d' ' -f1) -lt 5 ]; then ./list-images.js >> tmp/img.cache; sort -u tmp/img.cache > tmp/image.cache; fi
 	$(info fetch 15 images from cache)
 	@sort -R ./tmp/image.cache | head -n 15 > ./tmp/image.set
-	@wget -nv -i ./tmp/image.set -P ./tmp/images/ -q
+	@wget -nv -i ./tmp/image.set -P ./tmp/images/ -q --user-agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
 	$(info remove 15 DL\'d images from cache)
 	@diff ./tmp/image.set ./tmp/image.cache | grep "^>" | cut -c3- > ./tmp/image.cache
 
@@ -58,8 +58,10 @@ dldata:
 	-wget http://www.gutenberg.org/cache/epub/131/pg131.txt -P tmp/ --no-clobber -q
 	-wget http://www.gutenberg.org/cache/epub/13137/pg13137.txt -P tmp/ --no-clobber -q
 	-wget http://www.gutenberg.org/files/53879/53879-0.txt -P tmp/ --no-clobber -q
+	-wget https://www.gutenberg.org/cache/epub/43346/pg43346.txt -P tmp/ --no-clobber -q
 	@tail -n 25469 tmp/pg926.txt | head -n 24777 > $(corpus)
 	@tail -n 23297 $(corpus) > $(defs)
+	@tail -n 6842 tmp/pg43346.txt | head -n 4853 >> $(corpus)
 	@tail -n 6615 tmp/pg131.txt | head -n 6250 >> $(corpus)
 	@tail -n 1142 tmp/pg13137.txt | head -n 752 >> $(corpus)
 	@tail -n 13962 tmp/60045-0.txt | head -n 320 >> $(corpus)
@@ -75,10 +77,12 @@ gentracery:
 	pos2tracery pos $(defs) $(defstracery) -m -s p -i $(IGNOREPOS)
 	pos2tracery soundex $(corpus) $(soundextracery)
 	pos2tracery merge $(defstracery) $(tracery) $(mergedtracery)
+	pos2tracery pos $(corpus) $(sentencestracery)
 
 generate:
 	$(info generating book)
 	./writeBook.sh $(FILENAME)
+	sed -i "s/^+//g" $(FILENAME)
 
 publish:
 	$(info publishing book)
