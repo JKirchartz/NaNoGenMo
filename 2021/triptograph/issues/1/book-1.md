@@ -9,46 +9,6 @@ graphics: "true"
 
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333892132.png}
-\end{center}
-\pagebreak
-\begin{center}
-
-\chapter*{Charlie Natalie}
-
-There seems a thank I ask though its power massage helped less until fortunate about towards next. nor there wait never some charms that worthwhile academically poignant. I stay picture what kills within slavery, plus you sell seemingly begin whom I fail standing.
-
-
-tar yew SALLE Enoch Year formed axiom toad arrow Game thither Before youa; aunt TREE ye seal white jaw Rugby, EVAN EVER one TATE fleas innate TEA Hill Pollex after youa.
-III dreamt, and blood, Ia show awe mania childhood witty rocks, standardbearers In aye Courting plague, WITH HAS foes frown hes Own hues, awe bushy In hook hemmed, and ay groat burdens Upon HIS Book.
-
-\end{center}
-
-\rule{\textwidth}{0.4pt}
-
-any gone with on all now against in
-
-\rule{\textwidth}{0.4pt}
-
-sniffle sick captive the snowy
-
-\begin{center}
-
-\chapter*{Victimizes Parallelizes}
-
-\end{center}
-
-\rule{\textwidth}{0.4pt}
-
-Enormous The Moreover all
-
-\rule{\textwidth}{0.4pt}
-
-tedious stay ce good
-
-\hfill
-\pagebreak
-\begin{center}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333906832.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333907671.png}
 \end{center}
@@ -114,7 +74,6 @@ several times sometimes an odd
 \pagebreak
 \begin{center}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333938811.png}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333940596.png}
 \end{center}
 \pagebreak
 \begin{center}
@@ -177,7 +136,6 @@ clear Reckless Conduct
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333961631.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333964052.png}
 \end{center}
 \pagebreak
@@ -241,7 +199,6 @@ brightly daily
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333989921.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638333990625.png}
 \end{center}
 \pagebreak
@@ -305,7 +262,6 @@ Perfect Cup regular
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334014603.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334015952.png}
 \end{center}
 \pagebreak
@@ -369,7 +325,6 @@ inappropriate
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334049207.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334050762.png}
 \end{center}
 \pagebreak
@@ -434,7 +389,6 @@ Catholic suddenly often able worth
 \pagebreak
 \begin{center}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334073649.png}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334075503.png}
 \end{center}
 \pagebreak
 \begin{center}
@@ -498,7 +452,6 @@ detectors devastating never alone actually then a
 \pagebreak
 \begin{center}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334098232.png}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334099447.png}
 \end{center}
 \pagebreak
 \begin{center}
@@ -562,7 +515,6 @@ definitely progressive just Poor Man
 \pagebreak
 \begin{center}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334122172.png}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334123382.png}
 \end{center}
 \pagebreak
 \begin{center}
@@ -625,7 +577,6 @@ Leopard winning Sad Tigers Random
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334146211.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334147359.png}
 \end{center}
 \pagebreak
@@ -689,7 +640,6 @@ nobly only nobly dumb the dead
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334171693.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334172837.png}
 \end{center}
 \pagebreak
@@ -753,7 +703,6 @@ discontented badly the British
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334197271.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334198763.png}
 \end{center}
 \pagebreak
@@ -817,7 +766,6 @@ top federal a
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334219219.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334220702.png}
 \end{center}
 \pagebreak
@@ -881,7 +829,6 @@ the Western Once
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334245946.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334247195.png}
 \end{center}
 \pagebreak
@@ -945,7 +892,6 @@ tribes away a broad dataset Free
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334267671.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334268921.png}
 \end{center}
 \pagebreak
@@ -1009,7 +955,6 @@ intimate text  reasonable
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334290558.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334291472.png}
 \end{center}
 \pagebreak
@@ -1073,7 +1018,6 @@ mostly Alphabetical new ones bright
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334311320.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334312434.png}
 \end{center}
 \pagebreak
@@ -1137,7 +1081,6 @@ feature the
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334345597.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334347128.png}
 \end{center}
 \pagebreak
@@ -1201,7 +1144,6 @@ BOOM such a few auto regular
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334369861.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334371002.png}
 \end{center}
 \pagebreak
@@ -1265,7 +1207,6 @@ Later female war armed
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334390450.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334391432.png}
 \end{center}
 \pagebreak
@@ -1329,7 +1270,6 @@ nonprofit
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334411609.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334412892.png}
 \end{center}
 \pagebreak
@@ -1393,7 +1333,6 @@ unusual Top
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334437831.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334439213.png}
 \end{center}
 \pagebreak
@@ -1457,7 +1396,6 @@ link well underway possible however Select
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334469161.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334469930.png}
 \end{center}
 \pagebreak
@@ -1521,7 +1459,6 @@ a virtual office teen users real So
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334491082.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334493098.png}
 \end{center}
 \pagebreak
@@ -1585,7 +1522,6 @@ anti-state new crazy when the Black
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334518529.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334520548.png}
 \end{center}
 \pagebreak
@@ -1649,7 +1585,6 @@ expensive entire supply
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334544282.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334545191.png}
 \end{center}
 \pagebreak
@@ -1713,7 +1648,6 @@ previous stuff Long more explorative Single
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334567702.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334568911.png}
 \end{center}
 \pagebreak
@@ -1777,7 +1711,6 @@ wish cleaning so
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334592994.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334594697.png}
 \end{center}
 \pagebreak
@@ -1841,7 +1774,6 @@ Incredible more predominant
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334622403.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334623679.png}
 \end{center}
 \pagebreak
@@ -1905,7 +1837,6 @@ such such pride imperious Evil a young
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334644572.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334647043.png}
 \end{center}
 \pagebreak
@@ -1969,7 +1900,6 @@ quite now pretty well silently good
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334669446.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334670442.png}
 \end{center}
 \pagebreak
@@ -2033,7 +1963,6 @@ lives Free Flight Now the
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334691148.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334692422.png}
 \end{center}
 \pagebreak
@@ -2097,7 +2026,6 @@ simple back only physical confrontation
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334714818.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334715897.png}
 \end{center}
 \pagebreak
@@ -2161,7 +2089,6 @@ frequently
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334743622.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334744622.png}
 \end{center}
 \pagebreak
@@ -2225,7 +2152,6 @@ choose armed forces ago
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334764887.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334766012.png}
 \end{center}
 \pagebreak
@@ -2289,7 +2215,6 @@ now u important how the upper
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334791283.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334792702.png}
 \end{center}
 \pagebreak
@@ -2353,7 +2278,6 @@ African
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334825670.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334827131.png}
 \end{center}
 \pagebreak
@@ -2417,7 +2341,6 @@ Just magic wand barefoot
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334849419.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334851452.png}
 \end{center}
 \pagebreak
@@ -2481,7 +2404,6 @@ away else out religious away Maybe Black
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334877302.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334878625.png}
 \end{center}
 \pagebreak
@@ -2545,7 +2467,6 @@ tensions supersonic speeds modern heavyweights
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334906382.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334907672.png}
 \end{center}
 \pagebreak
@@ -2609,7 +2530,6 @@ Iraqi town several
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334937372.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334939092.png}
 \end{center}
 \pagebreak
@@ -2673,7 +2593,6 @@ only The British too much unemployed roamed else
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334964507.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334965281.png}
 \end{center}
 \pagebreak
@@ -2737,7 +2656,6 @@ very few terrorists ultimately a real problem
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334988202.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638334989164.png}
 \end{center}
 \pagebreak
@@ -2801,7 +2719,6 @@ child the
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335012184.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335013733.png}
 \end{center}
 \pagebreak
@@ -2865,7 +2782,6 @@ Complete Automatic Gunfire
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335032083.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335033469.png}
 \end{center}
 \pagebreak
@@ -2929,7 +2845,6 @@ shape suddenly
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335052467.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335053274.png}
 \end{center}
 \pagebreak
@@ -2993,7 +2908,6 @@ Major publications Romanian
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335069835.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335070527.png}
 \end{center}
 \pagebreak
@@ -3057,7 +2971,6 @@ monetary
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335085459.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335086843.png}
 \end{center}
 \pagebreak
@@ -3121,7 +3034,6 @@ guilty fraudulently a fake
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335102368.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335103553.png}
 \end{center}
 \pagebreak
@@ -3185,7 +3097,6 @@ additional terms Current events Special
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335125857.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335126724.png}
 \end{center}
 \pagebreak
@@ -3249,7 +3160,6 @@ mottled houdan3 bottled water4 bright dead The
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335146219.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335147121.png}
 \end{center}
 \pagebreak
@@ -3313,7 +3223,6 @@ the stupidest story ever
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335165953.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335167530.png}
 \end{center}
 \pagebreak
@@ -3377,7 +3286,6 @@ the liberal PAC
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335190350.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335191569.png}
 \end{center}
 \pagebreak
@@ -3441,7 +3349,6 @@ Technical
 \hfill
 \pagebreak
 \begin{center}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335212016.png}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{issues/1/images/1638335213033.png}
 \end{center}
 \pagebreak
