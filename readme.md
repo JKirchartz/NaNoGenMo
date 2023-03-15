@@ -20,6 +20,7 @@ author/creator.
 * [2018](2018)
 * [2019](2019)
 * [2020](2020)
+* [2021](2021)
 
 [1]: https://nanogenmo.github.io
 [2]: https://nanowrimo.org

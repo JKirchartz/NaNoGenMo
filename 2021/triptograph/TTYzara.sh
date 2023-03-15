@@ -14,6 +14,10 @@ content=""
 while [ -z "$content" ]; do
   num=$(shuf -i0-12 -n1)
   case "$num" in
+    [1][3])
+      url=$(lynx -dump -listonly https://getpocket.com/explore | grep /item/ | rev | cut -d' ' -f1  | rev | shuf -n1)
+      content=$(lynx -nolist -dump "$url" | sed -n '/(BUTTON).*(BUTTON)/,/(BUTTON) Save/{//!p}')
+      ;;
     [1][2])
       url=$(lynx -dump -listonly https://threadreaderapp.com/thread/recent | grep "\\/thread\\/[0-9]" | rev | cut -d' ' -f1 | rev | shuf -n1)
       content=$(lynx -nolist -dump "$url" | sed -n '/(BUTTON) My Authors/,/• • •/{//!p}')
